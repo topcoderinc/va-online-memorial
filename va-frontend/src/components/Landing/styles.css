@@ -1,0 +1,44 @@
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.center-box {
+  width: 360px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 4px;
+  padding: 35px 20px;
+  background-color: #dadada;
+  box-shadow: 4px 4px 12px 0px rgba(0,0,0,.1)
+}
+
+.center-box div {
+  width: 80%;
+}
+
+.center-box h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.center-box h4 {
+  text-align: center;
+}
+
+.center-box hr {
+  width: 85%;
+  border: none;
+  height: 1px;
+  background-color: transparent;
+  margin: 20px 0;
+}
+
+.center-box .btn {
+  width: 100%;
+}

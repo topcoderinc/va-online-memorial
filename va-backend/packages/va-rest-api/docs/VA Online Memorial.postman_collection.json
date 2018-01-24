@@ -1,0 +1,453 @@
+{
+	"info": {
+		"name": "VA Online Memorial",
+		"_postman_id": "938dda60-c4a2-4bc9-590d-2ebe07e28c16",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User management",
+			"description": "",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "20b7da3a-1b01-4fe1-90a0-20165113da73",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"example@email.com\",\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Doe\",\n\t\"country\": \"USA\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a940a14-d073-4f36-8e77-e1740782d3d9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json()",
+									"",
+									"pm.environment.set(\"TOKEN\", jsonData.token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"example@email.com\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lookups",
+			"description": "",
+			"item": [
+				{
+					"name": "Get branches",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/branches?limit=10&offset=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"branches"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get ranks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/ranks?limit=10&offset=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ranks"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get wars",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/wars?limit=10&offset=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"wars"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get cemeteries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/cemeteries?limit=10&offset=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cemeteries"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Veterans",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2eeb8046-8212-455e-a9d6-fda49f213005",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"VETERAN_ID\", jsonData.d_id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"d_first_name\": \"John\",\n\t\"d_mid_name\": \"Dean\",\n\t\"d_last_name\": \"Doe\",\n\t\"d_birth_date\": \"Sun Jan 01 1995 02:00:00 GMT+0200 (EET)\",\n\t\"d_death_date\": \"Sun Jan 01 2016 02:00:00 GMT+0200 (EET)\",\n\t\"d_suffix\": \"Mr\",\n\t\"burial\": {\n\t\t\"section_id\": \"B2\",\n\t\t\"row_num\": \"32\",\n\t\t\"site_num\": \"1\",\n\t\t\"cemetery\": {\n\t\t\t\"cem_name\": \"LOREM CEMETERY\",\n\t\t\t\"cem_addr_one\": \"New York\",\n        \t\"cem_url\": \"https://gravelocator.cem.va.gov\",\n        \t\"cem_phone\": \"123 123 1234\",\n        \t\"city\": \"New York\",\n        \t\"state\": \"NY\",\n        \t\"zip\": \"00501\"\n\t\t}\n\t},\n\t\"branches\": [\"US NAVY\"],\n\t\"wars\": [\"IRAQ\"],\n\t\"ranks\": [\"SGT\"],\n\t\"kin\": {\n\t\t\"relationship\": \"Wife\",\n\t\t\"v_first_name\": \"Jane\",\n\t\t\"v_mid_name\": \"Samantha\",\n\t\t\"v_last_name\": \"Doe\",\n\t\t\"v_suffix\": \"Mrs\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/veterans",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"veterans"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c34c619e-eb05-44d7-be17-fa8302344d65",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"VETERAN_ID\", jsonData.items[0].d_id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/veterans?limit=10&offset=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"veterans"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get single",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/veterans/{{VETERAN_ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"veterans",
+								"{{VETERAN_ID}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/veterans/{{VETERAN_ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"veterans",
+								"{{VETERAN_ID}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0027bf94-03ef-4a1f-821c-d385fbe53536",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"burial\": {\n\t\t\"cemetery\": {\n\t\t\t\"cem_phone\": \"000 000 0000\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/veterans/{{VETERAN_ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"veterans",
+								"{{VETERAN_ID}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

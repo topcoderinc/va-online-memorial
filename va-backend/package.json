@@ -1,0 +1,16 @@
+{
+  "name": "va-data-scraper",
+  "version": "1.0.0",
+  "description": "VA Online Memorial - Data import & sync",
+  "scripts": {
+    "start": "node ./packages/va-rest-api/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/topcoderinc/va-data-scraper.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  }
+}

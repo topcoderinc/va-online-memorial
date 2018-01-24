@@ -1,0 +1,6 @@
+{
+  "logLevel": "LOG_LEVEL",
+  "dbConfig": {
+    "db_url": "DATABASE_URL"
+  }
+}

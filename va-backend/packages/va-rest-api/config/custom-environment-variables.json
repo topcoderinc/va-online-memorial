@@ -1,0 +1,11 @@
+{
+  "authSecret": "AUTH_SECRET",
+  "tokenExpiresIn": "TOKEN_EXPIRES_IN",
+  "salt": "SALT",
+  "port": "PORT",
+  "version": "API_VERSION",
+  "logLevel": "LOG_LEVEL",
+  "dbConfig": {
+    "db_url": "DATABASE_URL"
+  }
+}

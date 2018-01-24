@@ -1,0 +1,8 @@
+{
+  "dataset_url": "DATASET_URL",
+  "logLevel": "LOG_LEVEL",
+  "dbConfig": {
+    "db_url": "DATABASE_URL"
+  },
+  "downloadPath": "DOWNLOAD_PATH"
+}

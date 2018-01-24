@@ -1,0 +1,11 @@
+{
+  "authSecret": "secret",
+  "tokenExpiresIn": "20d",
+  "salt": 10,
+  "port": 4000,
+  "version": "v1",
+  "logLevel": "info",
+  "dbConfig": {
+    "db_url": "postgres://postgres:Airman332@localhost:5432/va-ff"
+  }
+}

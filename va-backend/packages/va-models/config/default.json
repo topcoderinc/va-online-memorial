@@ -1,0 +1,6 @@
+{
+  "logLevel": "info",
+  "dbConfig": {
+    "db_url": "postgres://postgres:Airman332@localhost:5432/va-ff"
+  }
+}

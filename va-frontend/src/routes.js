@@ -1,0 +1,31 @@
+import { META } from './config';
+import Landing from './containers/Landing';
+import Login from './containers/Login';
+import Register from './containers/Register';
+import Dashboard from './containers/Dashboard';
+import AdminDashboard from './containers/AdminDashboard';
+
+/**
+ * Generate an object with all necessary fields to render a page.
+ * @param {string} path - The page path
+ * @param {string} title - THe page title (for SEO)
+ * @param {Function} component - The component to be rendered. Containers can also be used
+ * @param {string} description - The page description (for SEO) [OPTIONAL]
+ * @param {string} keywords - The comma separated page keywords (for SEO) [OPTIONAL]
+ * @returns {object}
+ */
+const createPage = (path, title, component, description, keywords) => ({
+  path,
+  title: `${title} | ${META.PAGE_TITLE_SUFFIX}`,
+  description: description || META.PAGE_DESCRIPTION,
+  keywords: keywords || META.PAGE_KEYWORDS,
+  component
+});
+
+export default [
+  createPage('/', 'Landing', Landing),
+  createPage('/login', 'Login', Login),
+  createPage('/register', 'Register', Register),
+  createPage('/dashboard', 'Dashboard', Dashboard),
+  createPage('/admin/dashboard', 'Admin Dashboard', AdminDashboard),
+];
