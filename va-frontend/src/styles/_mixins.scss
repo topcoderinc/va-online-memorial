@@ -1,0 +1,15 @@
+@mixin fontPrimary {
+  font-family: 'MyriadPro', arial, sans-serif;
+}
+@mixin fontSecondary {
+  font-family: 'Open Sans', arial, sans-serif;
+}
+@mixin fontAlt {
+  font-family: 'Merriweather', arial, sans-serif;
+}
+
+@mixin hover {
+  &:hover{
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,124 @@
+@import '../../styles/_mixins.scss';
+
+.search-section {
+  padding-top: 62px; 
+  .viewport{
+    display: flex;
+  }
+  
+  > .inner{
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    overflow: auto;
+    background-color: #ffffff;
+    display: flex;
+    height: 422px;
+  }
+  .col-filter {
+    flex: 0 384px;
+    padding-right: 51px;
+  }
+  .col-result {
+    flex: 1;
+  }
+
+  .selectctrl{
+    width: 100%;
+    font-size: 20px;
+    padding: 0 10px;
+  }
+  .inputctrl{
+    font-size: 20px;
+    padding: 0 10px;
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    line-height: 42px;
+    padding-bottom: 16px;
+
+    @include fontAlt;
+
+    .count {
+      color: #0f73ba;
+    }
+  }
+
+  .toggler {
+    min-height: 35px;
+    background-color: #f6f6f6;
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 6px;
+    position: relative;
+
+    h4 {
+      font-size: 14px;
+      line-height: 35px;
+      padding-left: 10px;
+      cursor: pointer;
+
+      @include fontSecondary;
+
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+
+    .toggle-ico {
+      position: absolute;
+      right: 11px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      background: url('../../i/add.png') 0 0 no-repeat;
+      background-size: 13px;
+    }
+
+
+  }
+
+  .toggler-con {
+    padding: 0 10px 7px;
+
+    &.fx{
+      display: flex;
+    }
+
+    .textctrl.fluid{
+      width: 100%;
+    }
+
+    &.fields-3 {
+      justify-content: space-between;
+
+      .gr {
+        h6 {
+          font-size: 14px;
+          line-height: 1.4;
+        }
+        .textctrl {
+          width: 50px;
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+
+  // bar-action
+  .bar-action{
+    margin-top: 33px;
+  }
+  .lnk{
+    margin-top: 38px;
+    font-size: 20px;
+    text-align: left;
+    color: #0f73ba;
+
+    @include hover;
+  }
+}

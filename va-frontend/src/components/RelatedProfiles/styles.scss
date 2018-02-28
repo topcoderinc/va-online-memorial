@@ -1,0 +1,46 @@
+@import '../../styles/_mixins.scss';
+
+// profile-cards
+.profile-cards{
+  .viewport{
+    display: flex;
+    justify-content: center;
+  }
+  h3{
+    text-align: center;
+    font-size: 30px;
+    @include fontAlt;
+    padding:68px 0;
+  }
+  .profile-card{
+    width: 392px;
+    text-align: center;
+
+    img{
+      display: inline-block;
+    }
+    h4{
+      a{
+        font-size: 25px;
+        color: #205493;
+        padding-top: 17px;
+
+        @include hover;
+        @include fontAlt;
+      }
+    }
+    .life-el{
+      font-size: 20px;
+      color: #5d5d66;
+      margin-top: 20px;
+      @include fontAlt;
+    }
+  }
+  .btn-more{
+    width: 195px;
+  }
+  .action{
+    text-align: center;
+    margin: 42px;
+  }
+}

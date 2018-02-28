@@ -1,0 +1,312 @@
+@import '../../styles/_mixins.scss';
+// main-header-page
+.main-header-page {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  .viewport {
+    height: 100px;
+  }
+  .logo {
+    position: absolute;
+    top: 34px;
+    left: 45px;
+    color: #56779a;
+    font-size: 20px;
+    font-style: italic;
+    strong {
+      font-size: 40px;
+      color: #06436e;
+      font-style: italic;
+    }
+    @include hover;
+  }
+  .search-bar {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 30px;
+    position: relative;
+    z-index: 10;
+    .search-input {
+      height: 40px;
+      background-color: #ffffff;
+      border: solid 1px #000000;
+      display: block;
+      width: 100%;
+      padding: 0 40px 0 15px;
+      border-radius: 0 4px 4px 0;
+      font-size: 20px;
+    }
+    .btn-search {
+      position: absolute;
+      right: 0;
+      top: 30px;
+      width: 39px;
+      height: 40px;
+      background: #0f73ba url('../../i/search.png') 50% 50% no-repeat;
+      background-size: 15px;
+      border-radius: 0 4px 4px 0;
+      @include hover;
+    }
+    .search-card {
+      width: 305px;
+      height: 351px;
+      background-color: #ffffff;
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+  .actions {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    .btn {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 5px;
+      background-color: #0f73ba;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      color: #ffffff;
+      margin-left: 10px;
+      @include fontSecondary;
+      &.btn-clear {
+        background-color: #fff;
+        border-radius: 5px;
+        border: solid 2px #0f73ba;
+        color: #0f73ba;
+        line-height: 36px;
+      }
+      @include hover;
+    }
+  }
+  .logger-area {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    .notification-link {
+      display: inline-block;
+      width: 18px;
+      height: 28px;
+      background: url('../../i/bell.png') 0 4px no-repeat;
+    }
+    .username {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f73ba;
+      line-height: 28px;
+      padding-right: 30px;
+      background: url('../../i/caret.png') 100% 11px no-repeat;
+      margin-left: 40px;
+      max-width: 100px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      @include fontSecondary;
+    }
+  } // header-card
+  .header-card {
+    width: 305px;
+    min-height: 351px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    position: absolute;
+    right: 52px;
+    top: 100px;
+    z-index: 10;
+    padding: 18px 30px;
+    display: none;
+    @include fontSecondary;
+    &.open {
+      display: block;
+    }
+    .close {
+      position: absolute;
+      right: 30px;
+      top: 25px;
+      width: 10px;
+      height: 10px;
+      background: url('../../i/x.png') 50% 50% no-repeat;
+      @include hover;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      color: #000000;
+      padding-bottom: 7px;
+      line-height: 1.2;
+      @include fontAlt;
+    }
+    .fieldset {
+      margin-top: 19px;
+      &.alt {
+        font-size: 14px;
+        margin-top: 15px;
+        a {
+          color: #0f73ba;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .action {
+      margin-top: 28px;
+    } // register-card
+    &.register-card {
+      width: 580px;
+      padding-bottom: 30px;
+      .frm {
+        display: flex;
+        justify-content: space-between;
+      }
+      .info-ribbon {
+        border-left: 5px solid #29c0e5;
+        height: 40px;
+        margin-top: 20px;
+        line-height: 40px;
+        background: #e2f3f8 url('../../i/info.png') 11px 50% no-repeat;
+        padding-left: 40px;
+        font-size: 14px;
+        @include fontSecondary;
+      }
+      .action {
+        text-align: right;
+      }
+      .btn {
+        width: 245px;
+      }
+    }
+  }
+  .fieldset {
+    h5 {
+      font-size: 16px;
+      line-height: 1.25;
+      text-align: left;
+      color: #000000;
+    }
+    .r-val {
+      margin-top: 7px;
+    }
+    .textctrl {
+      width: 245px;
+      height: 40px;
+      padding: 0 7px;
+    }
+  }
+}
+
+.search-modal {
+  width: 1041px;
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left: calc(50% - 520px);
+  display: none;
+  padding-top: 30px;
+
+  &.on {
+    display: block;
+  }
+
+  .custom-scrollar {
+    border: none;
+    &.scrollbar-md {
+      min-height: 422px;
+      box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .inner {
+    padding: 20px 30px;
+    background-color: #ffffff;
+    display: flex;
+  }
+  .col-filter {
+    flex: 0 227px;
+    padding-right: 29px;
+  }
+  .col-result {
+    flex: 1;
+  }
+  .selectctrl {
+    width: 100%;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    padding-bottom: 21px;
+    @include fontAlt;
+    .count {
+      color: #0f73ba;
+    }
+  }
+  .toggler {
+    min-height: 35px;
+    background-color: #f6f6f6;
+    position: relative;
+    margin-bottom: 5px;
+    position: relative;
+    h4 {
+      font-size: 14px;
+      line-height: 35px;
+      padding-left: 10px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .toggle-ico {
+      position: absolute;
+      right: 11px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      background: url('../../i/add.png') 0 0 no-repeat;
+      background-size: 13px;
+    }
+  }
+  .toggler-con {
+    padding: 0 10px 7px;
+    display: none;
+    .textctrl.fluid {
+      width: 100%;
+    }
+    &.fields-3 {
+      justify-content: space-between;
+      .gr {
+        h6 {
+          font-size: 14px;
+          line-height: 1.4;
+        }
+        .textctrl {
+          width: 50px;
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+  .open .toggler {
+    .toggler-con {
+      display: block;
+      &.fx {
+        display: flex;
+      }
+    }
+    .toggle-ico {
+      background: url('../../i/minus.png') 0 5px no-repeat;
+      background-size: 13px;
+    }
+  }
+}

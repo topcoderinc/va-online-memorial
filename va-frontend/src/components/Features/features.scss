@@ -1,0 +1,99 @@
+@import '../../styles/_mixins.scss';
+
+// features
+.features {
+  padding-top: 61px;
+
+  h2{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0.67;
+    text-align: center;
+    color: #000000;
+    @include fontAlt;
+
+  }
+
+  // feature-list
+  .feature-list {
+    padding-top: 44px;
+    margin: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    .feature {
+      width: 270px;
+      padding-top: 65px;
+      text-align: center;
+
+      .info{
+        margin-top: 28px;
+        line-height: 1.2;
+      }
+
+      &.stories{
+        background: url(../../i/stories.png) 50% 0 no-repeat;
+        background-size: 50px;
+      }
+      &.photos{
+        background: url(../../i/photos.png) 50% 0 no-repeat;
+        background-size: 52px;
+      }
+      &.testimonials{
+        background: url(../../i/testimonials.png) 50% 0 no-repeat;
+        background-size: 46px;
+      }
+      &.badges{
+        background: url(../../i/badges.png) 50% 0 no-repeat;
+        background-size: 36px;
+      }
+
+      h2{
+        font-size: 25px;
+        font-weight: bold;
+        color: #205493;
+      }
+
+      h3{
+        font-family: Merriweather;
+        font-size: 25px;
+        font-weight: bold;
+        color: #205493;
+      }
+    }
+  }
+
+  .actions{
+    position: relative;
+    margin: 50px  150px 0;
+
+    &:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 20px;
+      height: 2px;
+      background-color: #0f73ba;
+      
+    }
+    &:after{
+      content: '';
+
+    }
+    .btn-wrap{
+      background-color: #fff;
+      width: 303px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+
+      .btn{
+        width: 175px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+  }
+}

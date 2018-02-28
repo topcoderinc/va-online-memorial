@@ -32,8 +32,8 @@ const REGISTRATION_FIELDS = [
 ];
 
 class Register extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       firstName: '',

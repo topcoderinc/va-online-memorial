@@ -1,0 +1,53 @@
+@import '../../styles/_mixins.scss';
+
+// share-memories
+.share-memories{
+  min-height: 358px;
+  background: #06497c url('../../i/bg-memories.png') calc(50% - 342px) 0 no-repeat;
+  margin-top: 60px;
+
+  .con-mem{
+    height: 358px;
+    margin-left: 50%;
+    color: #ffffff;
+    padding-top: 59px;
+    padding-left: 70px;
+
+    h2{
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.2;
+      @include fontAlt;
+    }
+    .desc{
+      margin-top: 20px;
+      width: 400px;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .become-member{
+      margin-top: 38px;
+    }
+    .action{
+      margin-top: 33px;
+
+      .btn{
+        width: 195px;
+      }
+    }
+    .row{
+      .mail{
+        margin: 0;
+        padding-left: 40px;
+        background: url('../../i/mail.png') 0 5px no-repeat;
+        border-bottom: 1px solid #fff;
+        color: rgba(255, 255, 255, 0.5);
+        width: 367px;
+        padding-bottom: 14px;
+
+        @include fontSecondary;
+      }
+    }
+  }
+}

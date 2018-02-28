@@ -1,0 +1,57 @@
+@import '../../styles/_mixins.scss';
+
+// profile-tabs
+.profile-tabs{
+  .tabnav-view{
+    background: url(../../i/shadow.png) 50% 0 no-repeat;
+
+    .bar-tabnavs{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 60px;
+      margin: 50px 50px 0;
+      position: relative;
+      z-index: 10;
+    }
+    .tabnav{
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      color: #205493;
+      padding-top: 114px;
+      padding-bottom: 50px;
+      position: relative;
+
+      &.active{
+        &:after{
+          content: '';
+          position: absolute;
+          bottom: -13px;
+          left: 50%;
+          margin-left: -13px;
+          width: 26px;
+          height: 26px;
+          transform: rotate(45deg);
+          background-color: #ffffff;
+        }
+      }
+
+      @include hover;
+
+      &.stories{
+        background: url(../../i/stories.png) 50% 51px no-repeat;
+      }
+      &.photos{
+        background: url(../../i/photos.png) 50% 51px no-repeat;
+      }
+      &.testimonials{
+        background: url(../../i/testimonials.png) 50% 51px no-repeat;
+      }
+      &.badges{
+        background: url(../../i/badges.png) 50% 51px no-repeat;
+      }
+  
+    }
+  }
+
+}

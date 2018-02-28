@@ -1,0 +1,166 @@
+@import '../../styles/_mixins.scss';
+
+// main-footer
+.main-footer{
+  min-height: 339px;
+  background-color: #122f50;
+  color: #fff;
+  position: relative;
+  margin-top: 63px;
+
+  a{
+    color: #fff;
+  }
+
+  .bar-feedback{
+    height: 100px;
+    background-color: #044071;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .viewport{
+      padding-top: 22px;
+    }
+
+    h4{
+      font-size: 20px;
+      font-weight: bold;
+
+      @include fontAlt;
+      line-height: 1.6;
+    }
+    .desc{
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+  }
+
+
+  .links-area {
+    background-color: #122f50;
+    .viewport {
+      min-height: 239px;
+      padding-top: 36px;
+
+      display: flex;
+      justify-content: space-between;
+
+      .gr-lt{
+        display: flex;
+      }
+    }
+    .footer-sn {
+      h3{
+        font-size: 20px;
+        font-weight: bold;
+
+        @include fontAlt;
+      }
+
+      a{
+        text-decoration: underline;
+
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+    .desc {
+    }
+    .r-mail {
+    }
+    .r-tel {
+    }
+    .r-addr {
+    }
+  }
+  .bar-feedback {
+    background-color: #044071;
+    .viewport {
+      height: 100px;
+    }
+  }
+
+  .social-sn{
+    display: flex;
+    flex-wrap: wrap;
+
+    h3{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: right;
+      color: #ffffff;
+      flex: 0  100%;
+    }
+    .bar-socl{
+      display: flex;
+      width: 202px;
+      justify-content: flex-end;
+      flex: 0  100%;
+
+      a{
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        margin-left: 16px;
+
+        &.fb{
+          background: url('../../i/fb.png') 0 0 no-repeat;
+        }
+        &.gp{
+          background: url('../../i/gp.png') 0 50% no-repeat;
+        }
+        &.tw{
+          background: url('../../i/tw.png') 0 50% no-repeat;
+        }
+        &.yt{
+          background: url('../../i/yt.png') 0 50% no-repeat;
+        }
+        &.ig{
+          background: url('../../i/ig.png') 0 0 no-repeat;
+        }
+      }
+    }
+    .action{
+      flex: 0 100%;
+      margin-top: 39px;
+      text-align: right;
+
+      .btn{
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        width: 122px;
+      }
+    }
+  }
+
+  .footer-sn{
+    min-width: 380px;
+    h3{
+      padding-bottom: 26px;
+    }
+    .r-tel{
+      margin-top: 26px;
+    }
+    .r-addr{
+      margin-top: 16px;
+    }
+
+    .links-list{
+      height: 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .r-lnk{
+        flex: 0 50%;
+      }
+    }
+  }
+
+}
