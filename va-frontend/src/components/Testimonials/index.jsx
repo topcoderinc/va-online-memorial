@@ -176,7 +176,7 @@ class Testimonials extends Component{
               <div className="col">
                 {this.state.activeSlideIndex < this.props.stories.length - 1
                   &&
-                    (<div><h5><a onClick={this.next} class="next">Next Testimonial</a></h5>
+                    (<div><h5><a onClick={this.next} className="next">Next Testimonial</a></h5>
                     <h4><a onClick={this.next}>{this.state.nextStory.title}</a></h4></div>)
                 }
               </div>

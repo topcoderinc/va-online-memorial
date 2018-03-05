@@ -158,7 +158,7 @@ class Search extends Component {
              {  !!this.state.keyword 
                ?(
                  <div>
-                  <h3 class="fx"><span><span className="count"> 268</span> Results for  <span className='keyword'>“{this.state.keyword}”</span></span>
+                  <h3 className="fx"><span><span className="count"> 268</span> Results for  <span className='keyword'>“{this.state.keyword}”</span></span>
 
                     <a 
                       onClick={this.toggleFilter}
