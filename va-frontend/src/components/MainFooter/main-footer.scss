@@ -1,0 +1,257 @@
+@import '../../styles/_mixins.scss';
+
+// main-footer
+.main-footer{
+  min-height: 339px;
+  background-color: #122f50;
+  color: #fff;
+  position: relative;
+  margin-top: 63px;
+
+  &.sticky{
+    margin-top: 0;
+  }
+
+  a{
+    color: #fff;
+  }
+
+  .bar-feedback{
+    height: 100px;
+    background-color: #044071;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .viewport{
+      padding-top: 22px;
+    }
+
+    h4{
+      font-size: 20px;
+      font-weight: bold;
+
+      @include fontAlt;
+      line-height: 1.6;
+    }
+    .desc{
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    @include viewMd{
+      position: relative;
+      left: auto;
+      right: auto;
+      top: auto;
+      bottom: auto;
+
+      h4{
+        font-size: 15px;
+        padding-bottom: 17px;
+      }
+      .desc{
+        font-size: 13px;
+      }
+
+      .viewport{
+        padding: 36px 15px;
+      }
+    }
+  }
+
+
+  .links-area {
+    background-color: #122f50;
+    .viewport {
+      min-height: 239px;
+      padding-top: 36px;
+
+      display: flex;
+      justify-content: space-between;
+
+      .gr-lt{
+        display: flex;
+
+        @include viewMd{
+          flex-wrap: wrap;
+        }
+      }
+    }
+    .footer-sn {
+      h3{
+        font-size: 20px;
+        font-weight: bold;
+
+        @include fontAlt;
+      }
+
+      a{
+        text-decoration: underline;
+
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .bar-feedback {
+    background-color: #044071;
+    .viewport {
+      height: 100px;
+    }
+
+    @include viewMd{
+      height: auto;
+
+      .viewport{
+        height: auto;
+      }
+    }
+  }
+
+  .social-sn{
+    display: flex;
+    flex-wrap: wrap;
+
+    h3{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: right;
+      color: #ffffff;
+      flex: 0  100%;
+    }
+    .bar-socl{
+      display: flex;
+      width: 202px;
+      justify-content: flex-end;
+      flex: 0  100%;
+
+      a{
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        margin-left: 16px;
+
+        &.fb{
+          background: url('../../i/fb.png') 0 0 no-repeat;
+        }
+        &.gp{
+          background: url('../../i/gp.png') 0 50% no-repeat;
+        }
+        &.tw{
+          background: url('../../i/tw.png') 0 50% no-repeat;
+        }
+        &.yt{
+          background: url('../../i/yt.png') 0 50% no-repeat;
+        }
+        &.ig{
+          background: url('../../i/ig.png') 0 0 no-repeat;
+        }
+      }
+    }
+    .action{
+      flex: 0 100%;
+      margin-top: 39px;
+      text-align: right;
+
+      .btn{
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        width: 122px;
+
+        @include viewMd{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .footer-sn{
+    min-width: 380px;
+    h3{
+      padding-bottom: 26px;
+    }
+    .r-tel{
+      margin-top: 26px;
+    }
+    .r-addr{
+      margin-top: 16px;
+    }
+
+    .links-list{
+      height: 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .r-lnk{
+        flex: 0 50%;
+      }
+      @include viewMd{
+        height: auto;
+        .r-lnk{
+          line-height: 1.9;
+        }
+      }
+    }
+    @include viewMd{
+      .r-mail{
+        margin-top: 18px;
+      }
+      .r-tel{
+        margin-top: 18px;
+      }
+      .r-addr{
+        margin-top: 18px;
+      }
+    }
+
+    @include viewMd{
+      h3{
+        padding-top: 44px;
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  @include viewMd{
+    min-height: 99px;
+    .links-area{
+      padding: 0 $gutter 40px;
+
+
+      .viewport{
+        flex-wrap: wrap;
+        padding-top: 0;
+      }
+
+      .footer-sn{
+        min-width: 200px;
+        flex: 0 100%;
+      }
+      .social-sn{
+        h3{
+          text-align: left;
+        }
+      }
+      .bar-socl{
+        justify-content: flex-start;
+        margin-top: 20px;
+        a{
+          margin-left: 0;
+          margin-right: 16px;
+        }
+      }
+      .action{
+        text-align: left;
+        margin-top: 35px;
+      }
+    }
+  }
+
+}

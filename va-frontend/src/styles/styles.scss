@@ -1,0 +1,365 @@
+@import './mixins';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700');
+@import './fonts';
+@import './variables';
+@import './reset';
+
+body,
+input,
+textarea {
+  @include fontPrimary;
+}
+
+body.has-popup{
+  overflow: hidden;
+}
+
+.btn{
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #0f73ba;
+  display: inline-block;
+  font-family: OpenSans;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  @include fontSecondary;
+  @include hover;
+  
+  .upload-b{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+
+  .tx{
+    text-align: left;
+    display: inline-block;
+  }
+
+  &.fluid{
+    display: block;
+    width: 100%;
+  }
+
+  &.btn-primary{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #0f73ba;
+    display: inline-block;
+  }
+  &.btn-clear{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: inline-block;
+  }
+  &.btn-story{
+    width: 130px;
+    .tx{
+      background: url(../i/ws.png) 0 8px no-repeat;
+      padding-left: 24px;
+    }
+  }
+  &.btn-upload{
+    width: 99px;
+    .tx{
+      background: url(../i/up.png) 0 10px no-repeat;
+      padding-left: 24px;
+    }
+  }
+  &.btn-test{
+    width: 134px;
+    .tx{
+      background: url(../i/tes.png) 0 11px no-repeat;
+      padding-left: 24px;
+    }
+  }
+  &.btn-badge{
+    width: 90px;
+    .tx{
+      background: url(../i/bdg.png) 0 11px no-repeat;
+      padding-left: 24px;
+    }
+  }
+  &.btn-search{
+    height: 40px;
+    width: 40px;
+    background: #0f73ba url(../i/search.png) 50% 50% no-repeat;
+    background-size: 19px;
+    border-radius: 5px;
+  }
+
+  @include viewMd{
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2.5px;
+
+    &.btn-story{
+      width: 93px;
+      font-size: 12px;
+      .tx{
+        background-position: 0 6px;
+        background-size: 14px;
+        padding-left: 17px;
+      }
+    }
+    &.btn-upload{
+      width: 72px;
+      font-size: 12px;
+      .tx{
+        background-position: 0 8px;
+        background-size: 14px;
+        padding-left: 17px;
+      }
+    }
+    &.btn-test{
+      width: 97px;
+      font-size: 12px;
+      .tx{
+        background-position: 0 8px;
+        background-size: 14px;
+        padding-left: 17px;
+      }
+    }
+    &.btn-badge{
+      width: 65px;
+      font-size: 12px;
+      .tx{
+        background-position: 0 8px;
+        background-size: 14px;
+        padding-left: 17px;
+      }
+    }
+    &.btn-search{
+      width: 30px;
+      height: 30px;
+      background-size: 14px;
+    }
+    &.btn-event{
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+
+}
+
+#root{
+  display: block;
+}
+.page-wrapper{
+  display: block;
+}
+
+// viewport
+.viewport{
+  margin: 0 auto;
+  position: relative;
+
+  @include viewXl{
+    width: 1366px;
+    min-width: 1366px;
+    padding: 0 50px;
+  }
+}
+
+.main-header-page{
+
+  &.hasborder{
+    border-bottom: 2px solid #06497c;
+
+   @include viewMd{
+     border-bottom: none;
+   }
+  }
+}
+
+// main
+.main{
+  margin-top: 100px;
+  min-height: calc(100vh - 100px);
+
+  @include viewMd{
+    margin-top: 0;
+  }
+
+}
+
+
+.selectctrl{
+  width: 245px;
+  height: 35px;
+  background: #fff url('../i/sel-arrow.png') right 12px top 10px no-repeat;
+  border: solid 1px #000000;
+  padding: 0 7px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  font-size: 14px;
+  padding: 0 12px;
+  text-align: left;
+  color: #000000;
+  outline: none;
+}
+
+
+.textctrl{
+  width: 245px;
+  height: 40px;
+  background-color: #fff;
+  border: solid 1px #000000;
+  padding: 0 7px;
+
+  &.error{
+    border: 1px solid rgb(204, 8, 8);
+    background-color: rgb(255, 247, 247);
+  }
+  &.disabled{
+    background-color: #f1f1f1;
+  }
+
+  @include viewMd{
+    font-size: 14px;
+    height: 35px;
+    line-height: 33px;
+  }
+}
+
+
+// pagination
+.pagination-wrap{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+  padding-bottom: 57px;
+
+  @include viewMd{
+    margin-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .pagination{
+    display: flex;
+
+    li{
+      overflow: hidden;
+      a{
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: #0f73ba;
+        border: 1px solid #0f73bb;
+        text-align: center;
+        line-height: 38px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        @include fontSecondary;
+        margin-left: 12px;
+
+
+        @include hover;
+
+        &.prev{
+          width: 92px;
+          padding-right: 14px;
+          text-align: right;
+          background:  #0f73ba url('../i/pv.png') left 15px top 50% no-repeat;
+        }
+        &.next{
+          width: 92px;
+          padding-left: 14px;
+          text-align: left;
+          background:  #0f73ba url('../i/nx.png') right 15px top 50% no-repeat;
+        }
+
+        @include viewMd{
+          font-size: 13px;
+          margin-left: 9px;
+
+          &.prev{
+            width: 70px;
+            padding-right: 12px;
+          }
+          &.next{
+            width: 70px;
+            padding-left: 12px;
+          }
+        }
+      }
+
+      &.active{
+        a{
+          background-color: #fff;
+          border: 1px solid #0f73ba;
+          color: #0f73ba;
+        }
+      }
+    }
+  }
+  .hide{
+    display: none;
+  }
+}
+
+/* layout */
+.hide-md{
+  display: block;
+}
+.show-md {
+  display: none;
+}
+tr {
+  &.hide-md{
+    display: table-row;
+  }
+}
+
+th {
+  &.hide-md{
+    display: table-cell;
+  }
+}
+
+td {
+  &.hide-md{
+    display: table-cell;
+  }
+}
+@include viewMd{
+  .hide-md{
+    display: none;
+  }
+  .show-md{
+    display: block;
+  }
+  tr {
+    &.hide-md {
+      display: none;
+    }
+  }
+
+  th {
+    &.hide-md {
+      display: none;
+    }
+  }
+
+  td {
+    &.hide-md {
+      display: none;
+    }
+  }
+}
+

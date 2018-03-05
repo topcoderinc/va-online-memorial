@@ -1,0 +1,42 @@
+@import './variables';
+
+@mixin fontPrimary {
+  font-family: 'MyriadPro', arial, sans-serif;
+}
+@mixin fontSecondary {
+  font-family: 'Open Sans', arial, sans-serif;
+}
+@mixin fontAlt {
+  font-family: 'Merriweather', arial, sans-serif;
+}
+
+@mixin hover {
+  &:hover{
+    opacity: 0.7;
+  }
+}
+
+// responsive layout
+@mixin viewSm {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin viewMd {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin viewLg {
+  @media screen and (max-width: 1379px) {
+    @content;
+  }
+}
+
+@mixin viewXl {
+  @media screen and (min-width: 1380px) {
+    @content;
+  }
+}

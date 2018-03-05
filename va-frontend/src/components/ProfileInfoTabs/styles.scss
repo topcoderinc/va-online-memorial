@@ -1,0 +1,104 @@
+@import '../../styles/_mixins.scss';
+
+// profile-tabs
+.profile-tabs{
+  .tabnav-view{
+    background: url(../../i/shadow.png) 50% 0 no-repeat;
+
+    @include viewMd{
+      background-size: auto 16px;
+    }
+
+    .bar-tabnavs{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 60px;
+      margin: 50px 50px 0;
+      position: relative;
+      z-index: 10;
+
+      @include viewMd{
+        margin-top: 26px;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    .tabnav{
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      color: #205493;
+      padding-top: 114px;
+      padding-bottom: 50px;
+      position: relative;
+
+      &.active{
+        &:after{
+          content: '';
+          position: absolute;
+          bottom: -13px;
+          left: 50%;
+          margin-left: -13px;
+          width: 26px;
+          height: 26px;
+          transform: rotate(45deg);
+          background-color: #ffffff;
+
+          @include viewMd{
+            width: 17px;
+            height: 17px;
+            bottom: -8px;
+          }
+        }
+      }
+
+      @include hover;
+
+      &.stories{
+        background: url(../../i/stories.png) 50% 51px no-repeat;
+      }
+      &.photos{
+        background: url(../../i/photos.png) 50% 51px no-repeat;
+      }
+      &.testimonials{
+        background: url(../../i/testimonials.png) 50% 51px no-repeat;
+      }
+      &.badges{
+        background: url(../../i/badges.png) 50% 51px no-repeat;
+      }
+
+      @include viewMd{
+        font-size: 12px;
+        padding-top: 66px;
+        padding-bottom: 30px;
+        line-height: 1.25;
+
+        .i-count{
+          display: block;
+        }
+        .i-name{
+          display: block;
+        }
+
+        &.stories{
+          background: url(../../i/stories.png) 50% 33px no-repeat;
+          background-size: auto 22px;
+        }
+        &.photos{
+          background: url(../../i/photos.png) 50% 33px no-repeat;
+          background-size: auto 22px;
+        }
+        &.testimonials{
+          background: url(../../i/testimonials.png) 50% 33px no-repeat;
+          background-size: auto 22px;
+        }
+        &.badges{
+          background: url(../../i/badges.png) 50% 33px no-repeat;
+          background-size: auto 22px;
+        }
+      }
+  
+    }
+  }
+
+}

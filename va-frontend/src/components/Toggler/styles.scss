@@ -1,0 +1,64 @@
+@import '../../styles/_mixins.scss';
+
+// toggler styles
+.search-section{
+  .alt{
+    .toggler{
+      background-color: transparent;
+
+      .selectctrl{
+        height: 40px;
+      }
+      h4{
+        padding-left: 0;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: default;
+
+        &:hover{
+          opacity: 1;
+        }
+
+        @include viewMd{
+          font-size: 14px;
+        }
+      }
+      .toggler-con{
+        padding:  0;
+
+        &.fields-3 {
+
+          justify-content: flex-start;
+
+          .gr {
+            margin-right: 12px;
+            h6 {
+              font-size: 20px;
+              
+
+              @include viewMd{
+                font-size: 14px;
+              }
+            }
+
+            .textctrl{
+              width: 62px;
+              height: 40px;
+
+              &.yy{
+                width: 102px;
+                
+                @include viewMd{
+                  width: 110px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .toggle-ico{
+      display: none;
+    }
+  }
+}

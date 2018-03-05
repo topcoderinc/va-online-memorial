@@ -1,6 +1,6 @@
 import { META } from './config';
 import Landing from './containers/Landing';
-import Login from './containers/Login';
+import Search from './containers/Search';
 import Register from './containers/Register';
 import Dashboard from './containers/Dashboard';
 import AdminDashboard from './containers/AdminDashboard';
@@ -24,8 +24,8 @@ const createPage = (path, title, component, description, keywords) => ({
 
 export default [
   createPage('/', 'Landing', Landing),
-  createPage('/login', 'Login', Login),
-  createPage('/register', 'Register', Register),
+  createPage('/home', 'Landing', Landing),
+  createPage('/search', 'Search', Search),
   createPage('/dashboard', 'Dashboard', Dashboard),
   createPage('/admin/dashboard', 'Admin Dashboard', AdminDashboard),
 ];

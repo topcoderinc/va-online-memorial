@@ -1,0 +1,487 @@
+@import '../../styles/_mixins.scss';
+// main-header-page
+.main-header-page {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  z-index: 99;
+
+  @include viewMd{
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    height: auto;
+  }
+
+  .viewport {
+    height: 100px;
+
+    @include viewMd{
+      height: auto;
+      padding-top: 1px;
+    }
+  }
+  .logo {
+    position: absolute;
+    top: 34px;
+    left: 45px;
+    color: #56779a;
+    font-size: 20px;
+    font-style: italic;
+    strong {
+      font-size: 40px;
+      color: #06436e;
+      font-style: italic;
+    }
+    @include hover;
+
+    @include viewMd{
+      left: $gutter;
+      top: 15px;
+      font-size: 15px;
+
+      strong{
+        font-size: 25px
+      }
+    }
+  }
+  .search-bar {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 30px;
+    position: relative;
+    z-index: 10;
+    background: #fff;
+
+    @include viewMd{
+      margin-top: 60px;
+      border-top: 1px solid #bfbfbf;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: $gutter;
+      padding-right: $gutter;
+      width: auto;
+    }
+
+    .search-input {
+      height: 40px;
+      background-color: #ffffff;
+      border: solid 1px #000000;
+      display: block;
+      width: 100%;
+      padding: 0 40px 0 15px;
+      border-radius: 0 4px 4px 0;
+      font-size: 20px;
+
+      @include viewMd{
+        font-size: 14px;
+      }
+    }
+    .btn-search {
+      position: absolute;
+      right: 0;
+      top: 30px;
+      width: 39px;
+      height: 40px;
+      background: #0f73ba url('../../i/search.png') 50% 50% no-repeat;
+      background-size: 15px;
+      border-radius: 0 4px 4px 0;
+      @include hover;
+
+      @include viewMd{
+        top: 10px;
+        right: 15px;
+      }
+    }
+    .search-card {
+      width: 305px;
+      height: 351px;
+      background-color: #ffffff;
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+  .actions {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    .btn {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 5px;
+      background-color: #0f73ba;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      color: #ffffff;
+      margin-left: 10px;
+      @include fontSecondary;
+      &.btn-clear {
+        background-color: #fff;
+        border-radius: 5px;
+        border: solid 2px #0f73ba;
+        color: #0f73ba;
+        line-height: 36px;
+      }
+      @include hover;
+    }
+
+    @include viewMd{
+      right: $gutter;
+      top: 15px;
+
+      .btn{
+        width: 65px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+
+        &.btn-clear{
+          border: solid 1px #0f73ba;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+  .logger-area {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+
+    @include viewMd{
+      right: 15px;
+    }
+    .notification-link {
+      display: inline-block;
+      width: 18px;
+      height: 28px;
+      background: url('../../i/bell.png') 0 4px no-repeat;
+    }
+    .username {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f73ba;
+      line-height: 28px;
+      padding-right: 30px;
+      background: url('../../i/caret.png') 100% 11px no-repeat;
+      margin-left: 40px;
+      max-width: 100px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      @include fontSecondary;
+    }
+  } // header-card
+  .header-card {
+    width: 305px;
+    min-height: 351px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    position: absolute;
+    right: 52px;
+    top: 100px;
+    z-index: 10;
+    padding: 18px 30px;
+    display: none;
+    @include fontSecondary;
+    &.open {
+      display: block;
+    }
+    .close {
+      position: absolute;
+      right: 30px;
+      top: 25px;
+      width: 10px;
+      height: 10px;
+      background: url('../../i/x.png') 50% 50% no-repeat;
+      @include hover;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      color: #000000;
+      padding-bottom: 7px;
+      line-height: 1.2;
+      @include fontAlt;
+    }
+    .fieldset {
+      margin-top: 19px;
+      &.alt {
+        font-size: 14px;
+        margin-top: 15px;
+        a {
+          color: #0f73ba;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      @include viewMd{
+        margin-top: 12px;
+        &.alt{
+          margin-top: 24px;
+        }
+      }
+    }
+    .action {
+      margin-top: 28px;
+      border-top: 1px solid #000;
+      padding-top: 22px;
+    } 
+
+    // register-card
+    &.register-card {
+      width: 580px;
+      padding-bottom: 30px;
+      .frm {
+        display: flex;
+        justify-content: space-between;
+      }
+      .info-ribbon {
+        border-left: 5px solid #29c0e5;
+        height: 40px;
+        margin-top: 20px;
+        line-height: 40px;
+        background: #e2f3f8 url('../../i/info.png') 11px 50% no-repeat;
+        padding-left: 40px;
+        font-size: 14px;
+        @include fontSecondary;
+      }
+      .action {
+        text-align: right;
+      }
+      .btn {
+        width: 245px;
+      }
+
+      @include viewMd{
+        width: auto;
+
+        .info-ribbon {
+          height: auto;
+          background: #e2f3f8 url('../../i/info.png') 11px 11px no-repeat;
+          line-height: 1.5;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .frm{
+          flex-wrap: wrap;
+
+          .col{
+            flex: 0 100%;
+          }
+        }
+      }
+    }
+
+    @include viewMd{
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      width: auto;
+      height: 100vh;
+      padding: 20px 25px;
+
+      h2{
+        font-size: 15px;
+        border-bottom: 1px solid #000000;
+        padding-bottom: 25px;
+        margin-bottom: 28px;
+      }
+      .close{
+        top: 20px;
+        width: 20px;
+        height: 20px;
+        background: url(../../i/xb.png) 50% 50% no-repeat;
+        background-size: 20px;
+      }
+    }
+
+    @include viewMd{
+      .action{
+        position: absolute;
+        bottom: 22px;
+        left: 0;
+        right: 0;
+        text-align: right;
+        margin: 0 25px;
+
+        .btn{
+          width: 130px;
+          display: inline-block;
+          font-size: 14px;
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+  .fieldset {
+    h5 {
+      font-size: 16px;
+      line-height: 1.25;
+      text-align: left;
+      color: #000000;
+
+      @include viewMd{
+        font-size: 14px;
+      }
+    }
+    .r-val {
+      margin-top: 7px;
+    }
+    .textctrl {
+      width: 245px;
+      height: 40px;
+      padding: 0 7px;
+
+      @include viewMd{
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.search-modal {
+  width: 1041px;
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left: calc(50% - 520px);
+  display: none;
+  padding-top: 30px;
+
+  &.on {
+    display: block;
+  }
+
+  .custom-scrollar {
+    border: none;
+    &.scrollbar-md {
+      min-height: 422px;
+      box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+
+      @include viewMd{
+        min-height: 414px;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .inner {
+    padding: 20px 30px;
+    background-color: #ffffff;
+    display: flex;
+  }
+  .col-filter {
+    flex: 0 227px;
+    padding-right: 29px;
+  }
+  .col-result {
+    flex: 1;
+  }
+  .selectctrl {
+    width: 100%;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    padding-bottom: 21px;
+    @include fontAlt;
+    .count {
+      color: #0f73ba;
+    }
+  }
+  .toggler {
+    min-height: 35px;
+    background-color: #f6f6f6;
+    position: relative;
+    margin-bottom: 5px;
+    position: relative;
+    h4 {
+      font-size: 14px;
+      line-height: 35px;
+      padding-left: 10px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .toggle-ico {
+      position: absolute;
+      right: 11px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      background: url('../../i/add.png') 0 0 no-repeat;
+      background-size: 13px;
+    }
+  }
+  .toggler-con {
+    padding: 0 10px 7px;
+    display: none;
+    .textctrl.fluid {
+      width: 100%;
+    }
+    &.fields-3 {
+      justify-content: space-between;
+      .gr {
+        h6 {
+          font-size: 14px;
+          line-height: 1.4;
+        }
+        .textctrl {
+          width: 50px;
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+  .open .toggler {
+    .toggler-con {
+      display: block;
+      &.fx {
+        display: flex;
+      }
+    }
+    .toggle-ico {
+      background: url('../../i/minus.png') 0 5px no-repeat;
+      background-size: 13px;
+    }
+  }
+
+  @include viewMd{
+    width: 100%;
+    height: calc(100vh - 60px);
+    left: 0;
+    right: 0;
+    top: 61px;
+    padding-top: 60px;
+    background: rgba(0,0,0,0.2);
+
+    h3{
+      padding-bottom: 0;
+      border-bottom: 1px solid #000;
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+    .inner{
+      padding: 20px 15px;
+      box-shadow: 0px 3px 8px 0 rgba(187, 187, 190, 0.8);
+    }
+  }
+}

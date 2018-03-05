@@ -2,15 +2,14 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from '../../actions/auth';
-import LoginComponent from '../../components/Login';
 
 const Login = ({ authenticated, loginDone, loginStarted, loginFailed, login, errorMessage }) => (
   <div className="page-wrapper">
-    <LoginComponent
+   {/* <LoginComponent
       loading={loginStarted}
       failed={loginFailed && loginDone}
       errorMessage={errorMessage}
-      login={login}/>
+      login={login}/>*/}
   </div>
 );
 

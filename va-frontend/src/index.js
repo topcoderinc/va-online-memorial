@@ -12,7 +12,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import Authenticator from './Authenticator';
 import allReducers from './reducers';
 import routes from './routes';
-import './styles/styles.css';
+import './styles/styles.scss';
 
 const middlewares = [thunk];
 
@@ -27,14 +27,7 @@ const store = createStore(allReducers, applyMiddleware(...middlewares));
 const renderRoute = (route, props) => {
   window.scrollTo(0,0); // Reset scroll to top
   return (
-    <Authenticator route={route.path}>
-      <Helmet>
-        <title>{route.title}</title>
-        <meta name="description" content={route.description}/>
-        <meta name="keywords" content={route.keywords}/>
-      </Helmet>
-      <route.component routeParams={props.match.params}/>
-    </Authenticator>
+    <route.component routeParams={props.match.params}/>
   );
 };
 

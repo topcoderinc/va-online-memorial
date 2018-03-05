@@ -1,0 +1,108 @@
+@import '../../styles/_mixins.scss';
+
+// share-memories
+.share-memories{
+  min-height: 358px;
+  background: #06497c url('../../i/bg-memories.png') calc(50% - 342px) 0 no-repeat;
+  margin-top: 60px;
+
+  input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  input::-moz-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  input:-ms-input-placeholder,
+  input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+
+  @include viewMd{
+    margin-top: 35px;
+  }
+
+  .con-mem{
+    height: 358px;
+    margin-left: 50%;
+    color: #ffffff;
+    padding-top: 59px;
+    padding-left: 70px;
+
+    h2{
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.2;
+      @include fontAlt;
+
+      @include viewMd{
+        font-size: 15px;
+      }
+    }
+    .desc{
+      margin-top: 20px;
+      width: 400px;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .become-member{
+      margin-top: 38px;
+    }
+    .action{
+      margin-top: 33px;
+
+      .btn{
+        width: 195px;
+      }
+    }
+    .row{
+      .mail{
+        margin: 0;
+        padding-left: 40px;
+        background: url('../../i/mail.png') 0 5px no-repeat;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.5);
+        width: 367px;
+        padding-bottom: 14px;
+
+        @include fontSecondary;
+      }
+    }
+  }
+
+  @include viewMd{
+    background: #06497c url('../../i/bg-memories.png') calc(50% - 375px) 0 no-repeat;
+    min-height: 220px;
+    
+
+    .con-mem{
+      min-height: 220px;
+      padding-bottom: 14px;
+      height: auto;
+      margin-left: 130px;
+      padding-top: 24px;
+      padding-left: 12px;
+
+      .become-member{
+        margin-top: 22px;
+      }
+      .desc{
+        width: auto;
+      }
+      .action{
+        margin-top: 22px;
+      }
+      .row{
+        .mail{
+          padding-bottom: 6px;
+          width: calc(100% - 20px);
+          font-size: 12px;
+          background: url('../../i/mail.png') 0 3px no-repeat;
+          background-size: 16px;
+          padding-left: 22px;
+        }
+      }
+    }
+  }
+}

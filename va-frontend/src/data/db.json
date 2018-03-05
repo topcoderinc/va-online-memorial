@@ -1,0 +1,734 @@
+{
+  "masterHead": {
+    "title": "Let’s weave our memories to make them last forever",
+    "info": "It is our aim to bring together families and loved ones of veterans that are buried at national cemeteries around the United States."
+  },
+  "features": [
+    {
+      "title": "Stories",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+    },
+     {
+      "title": "Photos",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+    },
+     {
+      "title": "Testimonials",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+    },
+     {
+      "title": "Badges",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+    }
+  ],
+  "memories": {
+    "title":"Share Your Memories",
+    "desc": "To post on our site, you need to register with us. You will be prompted to set up a password and verify your email."
+  },
+  "featuredPosts": [
+    {
+      "type": "photo",
+      "title": "Althea Lisa",
+      "date": "1954 — 2017",
+      "imgSrc": "fp1.jpg",
+      "caption": "Photo by <b>Carl Hutchinson</b>"
+    },
+    {
+      "type": "story",
+      "title": "Andrew Johnson",
+      "date": "1929 — 2012",  
+      "caption": "Story by <b>Rebecca Genne</b>",
+      "story": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "type": "photo",
+      "title": "Charles Edward Jr.",
+      "date": "1944 — 2013",
+      "imgSrc": "fp2.jpg",
+      "caption": "Photo by <b>James Millerson</b>"
+    }
+  ],
+  "footerLinks": {
+    "contactCenter": {
+      "email": "hello@veteransmemorial.com",
+      "tel": "+1 123 456 7890",
+      "telAlt": "+1 098 765 4321450",
+      "address": "450, Building name<br/>Street Name, City, ST 123456"
+    },
+    "quickLinks": [
+      {
+        "label": "Home",
+        "link": "#"
+      },
+      {
+        "label": "FAQs",
+        "link": "#"
+      },
+      {
+        "label": "Become a Member",
+        "link": "#"
+      },
+      {
+        "label": "Terms of Use",
+        "link": "#"
+      },
+      {
+        "label": "Find a Veteran",
+        "link": "#"
+      },
+      {
+        "label": "Privacy Policy",
+        "link": "#"
+      },
+      {
+        "label": "About Us",
+        "link": "#"
+      },
+      {
+        "label": "Contact Us",
+        "link": "#"
+      }
+    ]
+  },
+  "feedback": {
+    "title": "A new way to give us feedback",
+    "feedbackDesc": "Check back soon to share your feedback on what you’d like to see on VA Memorial"
+  },
+  "searchedResults": [
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1998",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    }
+  ],
+  "searchedAllResults": [
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1999",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1999",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1999",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1999",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Mike Johnson",
+      "profileImgSrc":"i2.png",
+      "life": "1935 — 1999",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "John Brown",
+      "profileImgSrc":"i1.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Steve Johnson",
+      "profileImgSrc":"i3.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Army",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Tom Johnson",
+      "profileImgSrc":"i4.png",
+      "life": "1944 — 2013",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Marine Corps",
+      "rank": "Lieutenant"
+    },
+    {
+      "name": "Zacky Johnson",
+      "profileImgSrc":"i5.png",
+      "life": "1957 — 2011",
+      "burriedAt": "Albany Rural Cemetery",
+      "branch": "Air Force",
+      "rank": "Lieutenant"
+    }
+  ],
+
+  "profileCard": {
+    "msgTitle": "Remembering John Brown",
+    "msgDescription": "This words is bio or quotes of John Brown or words from family adipisicing elit, sed do eiusmod tempor.",
+    "profileName": "John Brown",
+    "profileImgSrc": "profile-pic.png",
+    "life": "June 21, 1944 — March 23, 2013",
+    "burriedAt": "Albany Rural Cemetery",
+    "burrialLoc": "Section 1 Site 215",
+    "war": "Section 1 Site 215",
+    "branch": "SP4 US ARMY",
+    "rank": "Lieutenant",
+    "campaign": "Campaign A",
+    "timelineEvents" : [
+      {     
+        "postedDate": "3rd July 1963",
+        "event": "Born"
+      },
+      {     
+        "postedDate": "4th September 1983",
+        "event": "Wedding"
+      },
+      {         
+        "postedDate": "6th October 1985",
+        "event": "Enlisted"
+      },     
+      {     
+        "postedDate": "7th April 1997",
+        "event": "Lieutenant Promottion"
+      },     
+      {     
+        "postedDate": "3rd June 2017",
+        "event": "Passed Away"
+      }
+    ],
+    "badgeOpts": [
+      {
+        "id": "hero",
+        "caption": "A Hero"
+      },
+      {
+        "id": "bravery",
+        "caption": "Bravery"
+      },
+      {
+        "id": "instructor",
+        "caption": "Instructor"
+      },
+      {
+        "id": "friendship",
+        "caption": "Friendship"
+      },
+      {
+        "id": "leader",
+        "caption": "A Leader"
+      },
+      {
+        "id": "charger",
+        "caption": "Charger"
+      },
+      {
+        "id": "big-heart",
+        "caption": "Big Heart"
+      },
+      {
+        "id": "rock",
+        "caption": "The Rock"
+      }
+      ,{
+        "id": "hero",
+        "caption": "A Hero"
+      },
+      {
+        "id": "bravery",
+        "caption": "Bravery"
+      },
+      {
+        "id": "instructor",
+        "caption": "Instructor"
+      },
+      {
+        "id": "friendship",
+        "caption": "Friendship"
+      },
+      {
+        "id": "leader",
+        "caption": "A Leader"
+      },
+      {
+        "id": "hero",
+        "caption": "A Hero"
+      },
+      {
+        "id": "charger",
+        "caption": "Charger"
+      },
+      {
+        "id": "big-heart",
+        "caption": "Big Heart"
+      }
+    ],
+    "flaggingOpts":[
+      {
+        "id": 1,
+        "reason": "Content is Inappropriate",
+        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+      },
+      {
+        "id": 2,
+        "reason": "Other reason goes here",
+        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+      },
+      {
+        "id": 3,
+        "reason": "Another reason goes here",
+        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+      }
+    ],
+    "acceptedProof": "Included Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore."
+  },
+
+  "profileInfoTabs": {
+    "profileName": "John Brown",
+    "tabs": [
+      {
+        "id": "stories",
+        "name": "Stories",
+        "count": 250
+      },
+      {
+        "id": "photos",
+        "name": "Photos",
+        "count": 54
+      },
+      {
+        "id": "testimonials",
+        "name": "Testimonials",
+        "count": 890
+      },
+      {
+        "id": "badges",
+        "name": "Badges",
+        "count": 12
+      }
+    ],
+    "stories": [
+      {
+        "id": 1,
+        "title":"Family’s Lover",
+        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author":"James Scott",
+        "date":"5 Feb 2018",
+        "reads": "1,111",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 2,
+        "title":"A Humble Patriot",
+        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author":"Armando Jr",
+        "date":"27 Jan 2018",
+        "reads": "1,333",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 3,
+        "title":"A Good Friend Of My Father",
+        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author":"Criss Red",
+        "date":"24 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 4,
+        "title":"My Greatest Soldier",
+        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "author":"Stanley",
+        "date":"11 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "title": "Great Soldier",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "James Scott",
+        "date": "5 Feb 2018",
+        "reads": "1,111",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"
+      },
+      {
+        "id": 2,
+        "title": "Patriotic",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "Armando Jr",
+        "date": "27 Jan 2018",
+        "reads": "1,333",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      },
+      {
+        "id": 3,
+        "title": "Country Pride",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "Criss Red",
+        "date": "24 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      },
+      {
+        "id": 4,
+        "title": "Love Last Forever",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "author": "Stephanie",
+        "date": "11 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      }
+    ],
+    "badges": [
+      {
+        "id": 1,
+        "title": "A Hero",
+        "badgeId": "hero",
+        "author": "James Scott",
+        "date": "5 Feb 2018",
+        "reads": "1,111",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"
+      },
+      {
+        "id": 2,
+        "title": "Bravery",
+        "badgeId": "bravery",
+        "author": "Armando Jr",
+        "date": "27 Jan 2018",
+        "reads": "1,333",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      },
+      {
+        "id": 3,
+        "title": "Instructor",
+        "badgeId": "instructor",
+        "author": "Criss Red",
+        "date": "24 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      },
+      {
+        "id": 4,
+        "title": "Friendship",
+        "badgeId": "friendship",
+        "author": "Stephanie",
+        "date": "11 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "“ Dolor sit amet, consectetur adipisicing elit,<br/>sed do eiusmod tempor incididunt ut labore et<br/>dolore magna aliqua. ”"      }
+    ],
+    "photos": [
+      {
+        "id": 1,
+        "title": "Family’s Lover",
+        "photoSrc": "p1.png",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "James Scott",
+        "date": "5 Feb 2018",
+        "reads": "1,111",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 2,
+        "title": "Daddy's Last Hug",
+        "photoSrc": "p2.png",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "Armando Jr",
+        "date": "27 Jan 2018",
+        "reads": "1,333",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 3,
+        "title": "Humble Smile",
+        "photoSrc": "p3.png",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "author": "Criss Red",
+        "date": "24 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 4,
+        "title": "Our First Baby",
+        "photoSrc": "p4-b.jpg",
+        "story": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "author": "Stanley",
+        "date": "11 Jan 2018",
+        "reads": "1,253",
+        "salutes": "489",
+        "shares": "269",
+        "fullStory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      }
+    ]
+  },
+  
+
+  "relatedProfiles": {
+    "profiles": [
+      {
+      "id": "1",
+      "name": "Bernard Steven",
+      "imgSrc":"rp1.png",
+      "life": "1954 — 2017"
+    },
+      {
+      "id": "2",
+      "name": "Andrew Johnson",
+      "imgSrc":"rp2.png",
+      "life": "1929 — 2012"
+    },
+      {
+      "id": "3",
+      "name": "Charles Edward Jr.",
+      "imgSrc":"rp3.png",
+      "life": "1944 — 2013"
+    }
+  ]
+  }
+
+}

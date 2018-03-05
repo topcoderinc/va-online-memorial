@@ -1,0 +1,207 @@
+@import '../../styles/_mixins.scss';
+
+.search-section {
+  padding-top: 62px; 
+  .viewport{
+    display: flex;
+  }
+  
+  > .inner{
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    overflow: auto;
+    background-color: #ffffff;
+    display: flex;
+    height: 422px;
+  }
+  .col-filter {
+    flex: 0 384px;
+    padding-right: 51px;
+  }
+  .col-result {
+    flex: 1;
+  }
+
+  .col-filter{
+    .sidebar-title{
+      position: relative;
+      .close-sidebar{
+        background: url('../../i/xb.png') 0 0 no-repeat;
+        background-size: 17px;
+        position: absolute;
+        right: 0;
+        top: 13px;
+        width: 21px;
+        height: 21px;
+      }
+    }
+  }
+
+  .selectctrl{
+    width: 100%;
+    font-size: 20px;
+    padding: 0 10px;
+
+    @include viewMd{
+      font-size: 14px;
+      max-width: 258px;
+    }
+  }
+  .inputctrl{
+    font-size: 20px;
+    padding: 0 10px;
+
+    @include viewMd{
+      font-size: 14px;
+    }
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    line-height: 42px;
+    padding-bottom: 16px;
+
+    @include fontAlt;
+
+    .count {
+      color: #0f73ba;
+    }
+
+    @include viewMd{
+      font-size: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+
+    &.fx{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-filter{
+      width: 65px;
+      height: 32px;
+      line-height: 32px;
+    }
+  }
+
+  .toggler {
+    min-height: 35px;
+    background-color: #f6f6f6;
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 6px;
+    position: relative;
+
+    h4 {
+      font-size: 14px;
+      line-height: 35px;
+      padding-left: 10px;
+      cursor: pointer;
+
+      @include fontSecondary;
+
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+
+    .toggle-ico {
+      position: absolute;
+      right: 11px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      background: url('../../i/add.png') 0 0 no-repeat;
+      background-size: 13px;
+    }
+
+
+  }
+
+  .toggler-con {
+    padding: 0 10px 7px;
+
+    &.fx{
+      display: flex;
+    }
+
+    .textctrl{
+      @include viewMd {
+        max-width: 258px;
+      }
+      &.fluid {
+        width: 100%;
+      }
+    }
+
+    &.fields-3 {
+      justify-content: space-between;
+
+      .gr {
+        h6 {
+          font-size: 14px;
+          line-height: 1.4;
+        }
+        .textctrl {
+          width: 50px;
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+
+  // bar-action
+  .bar-action{
+    margin-top: 33px;
+
+    @include viewMd{
+      .btn{
+        max-width: 145px;
+      }
+    }
+  }
+  .lnk{
+    margin-top: 38px;
+    font-size: 20px;
+    text-align: left;
+    color: #0f73ba;
+
+    @include hover;
+  }
+
+  @include viewMd{
+    padding: 18px 15px 0;
+
+    .col-filter{
+      padding-right: 0;
+      display: none;
+    }
+    .col-result{
+      display: block;
+    }
+
+    &.open {
+      .col-filter {
+        display: block;
+      }
+      .col-result {
+        display: none;
+      }
+    }
+
+    .bar-reset{
+      padding-bottom: 40px;
+
+      .lnk{
+        font-size: 14px;
+      }
+    }
+  }
+}
