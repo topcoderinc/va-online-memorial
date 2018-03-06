@@ -176,6 +176,9 @@ body.has-popup{
   @include viewLg {
     padding: 0 35px;
   }
+  @include viewMd {
+    padding: 0;
+  }
 }
 
 .main-header-page{
