@@ -336,8 +336,8 @@
     @include hover;
 
     @include viewMd{
-      top: $gutter + 4;
-      right: $gutter;
+      top: 25px;
+      right: 25px;
     }
   }
   .tagline{
@@ -457,7 +457,7 @@
     bottom: 0;
     height: auto;
     width: auto;
-    padding: 15px 15px 0;
+    padding: 15px 25px 0;
     z-index: 999;
 
     h2{

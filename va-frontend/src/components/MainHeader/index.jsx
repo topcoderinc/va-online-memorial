@@ -232,7 +232,7 @@ class Masterhead extends Component {
               </div>
             </div>
             <div className="fieldset alt">
-              Forgot Password? <a>Click here</a>
+              Forgot Password? <a><span className="hide-md inline">Click</span><span className="show-md inline">Tap</span> here</a>
             </div>
 
             <div className="action">
@@ -249,7 +249,7 @@ class Masterhead extends Component {
             > </a>
 
             <form className="frm">
-              <div className="col">
+              <div className="col col-createacc">
                 <div className="fieldset">
                   <h5>Email</h5>
                   <div className="r-val">
@@ -260,23 +260,20 @@ class Masterhead extends Component {
                   </div>
                 </div>
                 <div className="fieldset">
-                  <h5>Password</h5>
-                  <div className="r-val">
-                    <input type="password" 
-                      className={"textctrl " + (!!this.state.regerror.registerPass ? 'error' : '')}
-                      ref="registerPass"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="fieldset">
                   <h5>Username</h5>
                   <div className="r-val">
                     <input type="text"
                       className={"textctrl " + (!!this.state.regerror.registerUser ? 'error' : '')}
                       ref="registerUser"
+                    />
+                  </div>
+                </div>
+                <div className="fieldset">
+                  <h5>Password</h5>
+                  <div className="r-val">
+                    <input type="password" 
+                      className={"textctrl " + (!!this.state.regerror.registerPass ? 'error' : '')}
+                      ref="registerPass"
                     />
                   </div>
                 </div>

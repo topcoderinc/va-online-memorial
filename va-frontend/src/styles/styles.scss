@@ -172,6 +172,10 @@ body.has-popup{
     min-width: 1366px;
     padding: 0 50px;
   }
+
+  @include viewLg {
+    padding: 0 35px;
+  }
 }
 
 .main-header-page{
@@ -316,9 +320,15 @@ body.has-popup{
 /* layout */
 .hide-md{
   display: block;
+  &.inline{
+    display: inline-block;
+  }
 }
 .show-md {
   display: none;
+  &.inline {
+    display: none;
+  }
 }
 tr {
   &.hide-md{
@@ -340,13 +350,22 @@ td {
 @include viewMd{
   .hide-md{
     display: none;
+    &.inline {
+      display: none;
+    }
   }
   .show-md{
     display: block;
+    &.inline {
+      display: inline-block;
+    }
   }
   tr {
     &.hide-md {
       display: none;
+      &.inline {
+        display: none;
+      }
     }
   }
 
