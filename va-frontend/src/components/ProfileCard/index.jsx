@@ -160,7 +160,7 @@ class ProfileCard extends Component {
     if (isValid){
       nokFullName.value = '';
       nokEmail.value = '';
-      this.showPopup('isThanksPop')();
+      this.showPopup('isFlagginPopup')();
     }
   }
 
@@ -356,7 +356,7 @@ class ProfileCard extends Component {
                    onClick={this.hideAllPopup}
                   >Cancel</a>
                   <a className="btn btn-md"
-                   onClick={this.hideAllPopup}
+                  onClick={this.showPopup('isThanksPop')}
                   >Submit Report</a>
                 </div>
               </form>

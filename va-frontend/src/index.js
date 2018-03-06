@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === `development`) {
 
 const store = createStore(allReducers, applyMiddleware(...middlewares));
 
-// Helpe function that reders single route
+// Helper function that reders single route
 const renderRoute = (route, props) => {
   window.scrollTo(0,0); // Reset scroll to top
   return (

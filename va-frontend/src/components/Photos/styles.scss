@@ -93,6 +93,18 @@
         top: auto;
         vertical-align: top;
         margin: 0 3px 0 4px;
+        padding: 0 10px;
+
+        &.btn-test{
+          width: auto;
+          .show-md{
+            display: inline-block;
+          }
+        }
+
+        &.btn-story{
+          width: auto;
+        }
       }
     }
   }

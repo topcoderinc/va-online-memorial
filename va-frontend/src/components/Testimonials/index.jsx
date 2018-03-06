@@ -76,7 +76,7 @@ class Testimonials extends Component{
         <h3 className="title">Testimonials for {profileName}</h3>
         <span className="opts">
           <a className="btn btn-rt-2 btn-search"> </a>
-          <a className="btn btn-rt-1 btn-test"><span className="tx">Testimonial</span> </a>
+          <a className="btn btn-rt-1 btn-test"><span className="tx"><span className="show-md">Write</span> Testimonial</span> </a>
         </span>
         
         
