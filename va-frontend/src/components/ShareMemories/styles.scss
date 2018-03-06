@@ -33,6 +33,7 @@
       font-size: 30px;
       font-weight: bold;
       line-height: 1.2;
+      position: relative;
       @include fontAlt;
 
       @include viewMd{
@@ -41,12 +42,14 @@
     }
     .desc{
       margin-top: 20px;
+      position: relative;
       width: 400px;
       font-size: 16px;
       color: #ffffff;
       line-height: 1.2;
     }
     .become-member{
+      position: relative;
       margin-top: 38px;
     }
     .action{
@@ -72,7 +75,8 @@
   }
 
   @include viewMd{
-    background: #06497c url('../../i/bg-memories.png') calc(50% - 375px) 0 no-repeat;
+    background: #06497c url('../../i/bg-memories.png') calc(50% - 85px) 0 no-repeat;
+    background-size: auto 100%;
     min-height: 220px;
     
 
@@ -80,18 +84,38 @@
       min-height: 220px;
       padding-bottom: 14px;
       height: auto;
-      margin-left: 130px;
+      margin-left: 0;
       padding-top: 24px;
-      padding-left: 12px;
+      padding-left: calc(50% - 47px);
+      position: relative;
+      overflow: hidden; 
+
+      &:before{
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: calc(50% - 72px);
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: #06497c;
+        transform: skewX(-10deg);
+      }
 
       .become-member{
-        margin-top: 22px;
+        margin-top: 15px;
       }
       .desc{
         width: auto;
+        font-size: 14px;
       }
       .action{
         margin-top: 22px;
+        .btn{
+          width: 155px;
+          height: 35px;
+          line-height: 35px;
+        }
       }
       .row{
         .mail{
