@@ -19,6 +19,10 @@ const AdminDashboard = ({ user, logout }) => {
   );
 };
 
+AdminDashboard.defaultProps = {
+  user: {}
+}
+
 const mapStateToProps = (state) => ({ ...state.auth });
 
 const matchDispatchToProps = (dispatch) => {

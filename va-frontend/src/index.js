@@ -3,13 +3,11 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Helmet } from "react-helmet";
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Route, BrowserRouter } from 'react-router-dom';
 
-import Authenticator from './Authenticator';
 import allReducers from './reducers';
 import routes from './routes';
 import './styles/styles.scss';

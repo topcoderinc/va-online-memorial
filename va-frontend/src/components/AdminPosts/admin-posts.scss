@@ -1,0 +1,198 @@
+@import '../../styles/_mixins.scss';
+
+.admin-posts{
+  .admin-posts-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    @include fontAlt;
+  }
+  .admin-posts-tabs{
+    border-bottom: 1px solid #5d5d66;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    @include fontSecondary;
+    .admin-posts-type-count{
+      color: #0f73ba;
+      margin-left: 5px;
+    }
+  }
+  .admin-posts-tab{
+    padding-bottom: 15px;
+    margin-right: 40px;
+    border-bottom: 4px solid transparent;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    @include hover;
+    &.active{
+      border-color: #0f73ba;
+    }
+  }
+  .admin-post-list-item{
+    margin-top: 39px;
+    border: 1px solid #000;
+    padding: 30px 40px 40px;
+    font-size: 20px;
+    img{
+      max-width: 100%;;
+    }
+  }
+  .post-by{
+    color: #5d5d66;
+  }
+  .post-author{
+    font-weight: bold;
+  }
+  .post-author-others{
+    margin-top: 10px;
+    a{
+      color: #0f73ba;
+      @include hover;
+    }
+  }
+  .post-head{
+    display: flex;
+    justify-content: space-between;
+  }
+  .post-date{
+    color: #5d5d66;
+  }
+  .post-title{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px 0;
+    @include fontAlt;
+  }
+  .post-content{
+    line-height: 30px;
+  }
+  .post-actions{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    .btn{
+      margin-left: 10px;
+      width: 222px;
+      &.btn-clear{
+        border: solid 2px #0f73ba;
+        color: #0f73ba;
+        line-height: 36px;
+        width: 182px;
+      }
+    }
+  }
+  @include viewMd{
+    .admin-posts-title{
+      font-size: 15px;
+    }
+    .admin-posts-tabs{
+      font-size: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .admin-posts-tab{
+      margin-right: 15px;
+    }
+    .admin-post-list-item{
+      padding: 0;
+      border: none;
+      margin-top: 20px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 20px;
+      &:last-child{
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      img{
+        margin-left: 30px;
+      }
+    }
+    .post-head{
+      font-size: 14px;
+      line-height: 20px;
+      flex-direction: column;
+      padding: 0 30px;
+    }
+    .post-title{
+      font-size: 14px;
+      line-height: 25px;
+      margin: 30px 0 0;
+      padding: 0 30px;
+    }
+    .post-content{
+      font-size: 14px;
+      line-height: 25px;
+      padding: 0 30px;
+    }
+    .post-actions{
+      margin-top: 47px;
+      justify-content: space-between;
+      .btn{
+        margin-left: 0;
+        width: 190px;
+        line-height: 35px;
+        height: 35px;
+        &.btn-clear{
+          line-height: 31px;
+          width: 125px;
+          height: 35px;
+        }
+      }
+    }
+    .post-author-others{
+      margin-top: 0;
+    }
+  }
+}
+
+.post-reason-banner{
+  min-height: 101px;
+  background-color: #fff0d4;
+  border-left: 10px solid #fbb736;
+  margin-top: 30px;
+  padding-top: 14px;
+
+  h4{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 51px;
+    background: url('../../i/warn.png') 18px 0 no-repeat;
+
+    @include fontAlt;
+
+    @include viewMd{
+      padding-left: 45px;
+    }
+  }
+  .info{
+    padding-left: 59px;
+    font-size: 16px;
+    line-height: 1.4;;
+    margin: 9px 9px 0;
+
+    @include viewMd{
+      margin: 4px 0 0 0;
+      padding-left: 45px;
+    }
+  }
+  @include viewMd{
+    margin-top: 35px;
+    padding-top: 10px;
+    border-width: 4px;
+    padding-bottom: 10px;
+    h4{
+      font-size: 15px;
+      background-size: 14px 12px;
+      padding-left: 28px;
+      background-position: 7px 0;
+    }
+    .info{
+      font-size: 13px;
+      padding-left: 28px;
+    }
+  }
+}

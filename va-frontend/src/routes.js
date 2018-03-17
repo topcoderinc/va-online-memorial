@@ -1,9 +1,9 @@
 import { META } from './config';
 import Landing from './containers/Landing';
 import Search from './containers/Search';
-import Register from './containers/Register';
 import Dashboard from './containers/Dashboard';
 import AdminDashboard from './containers/AdminDashboard';
+import Setting, {AdminSetting} from './containers/Setting';
 
 /**
  * Generate an object with all necessary fields to render a page.
@@ -28,4 +28,6 @@ export default [
   createPage('/search', 'Search', Search),
   createPage('/dashboard', 'Dashboard', Dashboard),
   createPage('/admin/dashboard', 'Admin Dashboard', AdminDashboard),
+  createPage('/setting', 'Setting', Setting),
+  createPage('/admin/setting', 'Admin Setting', AdminSetting),
 ];

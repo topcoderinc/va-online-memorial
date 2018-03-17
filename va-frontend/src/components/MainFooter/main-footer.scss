@@ -11,6 +11,12 @@
   &.sticky{
     margin-top: 0;
   }
+  
+  @include viewMd{
+    &.setting-footer{
+      margin-top: 25px;
+    }
+  }
 
   a{
     color: #fff;
@@ -166,6 +172,8 @@
 
         @include viewMd{
           font-size: 14px;
+          height: 40px;
+          line-height: 40px;
         }
       }
     }

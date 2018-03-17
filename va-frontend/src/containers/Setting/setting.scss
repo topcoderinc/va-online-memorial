@@ -1,0 +1,93 @@
+@import '../../styles/_mixins.scss';
+
+.setting-page{
+  .welcome-banner{
+    padding: 18px 0 22px;
+    font-size: 20px;
+    margin-bottom: 55px;
+    background-color: #c5d6e8;
+  }
+  .welcome-title{
+    font-weight: bold;
+    @include fontAlt;
+    color: #205493;
+    margin-bottom: 16px;
+  }
+
+  .welcome-content{
+    max-width: 610px;
+  }
+  
+  .setting-sidebar{
+    width: 315px;
+    margin-right: 69px;
+  }
+
+  .setting-sidebar-menu{
+    border-bottom: 1px solid #000;
+  }
+
+  .setting-sidebar-link{
+    cursor: pointer;
+    line-height: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+    &.active{
+      color: #0f73ba;
+      @include hover;
+    }
+  }
+
+  .setting-viewport{
+    display: flex;
+  }
+
+  .setting-content{
+    flex: 1;
+  }
+  @include viewMd{
+    .setting-viewport{
+      flex-direction: column;
+      padding: 0 15px;
+    }
+    .welcome-banner{
+      font-size: 14px;
+      padding: 30px 15px 27px;
+      margin-bottom: 10px;
+    }
+    .welcome-title{
+      font-size: 15px;
+    }
+    .setting-sidebar{
+      width: 100%;
+      margin-right: 0;
+      position: relative;
+      padding-top: 30px;
+      margin-bottom: 25px;
+    }
+    .setting-sidebar-menu{
+      border-bottom: none;
+    }
+    .setting-sidebar-link{
+      font-size: 15px;
+      padding-left: 25px;
+      line-height: 30px;
+      display: none;
+    }
+    .cascade-submenu{
+      display: none;
+    }
+    .sidebar-show-menu{
+      border-bottom: 1px solid #000;
+      .cascade-submenu{
+        display: block;
+      }
+      .setting-sidebar-link{
+        display: block;
+      }
+      .drop-down-triangle{
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

@@ -34,7 +34,7 @@
 
 -   Install dependencies `npm i`
 -   Run lint check `npm run lint`
--   Start scraper `npm scrape`. This will run all tools in the following sequence:
+-   Start scraper `npm run scrape`. This will run all tools in the following sequence:
 
 `npm run download-data` => `npm run import-data`
 

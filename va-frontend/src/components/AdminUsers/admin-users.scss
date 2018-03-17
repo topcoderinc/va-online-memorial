@@ -1,0 +1,148 @@
+@import '../../styles/_mixins.scss';
+
+.admin-users{
+  .admin-users-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    @include fontAlt;
+    .btn{
+      width: 157px;
+    }
+  }
+  .admin-users-statis{
+    display: flex;
+    justify-content: space-between;
+    .statis-veterans,
+    .statis-nok{
+      flex: 0 432px;
+      padding: 30px 38px 44px;
+      border: 1px solid #000;
+    }
+    .statis-nok{
+      margin-left: 10px;
+    }
+    .statis-title{
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 50px;
+      @include fontAlt;
+    }
+    .statis-row{
+      display: flex;
+    }
+    .statis-group +.statis-group{
+      margin-left: 60px;
+    }
+    .statis-count{
+      font-size: 30px;
+      font-weight: bold;
+      color: #205493;
+      margin-bottom: 10px;
+      @include fontAlt;
+    }
+    .statis-type{
+      font-size: 20px;
+      color: #5d5d66;
+    }
+  }
+  .admin-users-trend{
+    padding: 20px 40px 33px;
+    border: 1px solid #000;
+    margin-top: 19px;
+  }
+  .trend-head{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+  }
+  .trend-head-group{
+    display: flex;
+    align-items: center;
+  }
+  .trend-select{
+    width: 158px;
+  }
+  .trend-title{
+    font-weight: bold;
+    @include fontAlt;
+  }
+  .checkboxctrl{
+    margin-right: 30px;
+    label{
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+  .checkbox-label{
+    margin-left: 15px;
+  }
+  .trend-line{
+    fill: none;
+    stroke-width: 4px;
+  }
+  @include ie{
+    .trend-chart{
+      height: 320px;
+    }
+  }
+  @include viewMd{
+    .admin-users-title{
+      font-size: 15px;
+      .btn{
+        display: none;
+      }
+    }
+    .admin-users-statis{
+      flex-direction: column;
+      .statis-veterans,
+      .statis-nok{
+        border: none;
+        flex-basis: auto;
+        padding: 20px 30px;
+        border-bottom: 1px solid #000;
+      }
+      .statis-nok{
+        margin-left: 0;
+      }
+      .statis-title{
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+      .statis-row{
+        flex-direction: column;
+      }
+      .statis-group +.statis-group{
+        margin-left: 0;
+        margin-top: 20px;
+      }
+      .statis-count{
+        font-size: 15px;
+      }
+      .statis-type{
+        font-size: 14px;
+      }
+    }
+    .admin-users-trend{
+      padding: 20px 30px;
+      border: none;
+      margin-top: 0;
+    }
+    .trend-head{
+      font-size: 14px;
+    }
+    .trend-head-group{
+      .checkboxctrl{
+        display: none;
+      }
+    }
+    .trend-select{
+      width: 130px;
+      font-size: 13px;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+@import '../../styles/_mixins.scss';
+
+.setting-preferences{
+  .preferences-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    @include fontAlt;
+  }
+  .preferences-table{
+    font-size: 20px;
+    width: 100%;
+    table-layout: fixed;
+    @include fontSecondary;
+    .table-head{
+      font-weight: bold;
+      .table-cell{
+        text-align: left;
+        padding: 19px 0 17px;
+      }
+    }
+    .table-row{
+      display: flex;
+      border-bottom: 1px solid #000;
+    }
+    .table-cell{
+      padding: 19px 0 17px;
+      &:nth-child(1){
+        width: 46%;
+      }
+      &:nth-child(2){
+        width: 20%;
+        padding-left: 12px;
+      }
+      &:nth-child(3){
+        width: 15.5%;
+        padding-left: 20px;
+      }
+      &:nth-child(4){
+        width: 18.5%;
+        text-align: center;
+        .fieldset-opt{
+          margin: 0 auto;
+        }
+      }
+      .fieldset-opt{
+        width: 25px;
+        height: 25px;
+      }
+    }
+    .fieldset-opt{
+      margin-top: 0;
+    }
+    .radio-label{
+      display: none;
+    }
+  }
+  .preferences-actions{
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    .btn{
+      width: 150px;
+    }
+  }
+  .checkboxctrl{
+    .checkbox-label{
+      display: none;
+    }
+  }
+  @include viewMd{
+    .preferences-title{
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+    .preferences-table{
+      .table-head{
+        display: none;
+      }
+      .table-row{
+        flex-wrap: wrap;
+      }
+      .table-cell{
+        font-size: 14px;
+        &:nth-child(1){
+          width: 100%;
+          padding: 10px 0;
+        }
+        &:nth-child(2){
+          width: 33.3%;
+          padding: 5px 0 15px;
+        }
+        &:nth-child(3){
+          width: 33.3%;
+          padding: 5px 0 15px;
+          .checkboxctrl{
+            label{
+              justify-content: center;
+            }
+          }
+          .fieldset-opt{
+            justify-content: center;
+          }
+        }
+        &:nth-child(4){
+          width: 33.3%;
+          padding: 5px 0 15px;
+          .checkboxctrl{
+            label{
+              justify-content: flex-end;
+            }
+          }
+          .fieldset-opt{
+            justify-content: flex-end;
+          }
+        }
+        .fieldset-opt{
+          display: flex;
+          width: auto;
+        }
+        .radio-label{
+          display: inline;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
+      }
+    }
+    .checkboxctrl{
+      label{
+        display: flex;
+        align-items: center;
+      }
+      .checkbox-label{
+        display: inline;
+        margin-left: 5px;
+        text-transform: capitalize;
+      }
+    }
+    .preferences-actions{
+      margin-top: 20px;
+      .btn{
+        height: 35px;
+        line-height: 35px;
+        width: 130px;
+      }
+    }
+  }
+}
+.checkboxctrl{
+  label{
+    cursor: pointer;
+    @include hover;
+  }
+  input[type="checkbox"]{
+    display: none;
+    & +.checkbox-icon{
+      width: 23px;
+      height: 23px;
+      border: 1px solid #000;
+    }
+    &:checked +.checkbox-icon{
+      border: none;
+      background: #0f73ba center/15px 11px url('../../i/check.png') no-repeat;
+    }
+  }
+}

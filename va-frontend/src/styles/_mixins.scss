@@ -16,6 +16,13 @@
   }
 }
 
+// ie specific css
+@mixin ie{
+  @media screen and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
 // responsive layout
 @mixin viewSm {
   @media screen and (max-width: 640px) {

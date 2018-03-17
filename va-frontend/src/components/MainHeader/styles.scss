@@ -80,6 +80,8 @@
 
       @include viewMd{
         font-size: 14px;
+        border-radius: 0;
+        -webkit-appearance: none;
       }
     }
     .btn-search {
@@ -157,6 +159,51 @@
     @include viewMd{
       right: 15px;
       top: 15px;
+      display: flex;
+      align-items: center;
+    }
+    .notification-wrap{
+      position: relative;
+      cursor: pointer;
+      .pa{
+        width: 12px;
+        height: 12px;
+        background-color: #ffffff;
+        transform: rotate(45deg) translateX(-50%);
+        position: absolute;
+        left: 50%;
+        top: 65px;
+        z-index: 91;
+        box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+
+        &:after{
+          content: '';
+          position: absolute;
+          bottom: -13px;
+          left: 0px;
+          height: 25px;
+          width: 25px;
+          background-color: #ffffff;
+        }
+        @include viewMd{
+          top: 45px;
+        }
+      }
+    }
+    .notification-num{
+      position: absolute;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: #e31c3d;
+      width: 19px;
+      height: 19px;
+      line-height: 19px;
+      text-align: center;
+      border-radius: 100%;
+      top: -6px;
+      right: -10px;
+      @include fontSecondary;
     }
     .notification-link {
       display: inline-block;
@@ -171,11 +218,19 @@
       line-height: 28px;
       padding-right: 30px;
       background: url('../../i/caret.png') 100% 11px no-repeat;
-      margin-left: 40px;
-      max-width: 100px;
+      margin-left: 31px;
+      max-width: 200px;
       text-overflow: ellipsis;
       overflow: hidden;
       @include fontSecondary;
+    }
+    .as-nok{
+      margin-left: 5px;
+    }
+    @include viewMd{
+      .as-nok{
+        display: none;
+      }
     }
   } // header-card
   .header-card {
@@ -494,6 +549,117 @@
     .inner{
       padding: 20px 15px;
       box-shadow: 0px 3px 8px 0 rgba(187, 187, 190, 0.8);
+    }
+  }
+}
+
+.notification-popup{
+  padding: 45px 40px 40px;
+  width: 463px;
+  height: 390px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 90;
+  background-color: #ffffff;
+  top: 70px;
+  display: block;
+  transform: translate(-50%);
+  overflow-y: auto;
+
+  h2{
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+    @include fontAlt;
+  }
+  .close{
+    position: absolute;
+    right: 39px;
+    top: 41px;
+    width: 17px;
+    height: 17px;
+    background: url(../../i/xb.png) 0 0 no-repeat;
+    background-size: 17px;
+    @include hover;
+
+    @include viewMd{
+      top: 25px;
+      right: 25px;
+    }
+  }
+
+  .notification-icon{
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+    display: inline-block;
+    margin-right: 14px;
+    &.story{
+      background-image: url(../../i/stories.png);
+      margin-right: 11px;
+      margin-left: 3px;
+    }
+    &.testimonial{
+      background-image: url(../../i/wt.png);
+    }
+    &.photo{
+      background-image: url(../../i/uphoto.png);
+    }
+  }
+
+  .notification-list-item{
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 15px;
+    border-bottom: 1px solid #000;
+  }
+
+  .notification-group{
+    display: flex;
+    align-items: center;
+  }
+
+  .notification-user{
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .notification-date{
+    color: #5d5d66;
+  }
+  @include viewMd{
+    width: 346px;
+    max-width: calc(100vw - 30px);
+    top: 65px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 15px;
+    height: 246px;
+    transform: none;
+    h2{
+      font-size: 15px;
+    }
+    .close{
+      top: 14px;
+      right: 15px;
+      width: 15px;
+      height: 15px;
+      background-size: 15px;
+    }
+    .notification-list-item{
+      font-size: 14px;
+      padding: 11px 0 10px;
+    }
+    .notification-icon{
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      &.story{
+        margin-right: 3px;
+        margin-left: 3px;
+      }
     }
   }
 }

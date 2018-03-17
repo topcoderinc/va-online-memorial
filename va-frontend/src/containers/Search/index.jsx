@@ -73,7 +73,6 @@ class Search extends Component {
                  className="close-sidebar"> </a> </h3>
 
                 <Toggler attr={ {title: 'Branch of service', addClass: 'alt', 'isToggleDisabled':true} }>
-                  <h4 className="hide-md">Branch of service</h4>
                  <div className="toggler-con">
                    <select className="selectctrl">
                      <option value="Select">-Select-</option>

@@ -14,10 +14,16 @@ const {
   acceptedFormat,
   ignoredNames
 } = require('../constants');
-const csv = require('csv-parse');
 const _ = require('lodash');
 const rp = require('request-promise');
 const fs = require('fs');
+const readline = require('readline');
+
+const { Observable } = require('rxjs/Observable');
+
+// patch Observable with appropriate methods
+require('rxjs/add/observable/fromEvent');
+require('rxjs/add/operator/takeUntil');
 
 /**
  * Get available data sets
@@ -69,19 +75,19 @@ function* downloadDataset(url) {
 }
 
 /**
- * Read CSV file
+ * Read CSV using Observable.
  * @param {string} path - The file path
  */
-function* readCSV(path) {
-  return yield new Promise((resolve, reject) => {
-    fs.readFile(path, (err, data) => {
-      if (err) return reject(err);
-      csv(data, { relax_column_count: true, relax: true, skip_empty_lines: true }, (parsingError, rows) => {
-        if (parsingError) return reject(parsingError);
-        data = null;
-        resolve(rows);
-      });
-    });
+function readCSV(path) {
+  const rl = readline.createInterface({
+    input: fs.createReadStream(path, { highWaterMark: 1024 }),
+    historySize: 0,
+    terminal: false
+  });
+
+  return Observable.create((observer) => {
+    rl.on('line', (line) => { observer.next(line); })
+      .on('close', () => observer.complete());
   });
 }
 
@@ -93,7 +99,9 @@ function getFilenames(directory) {
   const fileNames = [];
   // Get available files
   fs.readdirSync(directory).forEach((file) => {
-    fileNames.push(file);
+    if (file.toLowerCase().endsWith('.csv')) {
+      fileNames.push(file);
+    }
   });
 
   return fileNames;

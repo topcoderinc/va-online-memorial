@@ -25,7 +25,8 @@ class Masterhead extends Component {
       isSearchFocused: false,
       logger: {},
       error: {},
-      regerror: {}
+      regerror: {},
+      isNotiPopupActive: false,
     };
   }
 
@@ -172,7 +173,27 @@ class Masterhead extends Component {
   }
 
   render() {
-    const { searchedResults, addClass } = { ...this.props.attr };
+    const { searchedResults, addClass, userName, notifications, nok } = { ...this.props.attr };
+
+    const notiPopup = notifications && notifications.length > 0 &&
+      (
+        <div className="notification-popup">
+          <h2>Notification</h2>
+          <a className="close" onClick={this.$s({isNotiPopupActive: false})}> </a>
+          {
+            notifications.map((n,i)=>(
+              <div key={i} className="notification-list-item">
+                <div className="notification-group">
+                  <span className={`notification-icon ${n.type}`}></span>
+                  <span className="notification-user">{n.user}</span>
+                  <span> {n.action}</span>
+                </div>
+                <span className="notification-date">{n.date}</span>
+              </div>
+            ))
+          }
+        </div>
+      )
 
     return (
       <div className={"main-header-page " + addClass}>
@@ -190,7 +211,7 @@ class Masterhead extends Component {
           </div>
 
           {
-            !this.state.logger.username
+            (!this.state.logger.username && !userName)
               ? (
                 <div className="actions">
                   <a className="btn btn-primary"
@@ -203,10 +224,32 @@ class Masterhead extends Component {
               )
               : (
                 <div className="logger-area">
-                  <a className="notification-link"> </a>
-                  <a className="username">{this.state.logger.username}</a>
+                  <span className="notification-wrap" onClick={this.$s({isNotiPopupActive: !this.state.isNotiPopupActive})}>
+                    <a className="notification-link"> </a>
+                    {
+                      notifications && notifications.length > 0 &&
+                      <span className="notification-num">{notifications.length}</span>
+                    }
+                    {
+                      this.state.isNotiPopupActive && notifications && notifications.length > 0 &&
+                      <div>
+                        <span className="pa"></span>
+                        <div className="hide-md">
+                          {notiPopup}
+                        </div>
+                      </div>
+                    }
+                  </span>
+                  <a className="username">{this.state.logger.username || userName}<span className="as-nok">{nok ? ' (as NOK)' : ''}</span></a>
                 </div>
               )
+          }
+
+          {
+            this.state.isNotiPopupActive && notifications && notifications.length > 0 &&
+            <div className="show-md">
+              {notiPopup}
+            </div>
           }
 
           <div className={(this.state.isLoginActive ? 'open' : '') + ' header-card login-card '}>

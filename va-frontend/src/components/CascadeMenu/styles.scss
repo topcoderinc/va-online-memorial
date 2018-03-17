@@ -1,0 +1,74 @@
+@import '../../styles/_mixins.scss';
+
+.cascade-menu{
+  line-height: 50px;
+  font-size: 20px;
+  .cascade-title{
+    padding-left: 16px;
+    border-left: 4px solid transparent;
+    &.active{
+      font-weight: bold;
+      border-color: #0f73ba;
+      color: #0f73ba;
+    }
+    + .drop-down-border{
+      display: none;
+    }
+  }
+
+  .cascade-submenu{
+    padding-left: 53px;
+    line-height: 36px;
+    border: 2px dashed transparent;
+    margin: 5px 0;
+    cursor: pointer;
+    @include hover;
+    &.active{
+      border-color: rgb(183, 183, 183);
+    }
+  }
+
+  @include viewMd{
+    font-size: 15px;
+    line-height: 30px;
+    .slash{
+      margin: 0 5px;
+    }
+    .cascade-title{
+      border-width: 5px;
+      padding-left: 21px;
+      display: none;
+      &.active{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        + .drop-down-border{
+          height: 1px;
+          background-color: #000;
+          position: absolute;
+          top: 35px;
+          left: 0;
+          right: 0;
+          display: block;
+        }
+        .drop-down-triangle {
+          width: 7px;
+          height: 4px;
+          background-image: url(../../i/caret.png);
+          background-size: 100% 100%;
+          position: absolute;
+          top: 11px;
+          right: 0;
+        }
+      }
+    }
+    .cascade-submenu{
+      padding-left: 25px;
+      &.active{
+        border: none;
+      }
+    }
+  }
+}

@@ -729,6 +729,373 @@
       "life": "1944 — 2013"
     }
   ]
+  },
+  "settingBasicDetails": {
+    "userName": "jaredsmith",
+    "email": "jsmith@gmail.com",
+    "gender": "Male",
+    "phone": "123 - 456 - 7890"
+  },
+  "faqs":[
+    {
+      "title":"What happens when I deactivate my account",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+    },
+    {
+      "title":"Questions Goes Here",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+    },
+    {
+      "title":"Other Questions Goes Here",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+    },
+    {
+      "title":"Another Questions Goes Here",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+    }
+  ],
+  "notifications": [
+    {"type": "story", "user": "Stephanie", "action": "post new Story", "date": "1 day ago"},
+    {"type": "testimonial", "user": "Adam Sandler", "action": "post new Testimonial", "date": "1 day ago"},
+    {"type": "photo", "user": "Jason", "action": "upload new Photo", "date": "2 day ago"},
+    {"type": "story", "user": "Col. Clarks", "action": "post new Story", "date": "3 day ago"},
+    {"type": "story", "user": "Srgnt. Smith", "action": "post new Story", "date": "4 day ago"}
+  ],
+  "settingRequest":{
+    "veterans": ["Dexter Blevins", "Calista Doyle", "Gray Goff", "Kiayada Lambert", "Marny Russo", "Skyler Carpenter", "Thomas Knox", "Harriet Buchanan", "Ira Hart"],
+    "submitted": [
+      {"image": "/rp3.png", "name": "Charles Edward Jr.", "birth": "1944", "death": "2013", "phase": "In Review", "proof": ["Charles_EdwardJr_Documents.PDF", "US_Army_Service_Documents.PDF", "Family_Photo1.JPG"]}
+    ]
+  },
+  "settingPreferences": [
+    {"actionBy": "A story is posted on Wall", "email": true, "mobile": false, "site": false},
+    {"actionBy": "A photo is added on Wall", "email": true, "mobile": false, "site": false},
+    {"actionBy": "An event is created on Wall", "email": true, "mobile": false, "site": false},
+    {"actionBy": "A comment is posted on any post", "email": true, "mobile": false, "site": false}
+  ],
+  "settingPosts": {
+    "review": [
+      {"title": "A Good Friend Of My Father", "author": "Criss Red", "date": "24 Jan 2018", "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "}
+    ],
+    "byYou": []
+  },
+  "adminPosts": {
+    "flagged": [
+      {
+        "type": "Story", 
+        "items": [
+          {
+            "title": "A Good Friend Of My Father", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          }
+        ]
+      },
+      {
+        "type": "Photo",
+        "items": [
+          {
+            "title": "Humble Smile", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "image": "/p3.png"
+          }
+        ]
+      },
+      {
+        "type": "Testimonial",
+        "items": [
+          {
+            "title": "Country Pride", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          },
+          {
+            "title": "Patriotic", 
+            "author": "Armando Jr", 
+            "date": "27 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          },
+          {
+            "title": "Great Soldier", 
+            "author": "James Scott", 
+            "date": "5 Feb 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          }
+        ]
+      },
+      {
+        "type": "Event", 
+        "items": [
+          {
+            "title": "An Event title", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          }
+        ]
+      },
+      {
+        "type": "Badge", 
+        "items": [
+          {
+            "title": "Instructor", 
+            "author": "Criss Red",
+            "others": 5, 
+            "date": "24 Jan 2018",
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "image": "/bdg-instructor.png"
+          }
+        ]
+      }
+    ],
+    "removed": [
+      {
+        "type": "Story", 
+        "items": [
+          {
+            "title": "A Good Friend Of My Father", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          }
+        ]
+      },
+      {
+        "type": "Photo",
+        "items": [
+          {
+            "title": "Humble Smile", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "image": "/p3.png"
+          }
+        ]
+      },
+      {
+        "type": "Testimonial",
+        "items": [
+          {
+            "title": "Country Pride", 
+            "author": "Criss Red", 
+            "date": "24 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          },
+          {
+            "title": "Patriotic", 
+            "author": "Armando Jr", 
+            "date": "27 Jan 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          },
+          {
+            "title": "Great Soldier", 
+            "author": "James Scott", 
+            "date": "5 Feb 2018", 
+            "reason": {
+              "type": "Content Inappropriate",
+              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+            },
+            "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+          }
+        ]
+      }
+    ]
+  },
+  "adminRequest": {
+    "review": [
+      {"author": "Criss Red", "date": "24 Jan 2018", "name": "Charles Edward Jr.", "birth": "1944", "death": "2013", "photo": "/rp3.png", "proof": ["Charles_EdwardJr_Documents.PDF", "US_Army_Service_Documents.PDF", "Family_Photo1.JPG"]}
+    ],
+    "archived": [
+      {"author": "Criss Red", "date": "24 Jan 2018", "name": "Charles Edward Jr.", "birth": "1944", "death": "2013", "photo": "/rp3.png", "proof": ["Charles_EdwardJr_Documents.PDF", "US_Army_Service_Documents.PDF", "Family_Photo1.JPG"]},
+      {"author": "Criss Red", "date": "8 Jan 2018", "name": "Armando Jr.", "birth": "1956", "death": "2010", "photo": "/rp2.png", "proof": ["Charles_EdwardJr_Documents.PDF", "US_Army_Service_Documents.PDF", "Family_Photo1.JPG"]}
+    ]
+  },
+  "adminUsers": {
+    "statis": {
+      "veterans": {
+        "total": "120,189",
+        "thisMonth": "1,253"
+      },
+      "nok": {
+        "total": "108,269",
+        "thisMonth": "329"
+      }
+    },
+    "totalTrends": [
+      {
+        "type": "Users",
+        "color": "#20a6e0",
+        "daily": [
+          {"date": "2017-12-01", "data": 3110},
+          {"date": "2017-12-02", "data": 3800},
+          {"date": "2017-12-03", "data": 3750},
+          {"date": "2017-12-04", "data": 3800},
+          {"date": "2017-12-05", "data": 4200},
+          {"date": "2017-12-06", "data": 5600},
+          {"date": "2017-12-07", "data": 4900},
+          {"date": "2017-12-08", "data": 5300},
+          {"date": "2017-12-09", "data": 6800}
+        ],
+        "monthly": [
+          {"date": "2017-04-01", "data": 3110},
+          {"date": "2017-05-01", "data": 3800},
+          {"date": "2017-06-01", "data": 3750},
+          {"date": "2017-07-01", "data": 3800},
+          {"date": "2017-08-01", "data": 4200},
+          {"date": "2017-09-01", "data": 5600},
+          {"date": "2017-10-01", "data": 4900},
+          {"date": "2017-11-01", "data": 5300},
+          {"date": "2017-12-01", "data": 6800}
+        ],
+        "yearly": [
+          {"date": "2009-01-01", "data": 3110},
+          {"date": "2010-01-01", "data": 3800},
+          {"date": "2011-01-01", "data": 3750},
+          {"date": "2012-01-01", "data": 3800},
+          {"date": "2013-01-01", "data": 4200},
+          {"date": "2014-01-01", "data": 5600},
+          {"date": "2015-01-01", "data": 4900},
+          {"date": "2016-01-01", "data": 5300},
+          {"date": "2017-01-01", "data": 6800}
+        ]
+      },
+      {
+        "type": "NOK",
+        "color": "#2e8540",
+        "daily": [
+          {"date": "2017-12-01", "data": 2110},
+          {"date": "2017-12-02", "data": 2500},
+          {"date": "2017-12-03", "data": 1700},
+          {"date": "2017-12-04", "data": 2300},
+          {"date": "2017-12-05", "data": 2410},
+          {"date": "2017-12-06", "data": 3800},
+          {"date": "2017-12-07", "data": 3300},
+          {"date": "2017-12-08", "data": 2400},
+          {"date": "2017-12-09", "data": 3100}
+        ],
+        "monthly": [
+          {"date": "2017-04-01", "data": 2110},
+          {"date": "2017-05-01", "data": 2500},
+          {"date": "2017-06-01", "data": 1700},
+          {"date": "2017-07-01", "data": 2300},
+          {"date": "2017-08-01", "data": 2410},
+          {"date": "2017-09-01", "data": 3800},
+          {"date": "2017-10-01", "data": 3300},
+          {"date": "2017-11-01", "data": 2400},
+          {"date": "2017-12-01", "data": 3100}
+        ],
+        "yearly": [
+          {"date": "2009-01-01", "data": 2110},
+          {"date": "2010-01-01", "data": 2500},
+          {"date": "2011-01-01", "data": 1700},
+          {"date": "2012-01-01", "data": 2300},
+          {"date": "2013-01-01", "data": 2410},
+          {"date": "2014-01-01", "data": 3800},
+          {"date": "2015-01-01", "data": 3300},
+          {"date": "2016-01-01", "data": 2400},
+          {"date": "2017-01-01", "data": 3100}
+        ]
+      }
+    ],
+    "thisMonthTrends": [
+      {
+        "type": "Users",
+        "color": "#20a6e0",
+        "daily": [
+          {"date": "2017-12-01", "data": 3110},
+          {"date": "2017-12-02", "data": 3800},
+          {"date": "2017-12-03", "data": 3750},
+          {"date": "2017-12-04", "data": 3800},
+          {"date": "2017-12-05", "data": 4200},
+          {"date": "2017-12-06", "data": 5600},
+          {"date": "2017-12-07", "data": 4900},
+          {"date": "2017-12-08", "data": 5300},
+          {"date": "2017-12-09", "data": 6800}
+        ],
+        "monthly": [
+          {"date": "2017-04-01", "data": 3110},
+          {"date": "2017-05-01", "data": 3800},
+          {"date": "2017-06-01", "data": 3750},
+          {"date": "2017-07-01", "data": 3800},
+          {"date": "2017-08-01", "data": 4200},
+          {"date": "2017-09-01", "data": 5600},
+          {"date": "2017-10-01", "data": 4900},
+          {"date": "2017-11-01", "data": 5300},
+          {"date": "2017-12-01", "data": 6800}
+        ]
+      },
+      {
+        "type": "NOK",
+        "color": "#2e8540",
+        "daily": [
+          {"date": "2017-12-01", "data": 2110},
+          {"date": "2017-12-02", "data": 2500},
+          {"date": "2017-12-03", "data": 1700},
+          {"date": "2017-12-04", "data": 2300},
+          {"date": "2017-12-05", "data": 2410},
+          {"date": "2017-12-06", "data": 3800},
+          {"date": "2017-12-07", "data": 3300},
+          {"date": "2017-12-08", "data": 2400},
+          {"date": "2017-12-09", "data": 3100}
+        ],
+        "monthly": [
+          {"date": "2017-04-01", "data": 2110},
+          {"date": "2017-05-01", "data": 2500},
+          {"date": "2017-06-01", "data": 1700},
+          {"date": "2017-07-01", "data": 2300},
+          {"date": "2017-08-01", "data": 2410},
+          {"date": "2017-09-01", "data": 3800},
+          {"date": "2017-10-01", "data": 3300},
+          {"date": "2017-11-01", "data": 2400},
+          {"date": "2017-12-01", "data": 3100}
+        ]
+      }
+    ],
+    "totalColor": "#5d5d66"
   }
-
 }

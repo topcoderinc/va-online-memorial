@@ -1,0 +1,176 @@
+@import '../../styles/_mixins.scss';
+
+.setting-basic-details{
+  .basic-details-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    @include fontAlt;
+  }
+  .basic-details-row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .basic-details-label{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @innclude fontSecondary;
+  }
+  .basic-details-col-1{
+    flex: 0 333px;
+  }
+  .basic-details-col-2{
+    flex: 0 500px;
+  }
+  .basic-details-input{
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 20px;
+    padding-left: 17px;
+    @include fontSecondary;
+  }
+  .basic-details-fieldset{
+    display: flex;
+    margin-right: 55px;
+    margin-top: 7px;
+  }
+  .basic-details-radio-group{
+    display: flex;
+    margin-bottom: 40px;
+  }
+  .basic-details-actions{
+    display:flex;
+    justify-content: flex-end;
+    padding-bottom: 36px;
+    margin-bottom: 43px;
+    border-bottom: 1px solid #000;
+    .btn{
+      width: 150px;
+      margin-left: 21px;
+      &.btn-clear{
+        border: solid 2px #0f73ba;
+        color: #0f73ba;
+        line-height: 36px;
+        width: 170px;
+      }
+    }
+  }
+  .togger-wrap{
+    margin-bottom: 10px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .toggler {
+    background-color: #f1f1f1;
+    position: relative;
+    h4 {
+      height: 50px;
+      line-height: 50px;
+      font-size: 20px;
+      font-weight: 600;
+      padding-left: 23px;
+      padding-right: 46px;
+      cursor: pointer;
+      @include fontSecondary;
+      @include hover;
+    }
+    .toggle-ico {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      width: 20px;
+      height: 20px;
+      background: url('../../i/add.png') 0 0 no-repeat;
+      background-size: 20px;
+    }
+    .faq-content{
+      background-color: #fff;
+      padding: 32px 116px 35px 25px;
+      border: 2px solid #f1f1f1;
+      display: none;
+    }
+  }
+
+  .open .toggler {
+    .toggle-ico {
+      background: url('../../i/minus.png') 0 8px no-repeat;
+      background-size: 20px;
+    }
+    .faq-content{
+      display: block;
+    }
+  }
+  .basic-details-change-pwd{
+    color: #0f73ba;
+    cursor: pointer;
+    font-weight: 400;
+    @include hover;
+    @include fontSecondary;
+  }
+  @include viewMd{
+    .basic-details-title{
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+    .basic-details-label{
+      font-size: 14px;
+    }
+    .basic-details-input{
+      font-size: 14px;
+      padding-left: 12px;
+      margin-bottom: 28px;
+    }
+    .basic-details-radio-group{
+      margin-bottom: 28px;
+    }
+    .basic-details-actions{
+      justify-content: space-between;
+      padding-bottom: 32px;
+      margin-bottom: 28px;
+      .btn{
+        height: 35px;
+        line-height: 35px;
+        width: 130px;
+        &.btn-clear{
+          border: solid 2px #0f73ba;
+          line-height: 31px;
+          height: 35px;
+          width: 175px;
+          margin-left: 0;
+        }
+      }
+    }
+    .togger-wrap{
+      margin-bottom: 5px;
+    }
+    .toggler {
+      h4 {
+        font-size: 13px;
+        padding: 13px 35px 13px 13px;
+        line-height: 14px;
+        height: auto;
+      }
+      .toggle-ico {
+        background-size: 15px;
+        right: 14px;
+        top: 13px;
+        width: 15px;
+        height: 15px;
+      }
+      .faq-content{
+        padding: 24px 16px 16px 14px;
+      }
+    }
+    .open .toggler {
+      .toggle-ico {
+        background-size: 15px;
+      }
+    }
+  }
+}
