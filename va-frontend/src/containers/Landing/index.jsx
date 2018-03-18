@@ -16,10 +16,10 @@ class Landing extends Component {
   }
 
   render() {
-    const {masterHead, features, memories, featuredPosts, footerLinks, feedback, searchedResults} = {...this.props.db};
+    const {masterHead, features, memories, featuredPosts, footerLinks, feedback, searchedResults, notifications} = {...this.props.db};
     return (
       <div className="page-wrapper">
-        <MainHeaderComponent attr={ {'searchedResults': searchedResults} } />
+        <MainHeaderComponent attr={ {'searchedResults': searchedResults, notifications: notifications} } />
         <main className="main">
           <MasterHead props={ {...masterHead} } />
           <Features props={ {features: features} } />

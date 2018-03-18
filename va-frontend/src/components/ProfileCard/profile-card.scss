@@ -37,7 +37,7 @@
       flex-wrap: wrap;
 
       .row{
-        flex: 0 100%;
+
         &:first-child{
           padding-bottom: 8px;
         }
@@ -120,6 +120,18 @@
     position: absolute;
     left: 0;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lnk{
+    color: #0f73ba;
+    font-size: 16px;
+    margin-top: 10px;
+    @include fontSecondary;
+
+    @include hover;
   }
 
   @include viewMd{
@@ -127,9 +139,14 @@
     padding-left: 0;
 
     .profile-picture{
-      width: 78px;
-      height: 78px;
       left: 15px;
+      img{
+        width: 78px;
+        height: 78px;
+      }
+      .lnk{
+        display: none;
+      }
     }
     .bar-basicinfo{
       flex-wrap: wrap;
@@ -174,6 +191,7 @@
       @include viewMd{
         .lnk{
           font-size: 14px;
+          margin-top: 0;
         }
       }
     }
@@ -187,14 +205,6 @@
   padding-top: 20px;
   border-bottom: 2px solid #f6f6f6;
   padding-bottom: 25px;
-
-  .lnk{
-    color: #0f73ba;
-    font-size: 16px;
-    @include fontSecondary;
-
-    @include hover;
-  }
 
   h3{
     font-size: 30px;
@@ -285,7 +295,7 @@
   z-index: 90;
   background-color: #ffffff;
   right: 0;
-  top: 120px;
+  top: 80px;
   display: none;
 
   @media(min-width: 1380px) {

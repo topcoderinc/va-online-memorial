@@ -58,11 +58,11 @@ class Search extends Component {
   }
 
   render() {
-    const { footerLinks, feedback, searchedResults, searchedAllResults} = {...this.props.db};
+    const { footerLinks, feedback, searchedResults, searchedAllResults, notifications} = {...this.props.db};
 
     return (
       <div className="page-wrapper">
-        <MainHeaderComponent attr={ {'searchedResults': searchedResults, addClass: 'hasborder'} } />
+        <MainHeaderComponent attr={ {'searchedResults': searchedResults, addClass: 'hasborder', notifications: notifications} } />
 
           <main className="main hasborder">
           <div className={"search-section " + (this.state.isFilterView ? 'open' : '')}>
