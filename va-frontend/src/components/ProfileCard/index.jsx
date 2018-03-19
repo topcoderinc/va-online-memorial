@@ -198,8 +198,12 @@ class ProfileCard extends Component {
         <div className="profile-details-wrap">
           <div className="viewport">
             <div className="profile-details">
-              <img src={$p.profileImgSrc} alt="" className="profile-picture"/>
-
+              <div className="profile-picture">
+                <img src={$p.profileImgSrc} alt=""/>
+                <a className="lnk send-request-lnk"
+                  onClick={this.showPopup('isNokPopup')}
+                >Send NOK Request</a>
+              </div>
               <div className="bar-basicinfo">
                 <div className="col col-name">
                   <h3>{$p.profileName}</h3> 
@@ -208,13 +212,13 @@ class ProfileCard extends Component {
                 <div className="col col-opts align-r">
                   <div className="row">
                   <a className="btn btn-send-report"
-                      onClick={this.showPopup('isNokPopup')}
-                  >Send NOK Request</a> 
-                  </div>
-                  <div className="row st">
-                    <a className="lnk"
                       onClick={this.togglePopup('isTimelineEvents')}
-                    >View Timeline</a>
+                  >View Timeline</a> 
+                  </div>
+                  <div className="row st show-md">
+                    <a className="lnk send-request-lnk"
+                      onClick={this.showPopup('isNokPopup')}
+                    >Send NOK Request</a>
                   </div>
                 </div>
               

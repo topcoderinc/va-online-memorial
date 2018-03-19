@@ -42,12 +42,12 @@ class Search extends Component {
   }
 
   render() {
-    const { footerLinks, feedback, searchedResults, 
+    const { footerLinks, feedback, searchedResults, notifications, 
       profileCard, profileInfoTabs, relatedProfiles} = {...this.props.db};
       
     return (
       <div className="page-wrapper">
-        <MainHeaderComponent attr={ {'searchedResults': searchedResults} } />
+        <MainHeaderComponent attr={ {'searchedResults': searchedResults, notifications: notifications} } />
 
           <main className="main">
           {!!profileCard && (<ProfileCard attr={{ ...profileCard }} />)}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Toggler from '../../components/Toggler';
 import SearchTable from '../../components/SearchTable';
@@ -164,7 +164,7 @@ class Masterhead extends Component {
   handleOutsideClickHandler(nodeEl) {
     return function (e) {
       // ignore clicks on the component itself
-      if (e.toElement.classList.contains('search-input') || document.querySelector('.search-modal').contains(e.target)) {
+      if ((e.toElement || e.target).classList.contains('search-input') || document.querySelector('.search-modal').contains(e.target)) {
         return;
       }
 
@@ -240,7 +240,7 @@ class Masterhead extends Component {
                       </div>
                     }
                   </span>
-                  <a className="username">{this.state.logger.username || userName}<span className="as-nok">{nok ? ' (as NOK)' : ''}</span></a>
+                  <Link to="/setting" className="username">{this.state.logger.username || userName}<span className="as-nok">{nok ? ' (as NOK)' : ''}</span></Link>
                 </div>
               )
           }
