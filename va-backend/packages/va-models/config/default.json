@@ -1,6 +1,6 @@
 {
   "logLevel": "info",
   "dbConfig": {
-    "db_url": "postgres://postgres:topcoder@localhost:5432/test"
+    "db_url": "postgres://postgres:123456@localhost:5432/vaonline"
   },
 }

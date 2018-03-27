@@ -12,6 +12,8 @@ if (!process.env.NODE_ENV) {
 }
 
 require('dotenv').config();
+require('./bootstrap');
+
 const cors = require('cors');
 const config = require('config');
 const express = require('express');
@@ -21,10 +23,14 @@ const passport = require('passport');
 const logger = require('./common/logger');
 const _ = require('lodash');
 const { syncDB } = require('@va/models');
+const path = require('path');
 
 syncDB();
 
 const app = express();
+
+// static content
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use(bodyParser.json());

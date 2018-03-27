@@ -21,6 +21,7 @@
 
 -   Install dependencies `npm i`
 -   Run lint check `npm run lint`
+-   Initialize database data `npm run init-data`
 -   Start the REST API `npm start`.
 
 ## Postman Verification

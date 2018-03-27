@@ -15,7 +15,11 @@ const {
   Branch,
   Rank,
   War,
-  Cemetery
+  Country,
+  Cemetery,
+  BadgeType,
+  EventType,
+  Campaign
 } = require('@va/models');
 
 // Pagination schema
@@ -33,11 +37,11 @@ const paginationSchema = {
  */
 function* getPaginatedLookups(model, filters) {
   _.defaults(filters, DefaultPagination);
-  const count = yield model.count();
+  const total = yield model.count();
   const items = yield model.findAll({ ...filters });
   return {
     ...filters,
-    count,
+    total,
     items
   };
 }
@@ -73,6 +77,16 @@ function* getWars(filters) {
 getWars.schema = paginationSchema;
 
 /**
+ * Get countries
+ * @param {object} filters - The query filters object
+ */
+function* getCountries(filters) {
+  return yield getPaginatedLookups(Country, filters);
+}
+
+getCountries.schema = paginationSchema;
+
+/**
  * Get cemeteries
  * @param {object} filters - The query filters object
  */
@@ -82,11 +96,45 @@ function* getCemeteries(filters) {
 
 getCemeteries.schema = paginationSchema;
 
+/**
+ * Get badge types
+ * @param {object} filters - The query filters object
+ */
+function* getBadgeTypes(filters) {
+  return yield getPaginatedLookups(BadgeType, filters);
+}
+
+getBadgeTypes.schema = paginationSchema;
+
+/**
+ * Get event types
+ * @param {object} filters - The query filters object
+ */
+function* getEventTypes(filters) {
+  return yield getPaginatedLookups(EventType, filters);
+}
+
+getEventTypes.schema = paginationSchema;
+
+/**
+ * Get campaigns
+ * @param {object} filters - The query filters object
+ */
+function* getCampaigns(filters) {
+  return yield getPaginatedLookups(Campaign, filters);
+}
+
+getCampaigns.schema = paginationSchema;
+
 module.exports = {
   getBranches,
   getRanks,
   getWars,
-  getCemeteries
+  getCountries,
+  getCemeteries,
+  getBadgeTypes,
+  getEventTypes,
+  getCampaigns
 };
 
 logger.buildService(module.exports);

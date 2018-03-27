@@ -10,10 +10,14 @@
 const _ = require('lodash');
 const glob = require('glob');
 const Path = require('path');
+const multer = require('multer');
 const config = require('config');
 const passport = require('passport');
 const { ForbiddenError, UnauthorizedError } = require('./common/errors');
 const helper = require('./common/helper');
+
+const upload = multer({ dest: './public/upload' });
+
 /**
  * Configure routes for express
  * @param app the express app
@@ -60,6 +64,9 @@ module.exports = (app) => {
                 next();
               }
             });
+          }
+          if (def.file) {
+            actions.push(upload.any());
           }
           actions.push(method);
           app[verb](`/api/${config.version}${path}`, helper.autoWrapExpress(actions));

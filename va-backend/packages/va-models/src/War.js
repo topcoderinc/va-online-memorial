@@ -9,12 +9,12 @@
  */
 module.exports = (sequelize, DataTypes) => sequelize.define('War', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
   },
-  value: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false
   }

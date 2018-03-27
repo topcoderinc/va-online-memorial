@@ -37,6 +37,15 @@ function* getWars(req, res) {
 }
 
 /**
+ * Get countries
+ * @param req the request
+ * @param res the response
+ */
+function* getCountries(req, res) {
+  res.json(yield LookupService.getCountries(req.query));
+}
+
+/**
  * Get cemeteries
  * @param req the request
  * @param res the response
@@ -45,9 +54,40 @@ function* getCemeteries(req, res) {
   res.json(yield LookupService.getCemeteries(req.query));
 }
 
+/**
+ * Get badge types
+ * @param req the request
+ * @param res the response
+ */
+function* getBadgeTypes(req, res) {
+  res.json(yield LookupService.getBadgeTypes(req.query));
+}
+
+/**
+ * Get event types
+ * @param req the request
+ * @param res the response
+ */
+function* getEventTypes(req, res) {
+  res.json(yield LookupService.getEventTypes(req.query));
+}
+
+/**
+ * Get campaigns
+ * @param req the request
+ * @param res the response
+ */
+function* getCampaigns(req, res) {
+  res.json(yield LookupService.getCampaigns(req.query));
+}
+
 module.exports = {
   getBranches,
   getRanks,
   getWars,
-  getCemeteries
+  getCountries,
+  getCemeteries,
+  getBadgeTypes,
+  getEventTypes,
+  getCampaigns
 };

@@ -7,5 +7,6 @@
   "logLevel": "LOG_LEVEL",
   "dbConfig": {
     "db_url": "DATABASE_URL"
-  }
+  },
+  "appURL": "APP_URL"
 }

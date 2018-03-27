@@ -11,19 +11,20 @@
 const constants = require('../../constants');
 
 const jwtAuth = constants.Passports.jwt;
+const { modelConstants } = require('@va/models');
 
 module.exports = {
   '/veterans': {
+    get: {
+      controller: 'VeteransController',
+      method: 'search'
+    },
     post: {
       auth: jwtAuth,
-      access: ['admin'],
+      access: [modelConstants.UserRoles.Admin],
       controller: 'VeteransController',
-      method: 'create'
-    },
-    get: {
-      auth: jwtAuth,
-      controller: 'VeteransController',
-      method: 'getAll'
+      method: 'create',
+      file: true
     }
   },
   '/veterans/:id': {
@@ -34,15 +35,23 @@ module.exports = {
     },
     put: {
       auth: jwtAuth,
-      access: ['admin'],
+      access: [modelConstants.UserRoles.Admin],
       controller: 'VeteransController',
-      method: 'update'
+      method: 'update',
+      file: true
     },
     delete: {
       auth: jwtAuth,
-      access: ['admin'],
+      access: [modelConstants.UserRoles.Admin],
       controller: 'VeteransController',
       method: 'remove'
+    }
+  },
+  '/veterans/:id/related': {
+    get: {
+      auth: jwtAuth,
+      controller: 'VeteransController',
+      method: 'getRelated'
     }
   }
 };

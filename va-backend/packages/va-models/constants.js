@@ -7,14 +7,40 @@
 /**
  * Application constants
  */
-const UserRoles = [
-  'admin',
-  'ro'
-];
 
-const DefaultRole = 'ro';
+const UserRoles = {
+  Admin: 'admin',
+  User: 'user'
+};
+
+const UserStatuses = {
+  Active: 'Active',
+  Inactive: 'Inactive',
+  Blocked: 'Blocked'
+};
+
+const Statuses = {
+  Requested: 'Requested',
+  Approved: 'Approved',
+  Rejected: 'Rejected'
+};
+
+const FlagStatuses = {
+  Requested: 'Requested',
+  Processed: 'Processed'
+};
+
+const PostTypes = {
+  Story: 'Story',
+  Photo: 'Photo',
+  Badge: 'Badge',
+  Testimonial: 'Testimonial'
+};
 
 module.exports = {
   UserRoles,
-  DefaultRole
+  UserStatuses,
+  Statuses,
+  FlagStatuses,
+  PostTypes
 };

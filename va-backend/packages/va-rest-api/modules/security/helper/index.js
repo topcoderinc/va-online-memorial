@@ -10,13 +10,15 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
+const _ = require('lodash');
+const ms = require('ms');
 
 /**
  * Create token
  * @param {Object} user the user object
  */
 function createToken(user) {
-  return jwt.sign(user, config.authSecret, {
+  return jwt.sign(_.pick(user, ['id', 'username', 'email', 'role']), config.authSecret, {
     expiresIn: config.tokenExpiresIn
   });
 }
@@ -51,8 +53,30 @@ function comparePassword(password, userPassword) {
   });
 }
 
+/**
+ * Convert user
+ * @param {Object} user the user
+ */
+function convertUser(user) {
+  if (!user) return user;
+  return _.omit(user, ['passwordHash', 'lastLogin',
+    'accessToken', 'accessTokenExpiresAt', 'forgotPasswordToken', 'forgotPasswordTokenExpiresAt']);
+}
+
+/**
+ * Get expires date
+ * @param {String} ts the time string
+ */
+function getExpiresDate(ts) {
+  const d = new Date();
+  d.setTime(d.getTime() + ms(ts));
+  return d;
+}
+
 module.exports = {
   createToken,
   encryptPassword,
-  comparePassword
+  comparePassword,
+  convertUser,
+  getExpiresDate
 };
