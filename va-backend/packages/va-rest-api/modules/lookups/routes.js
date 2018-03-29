@@ -33,11 +33,39 @@ module.exports = {
       method: 'getWars'
     }
   },
+  '/countries': {
+    get: {
+      auth: jwtAuth,
+      controller: 'LookupController',
+      method: 'getCountries'
+    }
+  },
   '/cemeteries': {
     get: {
       auth: jwtAuth,
       controller: 'LookupController',
       method: 'getCemeteries'
+    }
+  },
+  '/badgeTypes': {
+    get: {
+      auth: jwtAuth,
+      controller: 'LookupController',
+      method: 'getBadgeTypes'
+    }
+  },
+  '/eventTypes': {
+    get: {
+      auth: jwtAuth,
+      controller: 'LookupController',
+      method: 'getEventTypes'
+    }
+  },
+  '/campaigns': {
+    get: {
+      auth: jwtAuth,
+      controller: 'LookupController',
+      method: 'getCampaigns'
     }
   }
 };

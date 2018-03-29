@@ -10,21 +10,21 @@
 const VeteransService = require('../services/VeteransService');
 
 /**
+ * Search veterans
+ * @param req the request
+ * @param res the response
+ */
+function* search(req, res) {
+  res.json(yield VeteransService.search(req.query));
+}
+
+/**
  * Create veteran
  * @param req the request
  * @param res the response
  */
 function* create(req, res) {
-  res.json(yield VeteransService.create(req.body));
-}
-
-/**
- * Get all
- * @param req the request
- * @param res the response
- */
-function* getAll(req, res) {
-  res.json(yield VeteransService.getAll(req.query));
+  res.json(yield VeteransService.create(req.files, req.body));
 }
 
 /**
@@ -37,28 +37,38 @@ function* getSingle(req, res) {
 }
 
 /**
- * Update
+ * Update veteran
  * @param req the request
  * @param res the response
  */
 function* update(req, res) {
-  res.json(yield VeteransService.update(req.params.id, req.body));
+  res.json(yield VeteransService.update(req.params.id, req.files, req.body));
 }
 
 /**
- * Delete
+ * Delete veteran
  * @param req the request
  * @param res the response
  */
 function* remove(req, res) {
   yield VeteransService.remove(req.params.id);
-  res.sendStatus(200);
+  res.status(200).end();
+}
+
+/**
+ * Get related veterans
+ * @param req the request
+ * @param res the response
+ */
+function* getRelated(req, res) {
+  res.json(yield VeteransService.getRelated(req.params.id, req.query));
 }
 
 module.exports = {
-  getAll,
+  search,
   create,
   getSingle,
   update,
-  remove
+  remove,
+  getRelated
 };

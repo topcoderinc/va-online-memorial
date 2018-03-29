@@ -8,17 +8,61 @@
  * Contains all routes.
  */
 
+const constants = require('../../constants');
+
+const jwtAuth = constants.Passports.jwt;
+
 module.exports = {
-  '/register': {
-    post: {
+  '/users': {
+    get: {
+      auth: jwtAuth,
       controller: 'UserController',
-      method: 'register'
+      method: 'search'
     }
   },
-  '/login': {
-    post: {
+  '/users/:id': {
+    get: {
+      auth: jwtAuth,
       controller: 'UserController',
-      method: 'login'
+      method: 'getSingle'
+    },
+    put: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'update'
+    }
+  },
+  '/me': {
+    get: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'getMe'
+    }
+  },
+  '/me/deactivate': {
+    put: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'deactivateMe'
+    }
+  },
+  '/me/activate': {
+    put: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'activateMe'
+    }
+  },
+  '/me/notificationPreferences': {
+    get: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'getNotificationPreferences'
+    },
+    put: {
+      auth: jwtAuth,
+      controller: 'UserController',
+      method: 'saveNotificationPreferences'
     }
   }
 };

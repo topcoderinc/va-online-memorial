@@ -8,16 +8,9 @@
  * Application constants
  */
 
-const UserRoles = [
-  'admin',
-  'ro'
-];
-
 const Passports = {
   jwt: 'jwt-bearer'
 };
-
-const DefaultRole = 'ro';
 
 const DefaultPagination = {
   limit: 10,
@@ -25,8 +18,6 @@ const DefaultPagination = {
 };
 
 module.exports = {
-  UserRoles,
   Passports,
-  DefaultRole,
   DefaultPagination
 };

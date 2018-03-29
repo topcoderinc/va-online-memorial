@@ -4,73 +4,238 @@
  * Copyright (c) 2018 Topcoder, Inc. All rights reserved.
  */
 
-/*
+/**
  * User service
  */
-const _ = require('lodash');
 const Joi = require('joi');
+const _ = require('lodash');
+const models = require('@va/models');
 const logger = require('../../../common/logger');
-const { User } = require('@va/models');
-const { ConflictError, UnauthorizedError } = require('../../../common/errors');
-const { encryptPassword, createToken, comparePassword } = require('../helper');
+const { NotFoundError, ForbiddenError } = require('../../../common/errors');
+const helper = require('../../../common/helper');
+const securityHelper = require('../../security/helper');
 
 /**
- * Register user
- * @param {object} user - The user object
+ * build db search query
+ * @param filter the search filter
  */
-function* register(user) {
-  // Check if email is already registered
-  const existing = yield User.findById(user.email);
-  if (existing) throw new ConflictError(`${user.email} is already registered.`);
+function buildDBFilter(filter) {
+  const include = [{ model: models.Country, as: 'country' }];
 
-  // Encrypt password
-  user.passwordHash = yield encryptPassword(user.password);
-  const newUser = yield User.create(_.omit(user, ['password']));
-
-  // Generate token
-  const token = createToken(_.omit(newUser.toJSON(), ['passwordHash']));
-
-  return _.extend(_.omit(newUser.toJSON(), ['password']), { token });
+  const where = {};
+  if (filter.name) {
+    where.$or = [{
+      firstName: { $like: `%${filter.name}%` }
+    }, {
+      lastName: { $like: `%${filter.name}%` }
+    }, {
+      username: { $like: `%${filter.name}%` }
+    }];
+  }
+  if (filter.status) where.status = filter.status;
+  return {
+    where,
+    include,
+    offset: filter.offset,
+    limit: filter.limit,
+    order: [[filter.sortColumn, filter.sortOrder.toUpperCase()]]
+  };
 }
 
-register.schema = {
-  user: Joi.object().keys({
-    email: Joi.string().email().required(),
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    country: Joi.string().required(),
-    password: Joi.string().required()
-  }).required()
+/**
+ * Search users
+ * @param {object} query the query object
+ */
+function* search(query) {
+  const q = buildDBFilter(query);
+  const docs = yield models.User.findAndCountAll(q);
+  const items = _.map(docs.rows, row => securityHelper.convertUser(row.toJSON()));
+  return {
+    items,
+    total: docs.count,
+    offset: q.offset,
+    limit: q.limit
+  };
+}
+
+search.schema = {
+  query: Joi.object().keys({
+    name: Joi.string(),
+    status: Joi.string().valid(_.values(models.modelConstants.UserStatuses)),
+    limit: Joi.limit(),
+    offset: Joi.offset(),
+    sortColumn: Joi.string().valid(
+      'id', 'username', 'firstName', 'lastName', 'mobile', 'countryId', 'role',
+      'status', 'gender'
+    ).default('id'),
+    sortOrder: Joi.sortOrder()
+  })
 };
 
 /**
- * Login
- * @param {object} credentials - The login credentials
+ * Get single user
+ * @param {Number} id the user id
  */
-function* login(credentials) {
-  // Check if email is correct (registered)
-  const user = yield User.findOne({ where: { email: credentials.email } });
-  if (!user) throw new UnauthorizedError('Invalid credentials!');
-
-  // Check if password matches with the encrypted password
-  const passwordMatch = yield comparePassword(credentials.password, user.passwordHash);
-  if (!passwordMatch) throw new UnauthorizedError('Invalid credentials!');
-
-  // Generate token
-  const token = createToken(_.omit(user.toJSON(), ['passwordHash']));
-  return _.extend(_.omit(user.toJSON(), ['passwordHash']), { token });
+function* getSingle(id) {
+  const user = yield models.User.findOne({
+    where: { id },
+    include: [
+      {
+        model: models.Country,
+        as: 'country'
+      }
+    ]
+  });
+  if (!user) throw new NotFoundError(`User with id: ${id} does not exist!`);
+  return securityHelper.convertUser(user.toJSON());
 }
 
-login.schema = {
-  credentials: Joi.object().keys({
-    email: Joi.string().email().required(),
-    password: Joi.string().required()
+getSingle.schema = {
+  id: Joi.id()
+};
+
+/**
+ * Update user
+ * @param {Number} id - the user id
+ * @param {object} body - the request body
+ * @param {object} currentUser - the current user
+ */
+function* update(id, body, currentUser) {
+  const user = yield helper.ensureExists(models.User, { id });
+
+  // if current user is not admin, then he can only update himself, and role can not be changed
+  if (currentUser.role !== models.modelConstants.UserRoles.Admin) {
+    if (id !== currentUser.id) {
+      throw new ForbiddenError('You can not update other user.');
+    }
+    if (body.role && user.role !== body.role) {
+      throw new ForbiddenError('You can not change your role.');
+    }
+  }
+
+  _.assignIn(user, body);
+  yield user.save();
+  return yield getSingle(id);
+}
+
+update.schema = {
+  id: Joi.id(),
+  body: Joi.object().keys({
+    username: Joi.string(),
+    email: Joi.string().email(),
+    firstName: Joi.string(),
+    lastName: Joi.string(),
+    mobile: Joi.string(),
+    countryId: Joi.optionalId(),
+    role: Joi.string(),
+    status: Joi.string().valid(_.values(models.modelConstants.UserStatuses)),
+    gender: Joi.string()
+  }).required(),
+  currentUser: Joi.object().required()
+};
+
+/**
+ * Get me
+ * @param {Number} id - the user id
+ */
+function* getMe(id) {
+  return yield getSingle(id);
+}
+
+getMe.schema = {
+  id: Joi.id()
+};
+
+/**
+ * Deactivate me
+ * @param {Number} id - the user id
+ */
+function* deactivateMe(id) {
+  const user = yield helper.ensureExists(models.User, { id });
+  user.status = models.modelConstants.UserStatuses.Inactive;
+  yield user.save();
+}
+
+deactivateMe.schema = {
+  id: Joi.id()
+};
+
+/**
+ * Activate me
+ * @param {Number} id - the user id
+ */
+function* activateMe(id) {
+  const user = yield helper.ensureExists(models.User, { id });
+  user.status = models.modelConstants.UserStatuses.Active;
+  yield user.save();
+}
+
+activateMe.schema = {
+  id: Joi.id()
+};
+
+/**
+ * Get notification preferences
+ * @param {Number} id - the user id
+ */
+function* getNotificationPreferences(id) {
+  yield helper.ensureExists(models.User, { id });
+
+  return yield helper.ensureExists(models.NotificationPreference, { userId: id });
+}
+
+getNotificationPreferences.schema = {
+  id: Joi.id()
+};
+
+/**
+ * Save notification preferences
+ * @param {Number} id - the user id
+ * @param {Number} body - the request body
+ */
+function* saveNotificationPreferences(id, body) {
+  yield helper.ensureExists(models.User, { id });
+
+  const p = yield models.NotificationPreference.findOne({ where: { userId: id } });
+  if (p) {
+    _.assignIn(p, body);
+    return yield p.save();
+  }
+
+  body.userId = id;
+  return yield models.NotificationPreference.create(body);
+}
+
+saveNotificationPreferences.schema = {
+  id: Joi.id(),
+  body: Joi.object().keys({
+    storyNotificationsSite: Joi.boolean(),
+    storyNotificationsEmail: Joi.boolean(),
+    storyNotificationsMobile: Joi.boolean(),
+    badgeNotificationsSite: Joi.boolean(),
+    badgeNotificationsEmail: Joi.boolean(),
+    badgeNotificationsMobile: Joi.boolean(),
+    testimonialNotificationsSite: Joi.boolean(),
+    testimonialNotificationsEmail: Joi.boolean(),
+    testimonialNotificationsMobile: Joi.boolean(),
+    photoNotificationsSite: Joi.boolean(),
+    photoNotificationsEmail: Joi.boolean(),
+    photoNotificationsMobile: Joi.boolean(),
+    eventNotificationsSite: Joi.boolean(),
+    eventNotificationsEmail: Joi.boolean(),
+    eventNotificationsMobile: Joi.boolean()
   }).required()
 };
 
 module.exports = {
-  register,
-  login
+  search,
+  getSingle,
+  update,
+  getMe,
+  deactivateMe,
+  activateMe,
+  getNotificationPreferences,
+  saveNotificationPreferences
 };
 
 logger.buildService(module.exports);

@@ -78,6 +78,11 @@ logger.logFullError = function logFullError(err, signature) {
 function _sanitizeObject(obj) {
   try {
     return JSON.parse(JSON.stringify(obj, (name, value) => {
+      // Array of field names that should not be logged
+      const removeFields = ['accessToken', 'forgotPasswordToken', 'password', 'oldPassword', 'newPassword'];
+      if (_.contains(removeFields, name)) {
+        return '<removed>';
+      }
       if (_.isArray(value) && value.length > 30) {
         return `Array(${value.length}`;
       }

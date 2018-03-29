@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
--   [Lerna](https://github.com/lerna/lerna). Install Lerna globally by running `npm i -g lerna`
+- NodeJS 8.9
+- [Lerna](https://github.com/lerna/lerna). Install Lerna globally by running `npm i -g lerna`
 
 ## Using the monorepo
 

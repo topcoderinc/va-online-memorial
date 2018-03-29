@@ -1,0 +1,4251 @@
+---
+swagger: "2.0"
+info:
+  description: "This is the API specification for the Veterans Memorial application\
+    \ of the Department of Veterans Affairs (VA) National Cemetery Administration\
+    \ (NCA)\n\n# Authorization\nAll API endpoints are secured with Bearer token.\
+    \ Please note that several endpoints like the following are not secured (require no authentication):\n\
+    - GET /\n- POST /login\n- POST /register\n- PUT /initiateForgotPassword\n- PUT /changeForgotPassword\n- GET /veterans (as anonymous website\
+    \ visitor can search for veterans)\n"
+    
+    
+  version: '1.0'
+  title: VA Memorial API
+  contact: {}
+host: "0.0.0.0"
+basePath: "/api/v1"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+security:
+- Authorization: []
+paths:
+  /:
+    get:
+      tags:
+      - Introspection
+      summary: OpenAPI 2.0 Spec (this document)
+      description: JSON representation of the API specification
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+  
+  /register:
+    post:
+      tags:
+      - Security
+      summary: Register a new user. Please note that additionally the password will be passed inside user entity.
+      security: []    # no authentication
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        409:
+          description: CONFLICT - The user with the given email is already registered
+          schema:
+            $ref: "#/definitions/Error"
+  /login:
+    post:
+      tags:
+      - Security
+      summary: Login an existng user
+      security: []    # no authentication
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - email
+          - password
+          properties:
+            email:
+              type: "string"
+            password:
+              type: "string"
+        x-examples:
+          application/json: "{\n\t\"email\": \"example@email.com\",\n\t\"password\"\
+            : \"kjhs889wq\"\n}"
+      responses:
+        200:
+          description: |
+            Successfully authenticated.
+          schema:
+            type: object
+            properties:
+              token: 
+                description: The token
+                type: string
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - not verified user.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+ 
+  /initiateForgotPassword:
+    post:
+      summary: Initiate forgot password
+      description: |
+        Initiate forgot password.
+      tags:
+        - Security
+      security: []    # no authentication
+      parameters:
+        - name: email
+          in: path
+          description: The email
+          required: true
+          type: string
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'            
+
+  /changeForgotPassword:
+    post:
+      summary: Change forgot password
+      description: |
+        Change forgot password.
+      tags:
+        - Security
+      security: []    # no authentication
+      parameters:
+      - name: body
+        in: body
+        description: Change forgot password request
+        required: true
+        schema:
+          type: object
+          required: 
+            - email
+            - newPassword
+            - forgotPasswordToken
+          properties:
+            email:
+              description: The email
+              type: string
+            forgotPasswordToken:
+                description: The forgot password token
+                type: string
+            newPassword:
+                description: The new password
+                type: string
+        
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'          
+    
+  /updatePassword:
+    put:
+      summary: Update user password.
+      description: |
+        update User password.
+      tags:
+        - Security
+      parameters:
+      - name: body
+        in: body
+        description: Change forgot password request
+        required: true
+        schema:
+          type: object
+          required: 
+            - oldPassword
+            - newPassword
+          properties:
+            oldPassword:                
+              description: The oldPassword
+              type: string
+            newPassword:
+              description: The newPassword
+              type: string 
+   
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /veterans:
+    get:
+      tags:
+      - Veterans
+      summary: Search veterans
+      security: []    # no authentication
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+      - name: bithDateStart
+        in: query
+        required: false
+        type: string
+        format: date
+      - name: birthDateEnd
+        in: query
+        required: false
+        type: string
+        format: date
+      - name: deathDateStart
+        in: query
+        required: false
+        type: string
+        format: date
+      - name: deathDateEnd
+        in: query
+        required: false
+        type: string
+        format: date
+      - name: squadronShip
+        in: "query"
+        required: false
+        type: string
+      - name: branchId
+        in: query
+        required: false
+        type: integer
+      - name: cemeteryId
+        in: query
+        required: false
+        type: integer
+      - name: warId
+        in: query
+        required: false
+        type: integer
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: "#/definitions/Veteran"
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - Veterans
+      summary: Create a veteran. Please note that additionally file will be posted in request.
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Veteran'
+
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Veteran'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+  
+  /veterans/{id}:
+    get:
+      tags:
+      - Veterans
+      summary: Get a veteran
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Veteran'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+    delete:
+      tags:
+      - Veterans
+      summary: Delete a veteran
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Veterans
+      summary: Update a veteran entity. Please note that additionally file will be posted in request.
+      consumes: []
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Veteran'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Veteran' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: The id
+  
+  /veterans/{id}/related:
+    get:
+      tags:
+      - Veterans
+      summary: Retrieve a list of related veteran profiles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: "#/definitions/Veteran"
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /stories:
+    get:
+      tags:
+      - Stories
+      summary: Search Stories
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose Stories will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose Stories will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Story'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - Stories
+      summary: Create a new Story.
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Story'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Story' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /stories/{id}:
+    get:
+      tags:
+      - Stories
+      summary: Retrieve details of a Story
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Story'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Stories
+      summary: Delete a Story
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Stories
+      summary: Update an existing Story
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Story"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Story' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /stories/{id}/approve:
+    put:
+      tags:
+      - Stories
+      summary: Approve a Story
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /stories/{id}/reject:
+    put:
+      tags:
+      - Stories
+      summary: Reject a Story
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /stories/{id}/salute:
+    put:
+      tags:
+      - Stories
+      summary: Salute a Story
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /stories/{id}/isSaluted:
+    get:
+      tags:
+      - Stories
+      summary: Check if a Story was saluted by current user
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: True if saluted, false otherwise.
+          schema:
+            type: object
+            properties:
+              saluted:
+                type: boolean
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /stories/{id}/share:
+    put:
+      tags:
+      - Stories
+      summary: Share a Story
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'           
+
+  /photos:
+    get:
+      tags:
+      - Photos
+      summary: Search Photos
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose Stories will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose Stories will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Story'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - Photos
+      summary: Create a new Photo. Please note that additionally file will be posted in request.
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Photo'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Photo' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+  
+  /photos/{id}:
+    get:
+      tags:
+      - Photos
+      summary: Retrieve details of a Photo
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Photo'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Photos
+      summary: Delete a Photo
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Photos
+      summary: Update an existing Photo. Please note that additionally file will be posted in request.
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Photo"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Story' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /photos/{id}/approve:
+    put:
+      tags:
+      - Photos
+      summary: Approve a Photo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /photos/{id}/reject:
+    put:
+      tags:
+      - Photos
+      summary: Reject a Photo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+  
+  /photos/{id}/salute:
+    put:
+      tags:
+      - Photos
+      summary: Salute a Photo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /photos/{id}/isSaluted:
+    get:
+      tags:
+      - Photos
+      summary: Check if a Photo was saluted by current user.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: True if saluted, false otherwise.
+          schema:
+            type: object
+            properties:
+              saluted:
+                type: boolean
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /photos/{id}/share:
+    put:
+      tags:
+      - Photos
+      summary: Share a Photo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badges:
+    get:
+      tags:
+      - Badges
+      summary: Search Badge
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose Stories will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose Stories will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Badge'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+
+
+  /badges/{id}:
+    get:
+      tags:
+      - Badges
+      summary: Retrieve details of a Badge
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Badge'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Badges
+      summary: Delete a Badge
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Badges
+      summary: Update an existing Badge
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Badge"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Badge' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /badges/{id}/approve:
+    put:
+      tags:
+      - Badges
+      summary: Approve a Badge
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badges/{id}/reject:
+    put:
+      tags:
+      - Badges
+      summary: Reject a Badge
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badges/{id}/salute:
+    put:
+      tags:
+      - Badges
+      summary: Salute a Badge
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /badges/{id}/isSaluted:
+    get:
+      tags:
+      - Badges
+      summary: Check if a Badge was saluted by current user.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: True if saluted, false otherwise.
+          schema:
+            type: object
+            properties:
+              saluted:
+                type: boolean
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badges/{id}/share:
+    put:
+      tags:
+      - Badges
+      summary: Share a Badge
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'           
+
+
+  /testimonials:
+    get:
+      tags:
+      - Testimonials
+      summary: Search Testimonials
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose Stories will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose Stories will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Testimonial'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - Testimonials
+      summary: Create a new Testimonial
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Testimonial'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Testimonial' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /testimonials/{id}:
+    get:
+      tags:
+      - Testimonials
+      summary: Retrieve details of a Testimonial
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Testimonial'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Testimonials
+      summary: Delete a Testimonial
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Testimonials
+      summary: Update an existing Testimonial
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Testimonial"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Testimonial' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /testimonials/{id}/approve:
+    put:
+      tags:
+      - Testimonials
+      summary: Approve a Testimonial
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /testimonials/{id}/reject:
+    put:
+      tags:
+      - Testimonials
+      summary: Reject a Testimonial
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /testimonials/{id}/salute:
+    put:
+      tags:
+      - Testimonials
+      summary: Salute a Testimonial
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  
+  /testimonials/{id}/isSaluted:
+    get:
+      tags:
+      - Testimonials
+      summary: Check if a Testimonial was saluted by current user.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: True if saluted, false otherwise.
+          schema:
+            type: object
+            properties:
+              saluted:
+                type: boolean
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /testimonials/{id}/share:
+    put:
+      tags:
+      - Testimonials
+      summary: Share a Testimonial
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'  
+
+
+
+  /events:
+    get:
+      tags:
+      - Events
+      summary: Search Events
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose Stories will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose Stories will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - Events
+      summary: Create a new Event
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Event'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Event' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /events/{id}:
+    get:
+      tags:
+      - Events
+      summary: Retrieve details of the Event
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Event'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Events
+      summary: Delete Event
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Events
+      summary: Update an existing Event
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Event"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Event' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /events/{id}/approve:
+    put:
+      tags:
+      - Events
+      summary: Approve Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /events/{id}/reject:
+    put:
+      tags:
+      - Events
+      summary: Reject Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+  
+
+
+ 
+
+  /flags:
+    get:
+      tags:
+      - Flags
+      summary: Search Flag
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User who created flag
+      - name: postType
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Story,Photo,Badge,Testimonial]
+        default: Approved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Processed]
+        default: Requested
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Flag'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - Flags
+      summary: Create a new Flag
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Flag'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Flag' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /flags/{id}:
+    get:
+      tags:
+      - Flags
+      summary: Retrieve details of the Flag
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/Event'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - Flags
+      summary: Delete Flag
+      parameters: []
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - Flags
+      summary: Update an existing Flag
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Flag"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/Flag' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /flags/{id}/process:
+    put:
+      tags:
+      - Flags
+      summary: Process Flag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+  /nextOfKins:
+    get:
+      tags:
+      - NextOfKins
+      summary: Search NextOfKin
+      parameters:
+      - name: veteranId
+        in: query
+        required: false
+        type: integer
+        description: Id of the veteran whose NOKs will be retrieved
+      - name: userId
+        in: query
+        required: false
+        type: integer
+        description: Id of the User whose NOKs will be retrieved
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/NextOfKin'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    
+    post:
+      tags:
+      - NextOfKins
+      summary: Create a new NextOfKin. Please note that additionally files will be posted in request.
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/NextOfKin'
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/NextOfKin' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /nextOfKins/{id}:
+    get:
+      tags:
+      - NextOfKins
+      summary: Retrieve details of the NextOfKin
+      parameters: 
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/NextOfKin'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - NextOfKins
+      summary: Delete NextOfKin
+      parameters: 
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - NextOfKins
+      summary: Update an existing NextOfKin. Please note that additionally files will be posted in request.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/NextOfKin"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/NextOfKin' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+  /nextOfKins/{id}/approve:
+    put:
+      tags:
+      - NextOfKins
+      summary: Approve NextOfKin
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /nextOfKins/{id}/reject:
+    put:
+      tags:
+      - NextOfKins
+      summary: Reject Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - respone
+          properties:
+            response:
+              type: string
+
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'           
+
+ 
+  /users:
+    get:
+      tags:
+      - Users
+      summary: Search User
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The username
+      - name: status
+        in: query
+        required: false
+        type: string
+        description: The status.
+        enum: [Active,Inactive]
+        default: Approved
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      - name: sortColumn
+        in: query
+        description: The sort order
+        required: false
+        type: string
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        type: string
+        enum: [asc,desc]
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/User'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Retrieve details of the User
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+    put:
+      tags:
+      - Users
+      summary: Update an existing User
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/User' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+    
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+
+  /me:
+    get:
+      tags:
+      - Users
+      summary: Retrieve details of the currently logged in User
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'    
+
+  /me/deactivate:
+    put:
+      tags:
+      - Users
+      summary: Deactivate user accout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+  /me/activate:
+    put:
+      tags:
+      - Users
+      summary: Activate user accout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: The operation succeeded. 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'          
+
+        
+
+
+  /me/notificationPreferences:
+    get:
+      tags:
+      - Users
+      summary: Retrieve logged in user notification preferences.
+      responses:
+        200:
+          description: The operation succeeded. 
+          schema:
+            $ref: '#/definitions/NotificationPreferences'
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+    put:
+      tags:
+      - Users
+      summary: Update logged in user notification preferences.
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/NotificationPreferences"
+      responses:
+        200:
+          description: The operation succeeded.
+          schema:
+            $ref: '#/definitions/NotificationPreferences' 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /branches:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Branches
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The name of the entity.
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Branch'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ranks:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Ranks
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The name of the entity.
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Rank'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /wars:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Wars
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The name of the entity.
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/War'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /countries:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Countries
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The name of the entity.
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Country'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /cemeteries:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Cemeteries
+      parameters:
+      - name: name
+        in: query
+        required: false
+        type: string
+        description: The name of the entity.
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Cemetery'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badgeTypes:
+    get:
+      tags:
+      - Lookups
+      summary: Retrieve Branches
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: Max number of records to retrieve. Must be greater than 0.
+        minimum: 1
+      - name: offset
+        in: query
+        required: false
+        type: integer
+        description: Retrieve records above this offset
+        minimum: 0
+      responses:
+        200:
+          description: The operation succeeded. The search result will be returned.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/BadgeType'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /notifications:
+    get:
+      summary: Get user's notifications.
+      description: |
+        Get user's notifications. The current user will be identified by token.
+      tags:
+        - Notification
+      parameters:           
+        - name: status
+          in: query
+          description: The status
+          required: false
+          type: string
+          enum: [New,Read]
+        - name: startDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+        - name: endDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+        - name: offset
+          in: query
+          description: the offset
+          required: false
+          type: integer
+        - name: limit
+          in: query
+          description: the limit
+          required: false
+          type: integer
+      responses:
+        200:
+          description: The search result.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Notification'
+              total:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer                  
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+          
+
+  /notifications/{id}/read:
+    put:
+      summary: Mark user's notification as read.
+      description: |
+        Mark user's notification as read.
+      tags:
+        - Notification
+      parameters:           
+        - name: id
+          in: path
+          description: The id.
+          required: true
+          type: integer 
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error' 
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: NOT FOUND - if the resource in request did not exist
+          schema:
+            $ref: '#/definitions/Error' 
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'    
+
+  /emails:
+    post:
+      summary: Send email.
+      description: |
+        Send email. 
+      tags:
+        - Email
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Email"      
+      responses:
+        200:
+          description: The operation succeeded.
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error' 
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'         
+
+  /statistics:
+    get:
+      summary: Get general statistics
+      description: |
+        Get statistiscs
+      tags:
+        - Statistics
+      parameters:           
+        - name: type
+          in: query
+          description: The type
+          required: false
+          type: string
+          enum: [Yearly,Monthly,Daily]
+        - name: startDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+        - name: endDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+      responses:
+        200:
+          description: The search result.
+          schema:
+            $ref: '#/definitions/Statistics'                 
+        400:
+          description: BAD REQUEST - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: NOT AUTHORIZED - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: FORBIDDEN - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: INTERNAL SERVER ERROR - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /statisticsReport:
+    get:
+      summary: Returns the statistics report in the PDF format.
+      description: |
+        Get statistiscs
+      tags:
+        - Statistics
+      parameters:           
+        - name: type
+          in: query
+          description: The type
+          required: false
+          type: string
+          enum: [Yearly,Monthly,Daily]
+        - name: startDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+        - name: endDate
+          in: query
+          description: The start date
+          required: false
+          type: string
+          format: date
+      produces:
+        - application/pdf
+      responses:
+        200:
+          description: A PDF file.
+          schema:
+            type: file          
+            
+securityDefinitions:
+  Authorization:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+definitions:
+
+
+  Error:
+    description: |
+      This general error structure is used throughout this API.
+    properties:
+      code:
+        type: integer
+        example: 400
+      description:
+        type: string
+        example: Invalid value [abc]
+      reasonPhrase:
+        type: string
+        example: Bad Request
+
+
+  Flag:
+    description: |
+      Represents crowd sourced flagging of posts: photos, stories, etc. Please note that post property should reference one of  {Story, Photo, Badge, Testimonial} \n
+      Swagger 2.0 just doesnt't support oneOf reference.
+    required:
+    - createdBy.id
+    - post.id
+    - postType
+    - reason
+    - status
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      post:
+        $ref: '#/definitions/Story' 
+        description: The post being flagged. It is fully populated only by GET endpoints. POST endoing only pass id of the post.
+      postType:
+        type: string
+        description: The type of the related post {Story, Photo, Badge, Testimonial}
+        enum: [Story,Photo,Badge,Testimonial]
+      reason:
+        type: string
+        description: The reason.
+        enum: [Inappropriate,Inaccurate,Other]
+      explanation:
+        type: string
+        description: The explanation. 
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Processed]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date.
+      createdBy:
+        $ref: '#/definitions/UserInfo'       
+      updatedBy:
+        $ref: '#/definitions/UserInfo'  
+
+
+  User:
+    description: |
+      Application user
+    required:
+    - email
+    - firstName
+    - lastName
+    - username
+    properties:
+      id:
+        type: integer
+        description: The id of the entity
+      email:
+        type: string
+        maxLength: 255
+        description: The email
+      firstName:
+        type: string
+        maxLength: 255
+        description: The first name
+      lastName:
+        type: string
+        maxLength: 255
+        description: The last name
+      username:
+        type: string
+        maxLength: 255
+        description: The username
+      mobile:
+        type: string
+        maxLength: 100
+        description: The mobile number
+      country:
+        $ref: "#/definitions/Country"
+      role: 
+        type: string
+        enum: [User,Admin]
+      gender:
+        type: string
+        enum: [Male, Female]
+      lastLogin:
+        type: string
+        format: date
+      status:
+        type: string
+        description: The status.
+        enum: [Active,Inactive,Blocked]
+    
+  
+  UserInfo:
+    description: |
+      Application user information  entity to be referenced. It only contains id, email, and name of the user in format firstName + lastName.
+    required:
+    - email
+    - id
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity
+      email:
+        type: string
+        maxLength: 255
+        description: The email
+      name:
+        type: string
+        maxLength: 255
+        description: The username
+
+  NotificationPreferences:
+    description: |
+      The notification preferences.
+    properties:
+      userId:
+        type: integer
+        description: The id of the user
+      storyNotificationsSite:
+        type: boolean
+      storyNotificationsEmail:
+        type: boolean
+      storyNotificationsMobile:
+        type: boolean
+      badgeNotificationsSite:
+        type: boolean
+      badgeNotificationsEmail:
+        type: boolean
+      badgeNotificationsMobile:
+        type: boolean
+      testimonialNotificationsSite:
+        type: boolean
+      testimonialNotificationsEmail:
+        type: boolean
+      testimonialNotificationsMobile:
+        type: boolean
+      photoNotificationsSite:
+        type: boolean
+      photoNotificationsEmail:
+        type: boolean
+      photoNotificationsMobile:
+        type: boolean
+      eventNotificationsSite:
+        type: boolean
+      eventNotificationsEmail:
+        type: boolean
+      eventNotificationsMobile:
+        type: boolean
+
+  Veteran:
+    description: |
+      The veteran entity.
+    required:
+    - birthDate
+    - deathDate
+    - firstName
+    - lastName
+    properties:
+      id:
+        type: integer
+        description: The id of the entity
+      profilePicture:
+        $ref: "#/definitions/File"
+      firstName:
+        type: string
+        maxLength: 255
+      midName:
+        type: string
+        maxLength: 255
+      lastName:
+        type: string
+        maxLength: 255
+      birthDate:
+        type: string
+        format: date
+      deathDate:
+        type: string
+        format: date
+      suffix:
+        type: string
+        maxLength: 255
+      bio:
+        type: string
+      squadronShip:
+        type: string
+        maxLength: 255
+      cemetery:
+        $ref: "#/definitions/Cemetery"
+      burialLocation:
+        type: string
+        maxLength: 255 
+      branches:
+        type: array
+        items:
+          $ref: '#/definitions/Branch'
+      wars:
+        type: array
+        items:
+          $ref: '#/definitions/War'
+      ranks:
+        type: array
+        items:
+          $ref: '#/definitions/Rank'
+      campaigns:
+        type: array
+        items:
+          $ref: '#/definitions/Campaign'
+      statistics:
+        $ref: '#/definitions/VeteranStatistics'
+
+
+  Cemetery:
+    description: |
+      Thecemetery.
+    required:
+    - addrOne
+    - name
+    properties:
+      name:
+        type: string
+        description: The name
+      addrOne:
+        type: string
+        description: The address line one
+      addrTwo:
+        type: string
+        description: The address line two
+      url:
+        type: string
+        description: The url
+      phone:
+        type: string
+        description: The address phone
+      city:
+        type: string
+        description: The city
+      state:
+        type: string
+        description: The state
+      zip:
+        type: string
+        description: Zip code
+
+  NextOfKin:
+    description: |
+      The тext of Kin request.
+    required:
+    - id
+    - user.id
+    - veteran.id
+    - status
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteran:
+        $ref: '#/definitions/Veteran'  
+      user:
+        $ref: '#/definitions/UserInfo' 
+      fullName:
+        type: string
+        description: The user's full name.
+      email:
+        type: string
+        description: The user's email.
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      response:
+        type: string
+        description: The response text.
+      proofs:
+        type: array
+        items:
+          $ref: '#/definitions/File' 
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      updatedBy:
+        $ref: '#/definitions/UserInfo'        
+    
+  VeteranStatistics:
+    description: |
+      The veterean statistics.
+    required:
+    - numberOfStories
+    - numberOfBadges
+    - numberOfTestimonials
+    - numberOfPhotos
+    properties:
+      numberOfPhotos:
+        type: integer
+        description: The number of photos.
+      numberOfBadges:
+        type: integer
+        description: The number of badges.
+      numberOfTestimonials:
+        type: integer
+        description: The number of testimonials.
+      numberOfStories:
+        type: integer
+        description: The number of stories.
+
+  War:
+    description: |
+      The war entity.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+
+  Rank:
+    description: |
+      The military rank.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+
+  Country:
+    description: |
+      The country.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+      isoCode: 
+        type: string
+        description: Country Alpha-2 ISO code
+        example: US
+
+
+  Campaign:
+    description: |
+      The campaign.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+
+  EventType:
+    description: |
+      The event type.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+      iconURL:
+          type: string
+          description: The icon URL.  
+
+  Branch:
+    description: |
+      Military branch.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.
+
+
+  BadgeType:
+    description: |
+      The event type.
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      name:
+        type: string
+        description: The name.   
+      iconURL:
+          type: string
+          description: The icon URL.   
+
+  Event:
+    description: |
+      The event related to veteran. Contributed by the community.
+    required:
+    - id
+    - veteranId
+    - eventType
+    - createdBy
+    - createdAt
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteranId:
+        type: integer
+        description: The id of the veteran.
+      eventType:
+        $ref: '#/definitions/EventType'
+      eventDate:
+        type: string
+        format: date
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      updatedBy:
+        $ref: '#/definitions/UserInfo'  
+
+
+
+  Badge:
+    description: |
+      The vetaran badge contributed by the community.
+    required:
+    - id
+    - veteranId
+    - eventType
+    - status
+    - createdBy
+    - createdAt
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteranId:
+        type: integer
+        description: The id of the veteran.
+      badgeType:
+        $ref: '#/definitions/BadgeType'
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      updatedBy:
+        $ref: '#/definitions/UserInfo' 
+      statistics:
+        $ref: '#/definitions/PostStatistics'  
+
+  Photo:
+    description: |
+      The vetaran photo contributed by the community.
+    required:
+    - id
+    - veteranId
+    - eventType
+    - status
+    - createdBy
+    - createdAt
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteranId:
+        type: integer
+        description: The id of the veteran.
+      photo:
+        $ref: '#/definitions/File'
+        description: The photo title.
+      title:
+        type: string
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      updatedBy:
+        $ref: '#/definitions/UserInfo' 
+      statistics:
+        $ref: '#/definitions/PostStatistics'  
+
+  Story:
+    description: |
+      The vetaran story contributed by the community.
+    required:
+    - id
+    - veteranId
+    - eventType
+    - status
+    - createdBy
+    - createdAt
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteranId:
+        type: integer
+        description: The id of the veteran.
+      title:
+        type: string
+        description: The title.
+      text:
+        type: string
+        description: The title.
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      updatedBy:
+        $ref: '#/definitions/UserInfo' 
+      statistics:
+        $ref: '#/definitions/PostStatistics'       
+
+  Testimonial:
+    description: |
+      The vetaran testimonial contributed by the community.
+    required:
+    - id
+    - veteranId
+    - eventType
+    - status
+    - createdBy
+    - createdAt
+    properties:
+      id:
+        type: integer
+        description: The id of the entity.
+      veteranId:
+        type: integer
+        description: The id of the veteran.
+      title:
+        type: string
+        description: The title.
+      text:
+        type: string
+        description: The title.
+      status:
+        type: string
+        description: The status.
+        enum: [Requested,Approved,Rejected]
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      updatedAt:
+        type: string
+        format: date
+        description: The updated on date. 
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      updatedBy:
+        $ref: '#/definitions/UserInfo' 
+      statistics:
+        $ref: '#/definitions/PostStatistics'        
+
+  PostStatistics:
+    description: |
+      The post statistics.
+    required:
+    - numberOfShares
+    - salutesFromUsers
+    - numberOfViews
+    properties:
+      postId:
+        type: integer
+        description: The ID of the entity.
+      postType:
+        type: string
+        description: The post type. 
+      numberOfShares:
+        type: integer
+        description: The number of shares.
+      numberOfSalutes:
+        type: integer
+        description: The number of salutes.
+      numberOfViews:
+        type: integer
+        description: The number of views.
+
+
+  File:
+    description: |
+      The file.
+    required:
+      - id
+      - name
+      - fileURL
+    properties:
+      id:
+        type: integer
+        description: The ID of the entity.
+      name:
+        type: string
+        description: The name
+      fileURL:
+        type: string
+        description: The file URL. 
+      mimeType:
+        type: string
+        description: The file mime type.
+
+  Notification:
+    description: |
+      The notification.
+    required:
+      - id
+      - userId
+      - title
+      - text
+      - status
+    properties:
+      id:
+        type: integer
+        description: The ID of the entity.
+      userId:
+        type: integer
+        description: The ID of the user.
+      title:
+        type: string
+        description: The notification title. 
+        example: New poll available 
+      text:
+        type: string
+        description: The notification text.
+      type:
+          type: string
+          description: The notification type.
+          enum: [Story,Badge,Testimonial,Event,Photo]  
+      postId:
+        type: integer
+        description: The ID of the post.
+      status:
+        type: string
+        description: The notification status.
+        enum: [New,Read]
+      createdBy:
+        $ref: '#/definitions/UserInfo'
+      createdAt:
+        type: string
+        format: date
+        description: The created on date.   
+      readOn:
+        type: string
+        format: date
+        description: The read on date.   
+        
+  Statistics:
+    description: |
+      The notification.
+    required:
+      - type
+      - numberOfVeteransTotal
+      - numberOfVeteransForPeriod
+      - numberOfKINsTotal
+      - umberOfKINsForPeriod
+      - usersNOKsStatistics
+    properties:
+      type:
+        type: string
+        description: The statistics type. 
+        enum: [Yearly,Monthly,Daily] 
+      numberOfVeteransTotal:
+        type: integer
+        description: The number of veterans total.
+      numberOfVeteransForPeriod:
+        type: integer
+        description: The number of veterans for the period.  
+      numberOfKINsTotal:
+        type: integer
+        description: The number of KINs total.
+      numberOfKINsForPeriod:
+        type: integer
+        description: The number of KINs for the period.    
+      usersNOKsStatistics:
+          type: array
+          items: 
+            $ref: '#/definitions/UsersNOKsPeriodStatistics' 
+
+  UsersNOKsPeriodStatistics:
+    description: |
+      The users-NOKs period statistics.
+    required:
+      - startDate
+      - endDate
+      - numberOfUsers
+      - numberOfNOKs
+      - numberOfTotal
+    properties:
+      startDate:
+        type: string
+        format: date
+        description: The start date.
+      endDate:
+        type: string
+        format: date
+        description: The start date.
+      numberOfUsers:
+        type: integer
+        description: The number of users.
+      numberOfNOKs:
+        type: integer
+        description: The number of NOKs.
+      numberOfTotal:
+        type: integer
+        description: The number of users.        
+
+  Email:
+    description: |
+      The email.
+    required:
+        - email
+        - title
+        - text
+    properties:
+      email:
+        type: string
+      title:
+        type: string
+        description: The title. 
+      text:
+        type: string
+        description: The text.

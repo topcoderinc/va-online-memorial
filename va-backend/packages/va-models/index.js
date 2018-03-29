@@ -9,43 +9,90 @@
  */
 const Sequelize = require('sequelize');
 const config = require('config');
+const constants = require('./constants');
 
 // initialize database connection
 const sequelize = new Sequelize(config.dbConfig.db_url, {
-  logging: config.logLevel === 'debug',
-  operatorsAliases: Sequelize.Op,
-  native: 'true',
+  logging: null,
+  // native: 'true',
   dialect: 'postgres'
 });
 
 // Import models
-const Veteran = require('./src/Veteran')(sequelize, Sequelize);
-const Cemetery = require('./src/Cemetery')(sequelize, Sequelize);
-const Kin = require('./src/Kin')(sequelize, Sequelize);
+const Badge = require('./src/Badge')(sequelize, Sequelize);
+const BadgeType = require('./src/BadgeType')(sequelize, Sequelize);
 const Branch = require('./src/Branch')(sequelize, Sequelize);
-const War = require('./src/War')(sequelize, Sequelize);
+const Campaign = require('./src/Campaign')(sequelize, Sequelize);
+const Cemetery = require('./src/Cemetery')(sequelize, Sequelize);
+const Country = require('./src/Country')(sequelize, Sequelize);
+const Event = require('./src/Event')(sequelize, Sequelize);
+const EventType = require('./src/EventType')(sequelize, Sequelize);
+const File = require('./src/File')(sequelize, Sequelize);
+const Flag = require('./src/Flag')(sequelize, Sequelize);
+const NextOfKin = require('./src/NextOfKin')(sequelize, Sequelize);
+const Photo = require('./src/Photo')(sequelize, Sequelize);
+const PostSalute = require('./src/PostSalute')(sequelize, Sequelize);
 const Rank = require('./src/Rank')(sequelize, Sequelize);
-const Burial = require('./src/Burial')(sequelize, Sequelize);
+const Story = require('./src/Story')(sequelize, Sequelize);
+const Testimonial = require('./src/Testimonial')(sequelize, Sequelize);
 const User = require('./src/User')(sequelize, Sequelize);
+const Veteran = require('./src/Veteran')(sequelize, Sequelize);
+const War = require('./src/War')(sequelize, Sequelize);
+const NotificationPreference = require('./src/NotificationPreference')(sequelize, Sequelize);
 
 // Create associations
-Veteran.hasOne(Burial, { as: 'burial', foreignKey: 'burial_id', targetKey: 'd_id' });
-Veteran.hasOne(Kin, { as: 'kin', foreignKey: 'kin_id', targetKey: 'v_id' });
-Burial.belongsTo(Cemetery, { as: 'cemetery', foreignKey: 'cem_id' });
+const belongsToMany = (source, target, through, as) => {
+  source.belongsToMany(target, { through, timestamp: false, as });
+};
+const belongsTo = (source, target, as) => {
+  source.belongsTo(target, { as });
+};
 
-Veteran.belongsToMany(Branch, { through: 'VeteranBranch', as: 'branches' });
-Veteran.belongsToMany(War, { through: 'VeteranWar', as: 'wars' });
-Veteran.belongsToMany(Rank, { through: 'VeteranRank', as: 'ranks' });
+belongsTo(Badge, Veteran, 'veteran');
+belongsTo(Badge, BadgeType, 'badgeType');
+belongsTo(Event, Veteran, 'veteran');
+belongsTo(Event, EventType, 'eventType');
+belongsTo(NextOfKin, User, 'user');
+belongsTo(NextOfKin, Veteran, 'veteran');
+belongsTo(Photo, Veteran, 'veteran');
+belongsTo(Photo, File, 'photoFile');
+belongsTo(PostSalute, User, 'user');
+belongsTo(Story, Veteran, 'veteran');
+belongsTo(Testimonial, Veteran, 'veteran');
+belongsTo(User, Country, 'country');
+belongsTo(Veteran, Cemetery, 'cemetery');
+belongsTo(Veteran, File, 'profilePicture');
+belongsTo(NotificationPreference, User, 'user');
+
+belongsToMany(Veteran, War, 'VeteranWars', 'wars');
+belongsToMany(Veteran, Rank, 'VeteranRanks', 'ranks');
+belongsToMany(Veteran, Campaign, 'VeteranCampaigns', 'campaigns');
+belongsToMany(Veteran, Branch, 'VeteranBranches', 'branches');
+belongsToMany(NextOfKin, File, 'NextOfKinProofs', 'proofs');
 
 module.exports = {
-  Veteran,
-  Cemetery,
-  Kin,
+  Badge,
+  BadgeType,
   Branch,
-  War,
+  Campaign,
+  Cemetery,
+  Country,
+  Event,
+  EventType,
+  File,
+  Flag,
+  NextOfKin,
+  Photo,
+  PostSalute,
   Rank,
-  Burial,
+  Story,
+  Testimonial,
   User,
+  Veteran,
+  War,
+  NotificationPreference,
   sequelize,
-  syncDB: force => sequelize.sync({ force })
+  Sequelize,
+  syncDB: force => sequelize.sync({ force }),
+  modelConstants: constants
 };

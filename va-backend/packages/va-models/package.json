@@ -14,9 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "config": "^1.29.0",
+    "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "pg": "^7.4.1",
-    "pg-native": "^2.2.0",
     "sequelize": "^4.29.0"
   }
 }

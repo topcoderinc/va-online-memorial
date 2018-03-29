@@ -8,15 +8,15 @@
  * Cemetery model definition
  */
 module.exports = (sequelize, DataTypes) => sequelize.define('Cemetery', {
-  cem_id: { type: DataTypes.STRING, primaryKey: true, unique: true },
-  cem_name: { type: DataTypes.STRING, allowNull: false },
-  cem_addr_one: { type: DataTypes.STRING, allowNull: false },
-  cem_addr_two: DataTypes.STRING,
-  cem_url: DataTypes.STRING,
-  cem_phone: DataTypes.STRING,
+  id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
+  addrOne: { type: DataTypes.STRING, allowNull: false },
+  addrTwo: DataTypes.STRING,
+  url: DataTypes.STRING,
+  phone: DataTypes.STRING,
   city: DataTypes.STRING,
   state: DataTypes.STRING,
-  zip: DataTypes.INTEGER
+  zip: DataTypes.STRING,
+  name: { type: DataTypes.STRING, allowNull: false },
 }, {
   timestamps: false
 });

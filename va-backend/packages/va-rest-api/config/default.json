@@ -6,6 +6,7 @@
   "version": "v1",
   "logLevel": "info",
   "dbConfig": {
-    "db_url": "postgres://postgres:Airman332@localhost:5432/va-ff"
-  }
+    "db_url": "postgres://postgres:123456@localhost:5432/vaonline"
+  },
+  "appURL": "http://localhost:4000"
 }
