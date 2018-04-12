@@ -16,13 +16,14 @@ module.exports = (sequelize, DataTypes) => sequelize.define('Veteran', {
   },
   firstName: { type: DataTypes.STRING, allowNull: false },
   lastName: { type: DataTypes.STRING, allowNull: false },
-  midName: { type: DataTypes.STRING, allowNull: false },
-  birthDate: { type: DataTypes.DATEONLY, allowNull: false },
-  deathDate: { type: DataTypes.DATEONLY, allowNull: false },
+  midName: DataTypes.STRING,
+  birthDate: DataTypes.DATEONLY,
+  deathDate: DataTypes.DATEONLY,
   suffix: DataTypes.STRING,
-  bio: { type: DataTypes.STRING, allowNull: false },
+  bio: DataTypes.STRING,
   squadronShip: DataTypes.STRING,
   burialLocation: DataTypes.STRING,
+  veteranId: DataTypes.STRING,
 }, {
   timestamps: false
 });

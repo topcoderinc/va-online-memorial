@@ -18,20 +18,16 @@ co(function* () {
   const datasets = yield datasetService.getAvailableDatasets();
   logger.info(`Found ${datasets.length} available datasets.\n`);
 
-  /**
-    * Download each dataset recursively.
-    * @param {integer} index - The dataset index
-    */
-  function* download(index) {
+  if (datasets.length === 0) return null;
+
+  // Download each dataset.
+  for (let index = 0; index < datasets.length; index += 1) {
     logger.info(`Downloading dataset: ${datasets[index].title}`);
     yield datasetService.downloadDataset(datasets[index].downloadURL);
     logger.info('Download completed!');
-    return index < datasets.length - 1 ? yield download(index + 1) : true;
   }
 
-  if (datasets.length === 0) return null;
-
-  return yield download(0);
+  return true;
 })
   .then((completed) => {
     if (completed) {

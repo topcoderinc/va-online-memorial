@@ -39,6 +39,8 @@ const User = require('./src/User')(sequelize, Sequelize);
 const Veteran = require('./src/Veteran')(sequelize, Sequelize);
 const War = require('./src/War')(sequelize, Sequelize);
 const NotificationPreference = require('./src/NotificationPreference')(sequelize, Sequelize);
+const Kin = require('./src/Kin')(sequelize, Sequelize);
+const Burial = require('./src/Burial')(sequelize, Sequelize);
 
 // Create associations
 const belongsToMany = (source, target, through, as) => {
@@ -62,7 +64,10 @@ belongsTo(Testimonial, Veteran, 'veteran');
 belongsTo(User, Country, 'country');
 belongsTo(Veteran, Cemetery, 'cemetery');
 belongsTo(Veteran, File, 'profilePicture');
+belongsTo(Veteran, Kin, 'kin');
+belongsTo(Veteran, Burial, 'burial');
 belongsTo(NotificationPreference, User, 'user');
+belongsTo(Burial, Cemetery, 'cemetery');
 
 belongsToMany(Veteran, War, 'VeteranWars', 'wars');
 belongsToMany(Veteran, Rank, 'VeteranRanks', 'ranks');
@@ -91,6 +96,8 @@ module.exports = {
   Veteran,
   War,
   NotificationPreference,
+  Kin,
+  Burial,
   sequelize,
   Sequelize,
   syncDB: force => sequelize.sync({ force }),

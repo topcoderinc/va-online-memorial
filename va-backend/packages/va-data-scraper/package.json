@@ -8,6 +8,7 @@
     "scrape": "npm run download-data && npm run import-data",
     "download-data": "node scripts/download-data.js",
     "import-data": "node --expose-gc --max_old_space_size=4096 scripts/import-data.js",
+    "clear-db": "node scripts/clear-db.js",
     "lint": "eslint . --ext .js || true",
     "lint:fix": "eslint . --ext .js --fix || true"
   },

@@ -9,6 +9,7 @@
  */
 module.exports = (sequelize, DataTypes) => sequelize.define('Cemetery', {
   id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, allowNull: false },
   addrOne: { type: DataTypes.STRING, allowNull: false },
   addrTwo: DataTypes.STRING,
   url: DataTypes.STRING,
@@ -16,7 +17,6 @@ module.exports = (sequelize, DataTypes) => sequelize.define('Cemetery', {
   city: DataTypes.STRING,
   state: DataTypes.STRING,
   zip: DataTypes.STRING,
-  name: { type: DataTypes.STRING, allowNull: false },
 }, {
   timestamps: false
 });
