@@ -5,7 +5,7 @@
  */
 
 /*
- * Data
+ * Data service.
  */
 const _ = require('lodash');
 const fs = require('fs');
@@ -54,8 +54,8 @@ function countFileLines(filePath) {
 }
 
 /**
- * Process file
- * @param {array} file - The input file
+ * Process file line
+ * @param {string} line - The input file line
  */
 function* processLine(line, transaction) {
   /**
@@ -87,9 +87,9 @@ function* processLine(line, transaction) {
   function* createOrUpdateLookupEntities(Model, items, t) {
     const ids = [];
     for (let i = 0; i < items.length; i += 1) {
-      const name = items[i].value.trim();
+      const name = items[i].name.trim();
       if (name.length > 0) {
-        const entity = yield createOrUpdateEntity(Model, { value: items[i].value }, items[i], t);
+        const entity = yield createOrUpdateEntity(Model, { name }, { name }, t);
         if (_.indexOf(ids, entity.id) < 0) {
           ids.push(entity.id);
         }
@@ -99,8 +99,8 @@ function* processLine(line, transaction) {
   }
 
   /**
-    * Read each row recursively.
-    * @param {string} line the line
+    * Process a row
+    * @param {string} lineRow the line
     */
   function* processRow(lineRow, t) {
     const row = _getCleanRow(lineRow);
@@ -113,96 +113,109 @@ function* processLine(line, transaction) {
     // ignore header & rows with missing attributes
     if (_.intersection(row, csvHeaders).length < csvHeaders.length && _validateRequired(row, hasExtraColumn)
         && (OPTION_IMPORT_EXTRA_DATA || _validate(row))) {
-      const cemeteryId = (`${row[9]}-${row[10]}-${row[hasExtraColumn ? 13 : 12]}`).toLowerCase();
+      const cemeteryId = (`${row[9]} - ${row[10]} - ${row[12]} - ${row[13]}`).toLowerCase();
       const veteranId = (_validate(row))
-        ? (`${row[0]}-${row[2]}-${_formatDate(row[4])}-${_formatDate(row[5])}-${cemeteryId}`).toLowerCase()
-        : (`${row[0]}-${row[2]}-${md5(line)}-${cemeteryId}`).toLowerCase();
+        ? (`${row[0]} - ${row[2]} - ${_formatDate(row[4])} - ${_formatDate(row[5])} - ${cemeteryId}`).toLowerCase()
+        : (`${row[0]} - ${row[2]} - ${md5(line)} - ${cemeteryId}`).toLowerCase();
       // Create/Update cemetery
       const cemeteryObj = _removeEmpty({
-        cem_id: cemeteryId,
-        cem_name: row[9],
-        cem_addr_one: row[10],
-        cem_addr_two: hasExtraColumn ? null : row[11],
-        cem_url: hasExtraColumn ? null : row[15],
-        cem_phone: row[hasExtraColumn ? 11 : 15],
-        city: row[hasExtraColumn ? 12 : 12],
-        state: row[hasExtraColumn ? 12 : 13],
+        name: row[9],
+        addrOne: row[10],
+        addrTwo: row[11],
+        url: hasExtraColumn ? row[16] : row[15],
+        phone: row[hasExtraColumn ? 17 : 16],
+        city: row[12],
+        state: row[13],
         zip: row[hasExtraColumn ? 15 : 14]
       });
-      yield createOrUpdateEntity(Cemetery, { cem_id: cemeteryId }, cemeteryObj, t);
+      const cemeteryEntity = yield createOrUpdateEntity(Cemetery, {
+        name: cemeteryObj.name,
+        addrOne: cemeteryObj.addrOne,
+        city: cemeteryObj.city,
+        state: cemeteryObj.state
+      }, cemeteryObj, t);
 
       // Create/Update burial information
-      const burialObj = _removeEmpty({
-        d_id: veteranId,
-        cem_id: cemeteryId,
-        section_id: row[6],
-        row_num: row[7],
-        site_num: row[8]
-      });
-      yield createOrUpdateEntity(Burial, { d_id: veteranId }, burialObj, t);
+      const burialObj = {
+        sectionId: row[6],
+        rowNum: row[7],
+        siteNum: row[8],
+        cemeteryId: cemeteryEntity.id
+      };
+      const burialEntity = yield createOrUpdateEntity(Burial, burialObj, burialObj, t);
 
       // Create/Update kin
-      const kinObj = _removeEmpty({
-        v_id: veteranId,
+      const kinObj = {
         relationship: row[hasExtraColumn ? 18 : 17],
-        v_first_name: row[hasExtraColumn ? 19 : 18],
-        v_mid_name: row[hasExtraColumn ? 20 : 19],
-        v_last_name: row[hasExtraColumn ? 21 : 20],
-        v_suffix: row[hasExtraColumn ? 22 : 21]
-      });
-      yield createOrUpdateEntity(Kin, { v_id: veteranId }, kinObj, t);
+        firstName: row[hasExtraColumn ? 19 : 18],
+        midName: row[hasExtraColumn ? 20 : 19],
+        lastName: row[hasExtraColumn ? 21 : 20],
+        suffix: row[hasExtraColumn ? 22 : 21]
+      };
+      const kinEntity = yield createOrUpdateEntity(Kin, kinObj, kinObj, t);
 
       // Create/Update veteran
-      const veteran = yield Veteran.findOne({ where: { d_id: veteranId }, transaction: t });
+      let veteran = yield Veteran.findOne({ where: { veteranId }, transaction: t });
       const veteranObj = _removeEmpty({
-        d_id: veteranId,
-        d_first_name: row[0],
-        d_mid_name: row[1],
-        d_last_name: row[2],
-        d_suffix: row[3],
-        d_birth_date: _formatDate(row[4]),
-        d_death_date: _formatDate(row[5]),
-        burial_id: veteranId,
-        kin_id: veteranId
+        firstName: row[0],
+        lastName: row[2],
+        midName: row[1],
+        birthDate: _formatDate(row[4]),
+        deathDate: _formatDate(row[5]),
+        suffix: row[3],
+        burialLocation: `sectionId: ${burialObj.sectionId}, rowNum: ${burialObj.rowNum}, siteNum: ${burialObj.siteNum}`,
+        veteranId,
+        cemeteryId: cemeteryEntity.id,
+        kinId: kinEntity.id,
+        burialId: burialEntity.id
       });
+      if (veteranObj.birthDate) {
+        veteranObj.birthDate = new Date(veteranObj.birthDate);
+      }
+      if (veteranObj.deathDate) {
+        veteranObj.deathDate = new Date(veteranObj.deathDate);
+      }
+      let result;
       if (!veteran) {
-        const newVeteran = yield Veteran.create(veteranObj, { transaction: t });
-        // Create ranks
-        const ranks = [];
-        _.each(row[hasExtraColumn ? 24 : 23].split(', '), (v) => {
-          if (!_.isEmpty(_.trim(v))) {
-            if (_.indexOf(ranks, v) === -1) ranks.push({ value: _.trim(v) });
-          }
-        });
-        const rankIds = yield createOrUpdateLookupEntities(Rank, _.uniqBy(ranks, 'value'), t);
-        yield newVeteran.setRanks(rankIds, { transaction: t });
-
-        // Branches
-        const branches = [];
-        _.each(row[hasExtraColumn ? 23 : 22].split(', '), (v) => {
-          if (!_.isEmpty(_.trim(v))) {
-            if (_.indexOf(branches, v) === -1) branches.push({ value: _.trim(v) });
-          }
-        });
-        const branchIds = yield createOrUpdateLookupEntities(Branch, _.uniqBy(branches, 'value'), t);
-        yield newVeteran.setBranches(branchIds, { transaction: t });
-
-        // Wars
-        const wars = [];
-        _.each(row[hasExtraColumn ? 25 : 24].split(', '), (v) => {
-          if (!_.isEmpty(_.trim(v))) {
-            if (_.indexOf(wars, v) === -1) wars.push({ value: _.trim(v) });
-          }
-        });
-        const warIdS = yield createOrUpdateLookupEntities(War, _.uniqBy(wars, 'value'), t);
-        yield newVeteran.setWars(warIdS, { transaction: t });
-
-        return true;
-      } else if (!_.isEqual(veteran.toJSON(), veteranObj)) {
-        // Lookup data is not updated as it will never change
+        veteran = yield Veteran.create(veteranObj, { transaction: t });
+        result = true;
+      } else {
         _.extend(veteran, veteranObj);
         yield veteran.save({ transaction: t });
+        result = false;
       }
+
+      // Create ranks
+      const ranks = [];
+      _.each(row[hasExtraColumn ? 24 : 23].split(', '), (v) => {
+        if (!_.isEmpty(_.trim(v))) {
+          ranks.push({ name: _.trim(v) });
+        }
+      });
+      const rankIds = yield createOrUpdateLookupEntities(Rank, _.uniqBy(ranks, 'name'), t);
+      yield veteran.setRanks(rankIds, { transaction: t });
+
+      // Branches
+      const branches = [];
+      _.each(row[hasExtraColumn ? 23 : 22].split(', '), (v) => {
+        if (!_.isEmpty(_.trim(v))) {
+          branches.push({ name: _.trim(v) });
+        }
+      });
+      const branchIds = yield createOrUpdateLookupEntities(Branch, _.uniqBy(branches, 'name'), t);
+      yield veteran.setBranches(branchIds, { transaction: t });
+
+      // Wars
+      const wars = [];
+      _.each(row[hasExtraColumn ? 25 : 24].split(', '), (v) => {
+        if (!_.isEmpty(_.trim(v))) {
+          wars.push({ name: _.trim(v) });
+        }
+      });
+      const warIds = yield createOrUpdateLookupEntities(War, _.uniqBy(wars, 'name'), t);
+      yield veteran.setWars(warIds, { transaction: t });
+
+      return result;
     }
 
     return false;
@@ -218,7 +231,7 @@ function* processLine(line, transaction) {
  * (ex: "Name", ""M"", "Last". or: "Name", ""E" Middle", "Last").
  *
  * @param {string} line The line
- * @return {string} The cleaned line. Throw error if not possible
+ * @return {Array} The cleaned line cells. Throw error if not possible
  */
 function _getCleanRow(line) {
   let row = null;
@@ -250,7 +263,7 @@ function _getCleanRow(line) {
 
 /**
  * Helper function that validates really required data.
- * @param {string} - row - The row
+ * @param {array} - row - The row
  * @param {boolean} - hasExtraColumn - Indicate if the row has extra column
  */
 function _validateRequired(row, hasExtraColumn) {
@@ -287,7 +300,7 @@ function _validateRequired(row, hasExtraColumn) {
 
 /**
  * Helper function that validates optional data when OPTION_IMPORT_EXTRA_DATA is set to true.
- * @param {string} - row - The row
+ * @param {Array} - row - The row
  */
 function _validate(row) {
   return (
@@ -311,13 +324,13 @@ function _removeEmpty(obj) {
 }
 
 /**
- * Parse date.
+ * Format date.
  * @param {string} d - the string
  */
 function _formatDate(d) {
-  if (!d || d.length === 0) return moment('01/01/1800', 'MM/DD/YYYY').format('YYYY-MM-DD');
+  if (!d || d.length === 0) return null;
   if (!moment(d, 'MM/DD/YYYY').isValid()) return null;
-  return moment(d, 'MM/DD/YYYY').format('YYYY-MM-DD'); // Convert to format supported by sequelize
+  return moment(d, 'MM/DD/YYYY').format('YYYY-MM-DD');
 }
 
 module.exports = {

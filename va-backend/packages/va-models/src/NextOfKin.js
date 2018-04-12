@@ -8,7 +8,8 @@ const _ = require('lodash');
 const { Statuses } = require('../constants');
 
 /*
- * Next of Kin model definition
+ * Next of Kin model definition.
+ * Next of kin is data managed by the web app.
  */
 module.exports = (sequelize, DataTypes) => sequelize.define('NextOfKin', {
   id: {
