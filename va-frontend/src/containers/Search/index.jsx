@@ -76,7 +76,12 @@ class Search extends Component {
                  <div className="toggler-con">
                    <select className="selectctrl">
                      <option value="Select">-Select-</option>
-                     <option value="Mock val">-Mock val-</option>
+                     <option value="Mock val">United States Army</option>
+                     <option value="Mock val">United States Navy</option>
+                     <option value="Mock val">Unites States Marine Corps</option>
+                     <option value="Mock val">United States Air Force</option>
+                     <option value="Mock val">United States Coast Guard</option>
+                     <option value="Mock val">Other</option>
                    </select>
                  </div>
                 </Toggler>
@@ -119,7 +124,10 @@ class Search extends Component {
                  <div className="toggler-con">
                    <select className="selectctrl">
                      <option value="Select">-Select-</option>
-                     <option value="Mock val">-Mock val-</option>
+                        <option value="Mock val">VA National Cemetery</option>
+                        <option value="Mock val">State Cemetery</option>
+                        <option value="Mock val">Territories and/or Tribal Government Cemetery</option>
+                        <option value="Mock val">Private Cemetery</option>
                    </select>
                  </div>
                 </Toggler>

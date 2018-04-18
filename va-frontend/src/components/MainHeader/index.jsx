@@ -198,7 +198,7 @@ class Masterhead extends Component {
     return (
       <div className={"main-header-page " + addClass}>
         <div className="viewport">
-          <NavLink to="/" className="logo"><strong>VA</strong> <span>Memorial</span> </NavLink>
+          <NavLink to="/" className="logo"><strong>Veterans</strong><br className="title-line-breaker"/> <span>Legacy Memorial</span> </NavLink>
           <div className="search-bar">
             <input type="search" className="search-input"
               placeholder="Find a veteran, search by veteran’s name"
@@ -363,7 +363,12 @@ class Masterhead extends Component {
                     <div className="toggler-con">
                       <select className="selectctrl">
                         <option value="Select">-Select-</option>
-                        <option value="Mock val">-Mock val-</option>
+                        <option value="Mock val">United States Army</option>
+                        <option value="Mock val">United States Navy</option>
+                        <option value="Mock val">Unites States Marine Corps</option>
+                        <option value="Mock val">United States Air Force</option>
+                        <option value="Mock val">United States Coast Guard</option>
+                        <option value="Mock val">Other</option>
                       </select>
                     </div>
                   </Toggler>
@@ -406,7 +411,10 @@ class Masterhead extends Component {
                     <div className="toggler-con">
                       <select className="selectctrl">
                         <option value="Select">-Select-</option>
-                        <option value="Mock val">-Mock val-</option>
+                        <option value="Mock val">VA National Cemetery</option>
+                        <option value="Mock val">State Cemetery</option>
+                        <option value="Mock val">Territories and/or Tribal Government Cemetery</option>
+                        <option value="Mock val">Private Cemetery</option>
                       </select>
                     </div>
                   </Toggler>

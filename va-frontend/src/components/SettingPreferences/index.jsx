@@ -114,7 +114,7 @@ class SettingPreferences extends React.Component{
             ))
           }
           <div className="table-row">
-            <div className="table-cell">Subcribe to All</div>
+            <div className="table-cell">Subscribe to all</div>
             {
               fields.map((f,i)=>(
                 <div key={i} className="table-cell">
@@ -129,7 +129,7 @@ class SettingPreferences extends React.Component{
             }
           </div>
           <div className="table-row">
-            <div className="table-cell">Unsubcribe from All</div>
+            <div className="table-cell">Unsubscribe</div>
               {
                 fields.map((f,i)=>(
                   <div key={i} className="table-cell">

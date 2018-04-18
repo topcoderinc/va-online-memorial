@@ -355,6 +355,7 @@ class ProfileCard extends Component {
                     )
                   })
                 }
+                <div className="disclosure">Flagged content may in violation of the Veterans Legacy Memorial User Agreement, and will be reviewed and evaluated by an administrator.</div>
                 <div className="actions fx spaced-lg">
                   <a className="btn btn-clear"
                    onClick={this.hideAllPopup}
@@ -457,7 +458,21 @@ class ProfileCard extends Component {
                 <div className="val">
                   <select className="selectctrl">
                     <option value="Select">-Select-</option>
-                    <option value="Mock val">-Mock val-</option>
+                    <option value="Mock val">Birthday</option>
+                    <option value="Mock val">High School Graduation</option>
+                    <option value="Mock val">Enlistment Date</option>
+                    <option value="Mock val">Deployment Date</option>
+                    <option value="Mock val">Marriage</option>
+                    <option value="Mock val">Divorce</option>
+                    <option value="Mock val">Birth of Child</option>
+                    <option value="Mock val">Death of Child</option>
+                    <option value="Mock val">Associates Degree</option>
+                    <option value="Mock val">Undergraduate Degree</option>
+                    <option value="Mock val">Graduate Degree</option>
+                    <option value="Mock val">Post-Graduate (Doctorate)</option>
+                    <option value="Mock val">Moved</option>
+                    <option value="Mock val">Died</option>
+                    <option value="Mock val">Other</option>
                   </select>
                 </div>
               </div>
