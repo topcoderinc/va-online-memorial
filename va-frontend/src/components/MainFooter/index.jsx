@@ -11,8 +11,9 @@ const MainFooter = ({props}) => {
           <section className="footer-sn">
             <h3>Contact Center</h3>
             <div className="desc">
-                <div className="r-mail"><a href={'mailto:' + contactCenter.email}>{contactCenter.email}</a></div>
-                <div className="r-tel"><a href={'tel:' + contactCenter.tel}>{contactCenter.tel}</a>, <a href={'tel:' + contactCenter.telAlt}>{contactCenter.telAlt}</a></div>
+                <div className="r-tel">Information on VA burial benefits is available from local VA national cemetery offices, from the Internet at <a href="http://www.cem.va.gov">www.cem.va.gov</a>, or by calling VA regional offices toll-free at <a href={'tel:' + contactCenter.officeTel}>{contactCenter.officeTel}</a>.<br/>
+                To make burial arrangements at any open VA national cemetery at the time of need, call the National Cemetery Scheduling Office at <a href={'tel:' + contactCenter.scheduleTel}>{contactCenter.scheduleTel}</a></div>
+                <div className="r-mail">Email Veterans Legacy Program: <a href={'mailto:' + contactCenter.email}>{contactCenter.email}</a></div>
               <div className="r-addr" dangerouslySetInnerHTML={{ __html: contactCenter.address }}></div>
             </div>
           </section>
@@ -38,10 +39,10 @@ const MainFooter = ({props}) => {
             <section className="footer-sn social-sn">
               <h3>We Go Social</h3>
               <div className="bar-socl">
-                <a className="fb"> </a>
+                <a className="fb" href="https://www.facebook.com/NationalCemeteries"> </a>
                 <a className="gp"> </a>
-                <a className="tw"> </a>
-                <a className="yt"> </a>
+                <a className="tw" href="https://twitter.com/VANatCemeteries"> </a>
+                <a className="yt" href="https://www.youtube.com/playlist?list=PL7897A1FCC5516DDE"> </a>
                 <a className="ig"> </a>
               </div>
               <div className="action">

@@ -53,7 +53,7 @@ class AdminPosts extends React.Component{
                 <div className="post-title">{item.title}</div>
                 {
                   (posts[activeTab].type === 'Story' || posts[activeTab].type === 'Testimonial' || posts[activeTab].type === 'Event') &&
-                  <div className="post-content">{item.content}</div>
+                  <div className="post-content" dangerouslySetInnerHTML={{ __html: item.content }}></div>
                 }
                 {
                   (posts[activeTab].type === 'Photo' || posts[activeTab].type === 'Badge') &&

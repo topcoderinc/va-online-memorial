@@ -18,6 +18,14 @@
     height: auto;
   }
 
+  .title-line-breaker{
+    display: none;
+
+    @include viewMd{
+      display: inline;
+    }
+  }
+
   .viewport {
     height: 100px;
 

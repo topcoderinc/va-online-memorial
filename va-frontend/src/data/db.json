@@ -1,24 +1,24 @@
 {
   "masterHead": {
-    "title": "Let’s weave our memories to make them last forever",
-    "info": "It is our aim to bring together families and loved ones of veterans that are buried at national cemeteries around the United States."
+    "title": "Preserving and Protecting the Lasting Legacy of America's Veterans",
+    "info": "Our mission is to memorialize our nation's Veterans through sharing their stories of service and sacrifice."
   },
   "features": [
     {
       "title": "Stories",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+      "desc": "View personal stories, historical information, chonicals, and additional documentation."
     },
      {
       "title": "Photos",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+      "desc": "Post and view photos of memories, historical pictures, and events."
     },
      {
       "title": "Testimonials",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+      "desc": "Send a sentiment, share a moment, post memory or express well-wishes."
     },
      {
       "title": "Badges",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+      "desc": "Give badges for honor, friendship, family, and more."
     }
   ],
   "memories": {
@@ -35,10 +35,10 @@
     },
     {
       "type": "story",
-      "title": "Andrew Johnson",
-      "date": "1929 — 2012",  
+      "title": "Pauline Cushman",
+      "date": "1833 - 1893",
       "caption": "Story by <b>Rebecca Genne</b>",
-      "story": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "story": "Major Pauline Cushman spent the majority of her life pursuing a career as an actress. In 1863, during the Civil War, she was presented with the greatest acting role of her life; to become a spy for the Union."
     },
     {
       "type": "photo",
@@ -50,10 +50,10 @@
   ],
   "footerLinks": {
     "contactCenter": {
-      "email": "hello@veteransmemorial.com",
-      "tel": "+1 123 456 7890",
-      "telAlt": "+1 098 765 4321450",
-      "address": "450, Building name<br/>Street Name, City, ST 123456"
+      "email": "VeteransLegacyProgram@va.gov",
+      "officeTel": "800-827-1000",
+      "scheduleTel": "800-535-1117",
+      "address": "U.S. Department of Veterans Affairs<br/>810 Vermont Avenue, NW Washington DC 20420"
     },
     "quickLinks": [
       {
@@ -381,7 +381,7 @@
 
   "profileCard": {
     "msgTitle": "Remembering John Brown",
-    "msgDescription": "This words is bio or quotes of John Brown or words from family adipisicing elit, sed do eiusmod tempor.",
+    "msgDescription": "Share a message, photo, or memory of John Brown. You can also research historical information (if applicable) and award a badge of honor.",
     "profileName": "John Brown",
     "profileImgSrc": "profile-pic.png",
     "life": "June 21, 1944 — March 23, 2013",
@@ -482,21 +482,21 @@
     "flaggingOpts":[
       {
         "id": 1,
-        "reason": "Content is Inappropriate",
-        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+        "reason": "Content is inappropriate",
+        "details":"This content is offensive to others, and may include profanity, shocking content, sexual content, or promotes hatred, intolerance, discrimination, or violence."
       },
       {
         "id": 2,
-        "reason": "Other reason goes here",
-        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+        "reason": "This content/information is incorrect",
+        "details":"Information contained in this content is factually inaccurate, or displays incorrect information that needs to be reviewed and/or corrected."
       },
       {
         "id": 3,
-        "reason": "Another reason goes here",
-        "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+        "reason": "This content is spam",
+        "details":"This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
       }
     ],
-    "acceptedProof": "Included Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore."
+    "acceptedProof": "Please provide next-of-kin information (name, relationship to the deceased, phone number, email address). No Personal Identifiable Information, please (birthdates, social security numbers, etc). If a cemetery has already established your NOK designation, and you have proof of this, you can include that documentation as well."
   },
 
   "profileInfoTabs": {
@@ -526,47 +526,47 @@
     "stories": [
       {
         "id": 1,
-        "title":"Family’s Lover",
-        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "title":"Fighting the War",
+        "story":"Pfc. Kenneth Jewel Tibbs was a proud and excellent Marine who served in the Pacific during World War II.",
         "author":"James Scott",
         "date":"5 Feb 2018",
         "reads": "1,111",
         "salutes": "489",
         "shares": "269",
-        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+        "fullStory":"Pfc. Kenneth Jewel Tibbs was a proud and excellent Marine who served in the Pacific during World War II. In the year leading up to the United States entering World War II, President Roosevelt issued an executive order that required the armed services to recruit African-Americans.  Before this point, the Marine Corps barred African-Americans from enlisting.<br/>To begin training African-American recruits, the Marine Corps opened Camp Montford Point, North Carolina.  Though African-Americans could now enlist in the Marine Corps, they were still separated from white recruits.  African-American recruits at the camp faced racial discrimination both on and off duty.  Despite these challenges, the Montford Point Marines served with pride, and were willing to fight a war abroad when they did not yet have civil rights at home.<br/>Before enlisting in the Marine Corps, Tibbs held a number of different jobs in order to help support his mother and six siblings.  When he enlisted in October 1943, his girlfriend was pregnant with their child.  Tibbs continued to support his family by sending portions of his paycheck back home.<br/>Tibbs excelled in the Marine Corps as a young recruit.  He consistently earned highest marks on evaluations.  When he completed basic training, he joined the 20th Marine Corps Depot Company as the commander’s steward."
       },
       {
         "id": 2,
-        "title":"A Humble Patriot",
-        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "title":"African-American Marines in WWII",
+        "story":"Pfc. Kenneth Jewel Tibbs and the other Montford Point Marines served with pride, willing to fight a war abroad when they did not yet have civil rights at home.",
         "author":"Armando Jr",
         "date":"27 Jan 2018",
         "reads": "1,333",
         "salutes": "489",
         "shares": "269",
-        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+        "fullStory":"Pfc. Kenneth Jewel Tibbs and the other Montford Point Marines served with pride, willing to fight a war abroad when they did not yet have civil rights at home."
       },
       {
         "id": 3,
-        "title":"A Good Friend Of My Father",
-        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "title":"Family Man",
+        "story":"Tibbs supported his family by sending portions of his paycheck back home to help his mother and six siblings, and his girlfriend, who was pregnant with their child when he enlisted.",
         "author":"Criss Red",
         "date":"24 Jan 2018",
         "reads": "1,253",
         "salutes": "489",
         "shares": "269",
-        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+        "fullStory":"Tibbs supported his family by sending portions of his paycheck back home to help his mother and six siblings, and his girlfriend, who was pregnant with their child when he enlisted."
       },
       {
         "id": 4,
-        "title":"My Greatest Soldier",
-        "story":"Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title":"The Sacrifice",
+        "story":"Tibbs was among those killed during the Battle of Saipan in June of 1944. He was the first Montford Point Marine killed in action.",
         "author":"Stanley",
         "date":"11 Jan 2018",
         "reads": "1,253",
         "salutes": "489",
         "shares": "269",
-        "fullStory":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+        "fullStory":"In February 1944, Tibbs began the long journey to the Pacific.  He boarded the USS James O’Hara in Virginia and arrived in Hawaii three weeks later.  He spent a short time in Hawaii until finally departing for Saipan in May.<br/>The Battle of Saipan began on June 15, 1944.  After days of heavy naval bombardment, U.S. Marines began landing on the beaches of the island.  During these landings, African-American Marines saw combat for the first time in World War II.<br/>Heavy fighting ensued on the beaches.  With enemies threatening to push back American lines that secured the beachhead, members of the Marine depot companies reinforced them as infantry.  Tibbs, who had desired to serve in the infantry, was in one of those depot companies.  With their help, the Marines were able to repel the enemy’s advance.  By the end, the battle claimed the lives of more than 3,000 Americans.<br/>Tibbs was among those killed during the battle.  He died shortly after landing on Yellow Beach #2, and was the first Montford Point Marine killed in action.  It took another two months for his family to learn of his death.  During that time, Tibbs’s girlfriend gave birth to his daughter, Helen.  She would never get the chance to meet her father.<br/>Today, Tibbs is interred at National Memorial Cemetery of the Pacific in Honolulu, Hawaii.  His service and sacrifice paved the way for African-American service members for generations to come, and ushered in a new era of African-American history."
       }
     ],
     "testimonials": [
@@ -738,20 +738,12 @@
   },
   "faqs":[
     {
-      "title":"What happens when I deactivate my account",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+      "title":"What happens if I deactivate my account?",
+      "content": "If you deactivate your account, the Veterans Legacy Memorial saves all your comments, photos, and publically-posted information. We also save your settings and information, in case you decide to reactivate your account. If you are a Next-of-Kin, deactivating your account deactivates your NOK status. This means someone else will be able to claim Next-of-Kin status if they have the proper documentation. However, if you reactivate your account, you may reclaim NOK status at that time by resubmitting a NOK request."
     },
     {
-      "title":"Questions Goes Here",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-    },
-    {
-      "title":"Other Questions Goes Here",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-    },
-    {
-      "title":"Another Questions Goes Here",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+      "title":"What if I find inappropriate content?",
+      "content": "If you find inappropriate content, you can flag that content for review. To flag content, simply click on the button in content box that looks like a flag [flag photo here]. Please indicate the reason you're flagging the content. An administrator will review the flagged content and take appropriate action. All content is subject to review and approval, per the Veterans Legacy Memorial user agreement."
     }
   ],
   "notifications": [
@@ -789,10 +781,10 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "Content is inappropriate",
+              "details": "This content is offensive to others, and may include profanity, shocking content, sexual content, or promotes hatred, intolerance, discrimination, or violence."
             },
-            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+            "content": "Pfc. Kenneth Jewel Tibbs was part of the group known as the Montford Point Marines, named after the camp where all African-American Marines trained. The Montford Point Marines were the first African-American Marines since the American Revolution.<br/><br/>Greta Bartley-Hamilton, Assistant Director of Riverside National Cemetery, discovered the story of Pfc. Tibbs  last year during NCA’s sponsorship of the Understanding Sacrifice program.  Since 2014, Understanding Sacrifice has selected 54 teachers to research fallen heroes and bring new lessons on World War II into classrooms.  Last year, they conducted research on 18 service members buried at Golden Gate and San Francisco National Cemeteries, and National Memorial Cemetery of the Pacific.  Their stories and the lessons plans based upon their service are now accessible to the public and other educators.<br/><br/>Understanding Sacrifice is an educational program by the American Battle Monuments Commission and National Cemetery Administration in partnership with National History Day and the Roy Rosenzweig Center for History and New Media at George Mason University.  To learn more about the Understanding Sacrifice program visit https://abmceducation.org/<br/><br/>To learn more about the Veterans Legacy Program and their other partnerships, visit https://www.cem.va.gov/legacy/<br/><br/>Please join us in recognizing the legacy of Pfc. Kenneth Jewel Tibbs.  You can read his biography, hear his eulogy, and view the lesson plans developed around his legacy here: https://abmceducation.org/understandingsacrifice/soldier/kenneth-tibbs"
           }
         ]
       },
@@ -804,8 +796,8 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content/information is incorrect",
+              "details": "Information contained in this content is factually inaccurate, or displays incorrect information that needs to be reviewed and/or corrected."
             },
             "image": "/p3.png"
           }
@@ -819,8 +811,8 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           },
@@ -829,8 +821,8 @@
             "author": "Armando Jr", 
             "date": "27 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           },
@@ -839,8 +831,8 @@
             "author": "James Scott", 
             "date": "5 Feb 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           }
@@ -854,8 +846,8 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This Content Violates our Veterans Legacy Memorial User Agreement.",
+              "details": "Read the User Agreement for more information."
             },
             "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
           }
@@ -887,10 +879,10 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "Content is inappropriate",
+              "details": "This content is offensive to others, and may include profanity, shocking content, sexual content, or promotes hatred, intolerance, discrimination, or violence."
             },
-            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+            "content": "Pfc. Kenneth Jewel Tibbs was part of the group known as the Montford Point Marines, named after the camp where all African-American Marines trained. The Montford Point Marines were the first African-American Marines since the American Revolution.<br/><br/>Greta Bartley-Hamilton, Assistant Director of Riverside National Cemetery, discovered the story of Pfc. Tibbs  last year during NCA’s sponsorship of the Understanding Sacrifice program.  Since 2014, Understanding Sacrifice has selected 54 teachers to research fallen heroes and bring new lessons on World War II into classrooms.  Last year, they conducted research on 18 service members buried at Golden Gate and San Francisco National Cemeteries, and National Memorial Cemetery of the Pacific.  Their stories and the lessons plans based upon their service are now accessible to the public and other educators.<br/><br/>Understanding Sacrifice is an educational program by the American Battle Monuments Commission and National Cemetery Administration in partnership with National History Day and the Roy Rosenzweig Center for History and New Media at George Mason University.  To learn more about the Understanding Sacrifice program visit https://abmceducation.org/<br/><br/>To learn more about the Veterans Legacy Program and their other partnerships, visit https://www.cem.va.gov/legacy/<br/><br/>Please join us in recognizing the legacy of Pfc. Kenneth Jewel Tibbs.  You can read his biography, hear his eulogy, and view the lesson plans developed around his legacy here: https://abmceducation.org/understandingsacrifice/soldier/kenneth-tibbs"
           }
         ]
       },
@@ -902,8 +894,8 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content/information is incorrect",
+              "details": "Information contained in this content is factually inaccurate, or displays incorrect information that needs to be reviewed and/or corrected."
             },
             "image": "/p3.png"
           }
@@ -917,8 +909,8 @@
             "author": "Criss Red", 
             "date": "24 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           },
@@ -927,8 +919,8 @@
             "author": "Armando Jr", 
             "date": "27 Jan 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           },
@@ -937,8 +929,8 @@
             "author": "James Scott", 
             "date": "5 Feb 2018", 
             "reason": {
-              "type": "Content Inappropriate",
-              "details": "This lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+              "type": "This content is spam",
+              "details": "This content contains irrelevant or innapropriate messages, unsolicited ads, or commercial messaging."
             },
             "content": "Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
           }
