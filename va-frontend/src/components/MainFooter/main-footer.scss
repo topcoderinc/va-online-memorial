@@ -71,6 +71,8 @@
 
   .links-area {
     background-color: #122f50;
+    padding-bottom: 120px;
+
     .viewport {
       min-height: 239px;
       padding-top: 36px;
@@ -87,6 +89,9 @@
       }
     }
     .footer-sn {
+      .desc{
+        padding-right: 20px;
+      }
       h3{
         font-size: 20px;
         font-weight: bold;
@@ -155,6 +160,10 @@
         }
         &.ig{
           background: url('../../i/ig.png') 0 0 no-repeat;
+        }
+        &.bg {
+          background: url('../../i/blog.svg') 0 0 no-repeat;
+          background-size: 28px;
         }
       }
     }
