@@ -44,6 +44,7 @@ const MainFooter = ({props}) => {
                 <a className="tw" href="https://twitter.com/VANatCemeteries"> </a>
                 <a className="yt" href="https://www.youtube.com/playlist?list=PL7897A1FCC5516DDE"> </a>
                 <a className="ig"> </a>
+                <a className="bg" href="https://www.blogs.va.gov/VAntage/category/memorial-affairs/"> </a>
               </div>
               <div className="action">
                 <a className="btn">Subscribe</a>
