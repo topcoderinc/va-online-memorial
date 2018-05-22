@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import dataAction from '../../actions/dataAction';
 import actions from '../../actions/auth';
 import MainHeaderComponent from '../../components/MainHeader';
@@ -16,33 +16,33 @@ class Landing extends Component {
   }
 
   render() {
-    const {masterHead, features, memories, featuredPosts, footerLinks, feedback, searchedResults, notifications} = {...this.props.db};
+    const { masterHead, features, memories, featuredPosts, footerLinks, feedback, notifications }
+      = { ...this.props.db };
     return (
       <div className="page-wrapper">
-        <MainHeaderComponent attr={ {'searchedResults': searchedResults, notifications: notifications} } />
+        <MainHeaderComponent attr={{ notifications }}/>
         <main className="main">
-          <MasterHead props={ {...masterHead} } />
-          <Features props={ {features: features} } />
-          <ShareMemories props={ {...memories} } />
-          <FeaturedPosts props={ {featuredPosts: featuredPosts} } />
-          <MainFooter props={ {...footerLinks, ...feedback} } />
+          <MasterHead props={{ ...masterHead }}/>
+          <Features props={{ features: features }}/>
+          <ShareMemories props={{ ...memories }}/>
+          <FeaturedPosts props={{ featuredPosts: featuredPosts }}/>
+          <MainFooter props={{ ...footerLinks, ...feedback }}/>
         </main>
       </div>
     )
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
-   ...state.dataReducer
+    ...state.dataReducer
   }
 };
 
 const matchDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
-    dataAction: bindActionCreators({...dataAction}, dispatch)
+    dataAction: bindActionCreators({ ...dataAction }, dispatch)
   }
 };
 

@@ -6,8 +6,9 @@
   color: #ffffff;
   position: relative;
 
-  .collection-view{
+  .st-collection-view{
     display: flex;
+    flex-wrap: wrap;
     padding: 0 28px;
   }
   .title{
@@ -31,8 +32,9 @@
     }
   }
 
-  .collection-item-card-wrap{
-    padding: 0 22px;
+  .st-collection-item-card-wrap{
+    padding: 0 18px;
+    margin-bottom: 18px;
     .caption{
       font-size: 16px;
       text-align: center;
@@ -94,7 +96,7 @@
     padding: 0;
     height: 182px;
     cursor: pointer;
-    
+
     .desc{
       height: 182px;
     }
@@ -231,7 +233,7 @@
         @include viewMd{
           margin-top: 15px;
         }
-        
+
         img{
           width: 100%;
           height: 440px;
@@ -308,7 +310,7 @@
           }
         }
       }
-      
+
 
       .btn{
         margin-left: 10px;

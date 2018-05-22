@@ -49,13 +49,13 @@ function buildDBFilter(filter) {
   }
   if (filter.birthDateStart) where.birthDate = { $gte: filter.birthDateStart };
   if (filter.birthDateEnd) {
-    if (!filter.birthDate) filter.birthDate = {};
-    filter.birthDate.$lte = filter.birthDateEnd;
+    if (!where.birthDate) where.birthDate = {};
+    where.birthDate.$lte = filter.birthDateEnd;
   }
   if (filter.deathDateStart) where.deathDate = { $gte: filter.deathDateStart };
   if (filter.deathDateEnd) {
-    if (!filter.deathDate) filter.deathDate = {};
-    filter.deathDate.$lte = filter.deathDateEnd;
+    if (!where.deathDate) where.deathDate = {};
+    where.deathDate.$lte = filter.deathDateEnd;
   }
   if (filter.squadronShip) where.squadronShip = { $like: `%${filter.squadronShip}%` };
   if (filter.branchIds) include[4].where = { id: { $in: parseIds(filter.branchIds) } };
@@ -76,13 +76,15 @@ function buildDBFilter(filter) {
  */
 function* search(query) {
   const q = buildDBFilter(query);
-  const items = yield models.Veteran.findAll(q);
+  q.distinct = true;
+  const docs = yield models.Veteran.findAndCountAll(q);
   // note that when child entities are included for filter, sequelize can not correctly calculate
   // the total count, so the total field is not provided
   return {
-    items,
+    items: docs.rows,
     offset: q.offset,
-    limit: q.limit
+    limit: q.limit,
+    total: docs.count
   };
 }
 

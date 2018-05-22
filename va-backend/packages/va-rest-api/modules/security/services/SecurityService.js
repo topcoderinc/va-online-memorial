@@ -60,11 +60,11 @@ register.schema = {
   user: Joi.object().keys({
     username: Joi.string().required(),
     email: Joi.string().email().required(),
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    mobile: Joi.string().required(),
-    gender: Joi.string().required(),
-    countryId: Joi.number().integer().min(1).required(),
+    firstName: Joi.string().allow(['']),
+    lastName: Joi.string().allow(['']),
+    mobile: Joi.string().allow(['']),
+    gender: Joi.string().allow(['']),
+    countryId: Joi.number().integer().min(1),
     password: Joi.string().required()
   }).required()
 };

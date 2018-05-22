@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Spinner from '../Spinner';
-import { omit, each } from 'lodash';
+import {omit, each} from 'lodash';
 import './styles.css';
 
 const REGISTRATION_FIELDS = [
@@ -44,56 +44,56 @@ class Register extends Component {
       hasErrors: false
     };
   }
-
+  
   register = (e) => {
     e.preventDefault();
     if (this.props.loading) return;
     const errors = {};
     let hasErrors = false;
-
+    
     const setError = (model) => {
-      errors[model] = true;
+      errors[ model ] = true;
       hasErrors = true;
-    }
-
+    };
+    
     // Validate input
     each(REGISTRATION_FIELDS, (field) => {
-      if (this.state[field.name].trim() === '') setError(field.name);
-    })
-
+      if (this.state[ field.name ].trim() === '') setError(field.name);
+    });
+    
     this.setState({ errors, hasErrors });
-
+    
     if (!hasErrors) {
-      this.props.register(omit(this.state, ['errors', 'hasErrors']));
+      this.props.register(omit(this.state, [ 'errors', 'hasErrors' ]));
     }
-  }
-
+  };
+  
   onValueChange = (model, value) => {
     const newState = this.state;
-    newState[model] = value;
+    newState[ model ] = value;
     newState.errors = {};
     newState.hasErrors = false;
     this.setState(newState);
   };
-
-  render () {
+  
+  render() {
     return (
       <div className="register-page">
-        <form onSubmit={this.register} className={`register-form ${this.props.failed ? 'error' :''}`}>
+        <form onSubmit={this.register} className={`register-form ${this.props.failed ? 'error' : ''}`}>
           <h3>Create new account</h3>
           {
             REGISTRATION_FIELDS.map((field) => (
               <div className="form-field" key={field.name}>
                 <input
                   type={field.type}
-                  className={`input ${this.state.errors[field.name] ? 'error' : ''}`}
+                  className={`input ${this.state.errors[ field.name ] ? 'error' : ''}`}
                   placeholder={field.title}
-                  value={this.state[field.name]}
-                  onChange={(e) => this.onValueChange(field.name, e.target.value)} />
+                  value={this.state[ field.name ]}
+                  onChange={(e) => this.onValueChange(field.name, e.target.value)}/>
               </div>
             ))
           }
-          {this.props.loading && <Spinner />}
+          {this.props.loading && <Spinner/>}
           {this.props.failed && <h2 className="error">{this.props.errorMessage}</h2>}
           <button type="submit" className="btn primary">Register</button>
         </form>

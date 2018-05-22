@@ -1,82 +1,110 @@
+import superagent from 'superagent';
+import superagentPromise from 'superagent-promise';
+
 import {
-  API_URL as FALLBACK_API_URL,
-  DEFAULT_SERVER_ERROR,
-  STATUS_OK
+  API_URL as FALLBACK_API_URL
 } from '../config';
 import Cookies from 'universal-cookie';
+import CommonService from "./common";
+import {assign} from 'lodash';
 
 const cookies = new Cookies();
-const API_URL = process.env.REACT_APP_API_URL || FALLBACK_API_URL;
+const request = superagentPromise(superagent, Promise);
+const USER_STORE_KEY = 'userDetails';
 
-/**
- * Login
- * @param credentials {object} - the login credentials
- * @param cb {function} - the callback function
- */
-function login(credentials, cb) {
-  console.log(credentials);
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  };
-  fetch(`${API_URL}/login`, options)
-  .then((res) => res.json())
-  .then((json) => {
-    if (json.code && json.code !== STATUS_OK) return cb(json.message || DEFAULT_SERVER_ERROR);
-    cookies.set('userDetails', JSON.stringify(json));
-    return cb(null, json);
-  })
-  .catch(() => cb(DEFAULT_SERVER_ERROR));
-}
-
-/**
- * Register user
- * @param formData {object} - the user details object
- * @param cb {function} - the callback function
- */
-function register(formData, cb) {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  };
-  fetch(`${API_URL}/register`, options)
-  .then((res) => res.json())
-  .then((json) => {
-    if (json.code && json.code !== STATUS_OK) return cb(json.message || DEFAULT_SERVER_ERROR);
-    cookies.set('userDetails', JSON.stringify(json));
-    return cb(null, json);
-  })
-  .catch(() => cb(DEFAULT_SERVER_ERROR));
-}
-
-/**
- * Check if user is already logged in
- * @param cb {function} - the callback function
- */
-function checkAuth(cb) {
-  const userDetails = cookies.get('userDetails');
-  if (!userDetails) {
-    return cb(new Error());
+export default class AuthService {
+  
+  /**
+   * Login
+   * @param credentials {object} - the login credentials
+   */
+  static login(credentials) {
+    return request
+      .post(`${FALLBACK_API_URL}/v1/login`)
+      .send(credentials)
+      .use(CommonService.progressInterceptor)
+      .end()
+      .then((res) => {
+        cookies.set(USER_STORE_KEY, JSON.stringify(res.body));
+        return res.body;
+      });
   }
-  cb(null, userDetails);
-}
+  
+  /**
+   * Register user
+   * @param body {object} - the user details object
+   */
+  static register(body) {
+    return request
+      .post(`${FALLBACK_API_URL}/v1/register`)
+      .send(body)
+      .use(CommonService.progressInterceptor)
+      .end()
+      .then((res) => {
+        return res.body;
+      });
+  }
+  
+  /**
+   * check if user is already logged in
+   */
+  static getAccessToken() {
+    const user = this.getCurrentUser();
+    if (user) {
+      return user[ 'accessToken' ];
+    } else {
+      CommonService.getBrowserHistory().push('/')
+    }
+  }
+  
+  /**
+   * check auth is vaild
+   */
+  static checkAuthIsVaild() {
+    const userDetails = cookies.get(USER_STORE_KEY);
+    if (!userDetails || !userDetails.accessToken || !userDetails.accessTokenExpiresAt) return false;
+    return new Date(userDetails.accessTokenExpiresAt) > new Date();
+  }
 
-/**
- * Logout user
- */
-function logout(cb) {
-  cookies.remove('userDetails');
-}
+  /**
+   * get current logged user
+   */
+  static getCurrentUser() {
+    return this.checkAuthIsVaild() ? cookies.get(USER_STORE_KEY) : null;
+  }
+  
+  /**
+   * logout system
+   */
+  static logout() {
+    cookies.remove(USER_STORE_KEY);
+  }
 
-export default {
- login,
- register,
- checkAuth,
- logout
-};
+  /**
+   * update user profile
+   * @param id user id
+   * @param profile user profile
+   */
+  static updateProfile(id, profile) {
+    return request
+      .put(`${FALLBACK_API_URL}/v1/users/${id}`)
+      .set('Authorization', `Bearer ${AuthService.getAccessToken()}`)
+      .send(profile)
+      .use(CommonService.progressInterceptor)
+      .end()
+      .then((res) => {
+        console.log(res.body);
+        cookies.set(USER_STORE_KEY, JSON.stringify(assign(cookies.get(USER_STORE_KEY), res.body)));
+        return res.body;
+      });
+  }
+
+  static deactivate() {
+    return request
+      .put(`${FALLBACK_API_URL}/v1/me/deactivate`)
+      .set('Authorization', `Bearer ${AuthService.getAccessToken()}`)
+      .use(CommonService.progressInterceptor)
+      .end()
+      .then((res) => res.body);
+  }
+}

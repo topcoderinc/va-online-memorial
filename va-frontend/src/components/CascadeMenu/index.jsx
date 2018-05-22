@@ -28,7 +28,7 @@ CascadeMenu.defaultProps={
   },
   className: '',
   activeIndex: -1,
-}
+};
 
 CascadeMenu.propTypes={
   className: PropTypes.string,

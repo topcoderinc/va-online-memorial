@@ -1,26 +1,27 @@
 @import '../../styles/_mixins.scss';
 
 // collection-list-wrap
-.collection-list-wrap{
+.collection-list-wrap {
   background-color: #06497c;
   color: #ffffff;
   position: relative;
 
-  @include viewMd{
-    .fullstory-view{
+  @include viewMd {
+    .fullstory-view {
       overflow: hidden;
     }
   }
 
-  .collection-view{
+  .ph-collection-view {
     display: flex;
+    flex-wrap: wrap;
     padding: 0 28px;
 
-    @include viewMd{
+    @include viewMd {
       flex-wrap: wrap;
     }
   }
-  .title{
+  .title {
     text-align: center;
     @include fontAlt;
     font-size: 30px;
@@ -29,65 +30,74 @@
     padding-top: 58px;
     padding-bottom: 74px;
   }
-  .action{
+  .action {
     text-align: center;
     padding: 20px 0 30px 0;
 
-    .btn-more{
+    .btn-more {
       width: 195px;
-      &.btn-md{
+      &.btn-md {
         width: 215px;
       }
 
-      @include viewMd{
+      @include viewMd {
         height: 40px;
         line-height: 40px;
       }
     }
-    @include viewMd{
+    @include viewMd {
       padding-top: 0;
     }
   }
 
-  .collection-item-card-wrap{
-    padding: 0 22px;
-    .caption{
+  .ph-collection-item-card-wrap {
+    padding: 0 18px;
+    .caption {
       font-size: 16px;
       text-align: center;
       line-height: 1.56;
       margin-top: 18px;
     }
-    .date{
+    .date {
       font-size: 16px;
       text-align: center;
       line-height: 1.56;
     }
 
-    @include viewMd{
+    @include viewMd {
       padding-bottom: 28px;
-      
-      .caption{
+
+      .caption {
         font-size: 13px;
         margin-top: 10px;
       }
-      .date{
+      .date {
         font-size: 13px;
       }
     }
   }
+  .collection-photo {
+    .desc {
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 
-  @include viewMd{
-    .title{
+  @include viewMd {
+    .title {
       font-size: 15px;
       padding-top: 26px;
       padding-bottom: 21px;
     }
-    .opts{
+    .opts {
       display: block;
       text-align: center;
       padding-bottom: 41px;
-      
-      .btn{
+
+      .btn {
         position: relative;
         right: auto;
         top: auto;
@@ -95,14 +105,14 @@
         margin: 0 3px 0 4px;
         padding: 0 10px;
 
-        &.btn-test{
+        &.btn-test {
           width: auto;
-          .show-md{
+          .show-md {
             display: inline-block;
           }
         }
 
-        &.btn-story{
+        &.btn-story {
           width: auto;
         }
       }
@@ -110,54 +120,53 @@
   }
 }
 
-
 // fig-badge
-.fig-badge{
+.fig-badge {
   height: 105px;
 
-  &.hero{
+  &.hero {
     background: url('../../i/bdg-hero.png') 50% 17px no-repeat;
 
-    &.bdg-md{
+    &.bdg-md {
       background: url('../../i/bdg-hero-b.png') 50% 17px no-repeat;
     }
   }
-  &.bravery{
+  &.bravery {
     background: url('../../i/bdg-bravery.png') 50% 6px no-repeat;
   }
-  &.instructor{
+  &.instructor {
     background: url('../../i/bdg-instructor.png') 50% 6px no-repeat;
   }
-  &.friendship{
+  &.friendship {
     background: url('../../i/bdg-friendship.png') 50% 17px no-repeat;
   }
-  &.leader{
+  &.leader {
     background: url('../../i/bdg-leader.png') 50% 17px no-repeat;
   }
-  &.charger{
+  &.charger {
     background: url('../../i/bdg-charger.png') 50% 6px no-repeat;
   }
-  &.big-heart{
+  &.big-heart {
     background: url('../../i/bdg-big-heart.png') 50% 6px no-repeat;
   }
-  &.rock{
+  &.rock {
     background: url('../../i/bdg-rock.png') 50% 17px no-repeat;
   }
 
 }
 
-.fullstory-slide{
-  .fig-badge{
-    @include viewMd{
-      &.bravery{
+.fullstory-slide {
+  .fig-badge {
+    @include viewMd {
+      &.bravery {
         background: url('../../i/bdg-bravery.png') 50% 6px no-repeat;
         background-size: 70px;
       }
-      &.instructor{
+      &.instructor {
         background: url('../../i/bdg-instructor.png') 50% 6px no-repeat;
         background-size: 70px;
       }
-      &.friendship{
+      &.friendship {
         background: url('../../i/bdg-friendship.png') 50% 17px no-repeat;
         background-size: 160px;
       }
@@ -165,7 +174,7 @@
   }
 }
 
-.collection-item-card{
+.collection-item-card {
   background-color: #ffffff;
   flex: 0 284px;
   width: 284px;
@@ -173,7 +182,7 @@
   padding: 27px 30px 17px;
   font-size: 16px;;
 
-  h5{
+  h5 {
     @include fontAlt;
     font-weight: bold;
     font-size: 16px;
@@ -182,26 +191,26 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  .desc{
+  .desc {
     height: 85px;
     overflow: hidden;
     line-height: 1.3;
 
-    &.desc-md{
+    &.desc-md {
       height: 105px;
     }
   }
-  .more{
+  .more {
     color: #0f73ba;
     line-height: 1.88;
 
-    a{
+    a {
       @include hover;
     }
   }
 
   // con-badge
-  &.con-badge{
+  &.con-badge {
     height: 182px;
     cursor: pointer;
 
@@ -210,47 +219,47 @@
 }
 
 // fullstory-card
-.fullstory-card{
+.fullstory-card {
   margin: 0 auto;
   width: 1099px;
-	min-height: 823px;
+  min-height: 823px;
   background-color: #ffffff;
   color: #000;
   padding: 67px 95px 45px 93px;
   position: relative;
-  
-  @include viewMd{
+
+  @include viewMd {
     width: auto;
     min-height: 467px;
     padding: 30px 30px 38px;
     margin: 0 15px;
 
-    &.alt{
+    &.alt {
       padding: 30px 30px 38px;
     }
   }
 
-  &.fullstory-card-md{
+  &.fullstory-card-md {
     width: 715px;
     min-height: 595px;
 
-    &.alt{
-        padding: 47px 95px 45px 93px;
+    &.alt {
+      padding: 47px 95px 45px 93px;
     }
 
-    @include viewMd{
+    @include viewMd {
       width: auto;
       min-height: 467px;
       padding: 30px 30px 38px;
       margin: 0 15px;
 
-      &.alt{
+      &.alt {
         padding: 30px 30px 38px;
       }
     }
   }
 
-  .close{
+  .close {
     position: absolute;
     right: 95px;
     top: 67px;
@@ -261,7 +270,7 @@
 
     @include hover;
   }
-  .flag{
+  .flag {
     position: absolute;
     right: 155px;
     top: 67px;
@@ -272,72 +281,72 @@
 
     @include hover;
   }
-  @include viewMd{
-    .close{
+  @include viewMd {
+    .close {
       top: 30px;
       right: 30px;
     }
-    .flag{
+    .flag {
       top: 30px;
       right: 68px;
     }
   }
-  .postedby{
+  .postedby {
     font-size: 20px;
     line-height: 2.0;
     text-align: left;
     color: #5d5d66;
   }
-  .dateval{
+  .dateval {
     font-size: 20px;
     line-height: 2.0;
     text-align: left;
     color: #5d5d66;
   }
-  @include viewMd{
-    .postedby{
+  @include viewMd {
+    .postedby {
       font-size: 14px;
       line-height: 1.4;
     }
-    .dateval{
+    .dateval {
       font-size: 14px;
       line-height: 1.4;
     }
   }
 
   // article
-  .article{
+  .article {
 
-    &.centered{
+    &.centered {
       text-align: center;
     }
-    h3{
+    h3 {
       font-size: 30px;
       font-weight: bold;
       margin-top: 60px;
 
       @include fontAlt;
 
-      @include viewMd{
+      @include viewMd {
         margin-top: 0;
         padding-top: 70px;
         font-size: 14px;
         line-height: 1.8;
 
-        &.sticky-md{
+        &.sticky-md {
           padding-top: 30px;
         }
       }
     }
 
-    .fullstory{
+    .fullstory {
       font-size: 20px;
       line-height: 1.5;
       color: #000000;
       margin-top: 54px;
       padding-bottom: 90px;
 
-      @include viewMd{
+      @include viewMd {
         font-size: 14px;
         line-height: 1.8;
         margin-top: 0;
@@ -346,8 +355,8 @@
 
     }
 
-    &.article-badges{
-      .fullstory{
+    &.article-badges {
+      .fullstory {
         padding-bottom: 0;
         margin-top: 12px;
         margin-bottom: 12px;
@@ -356,62 +365,61 @@
           height: 176px;
         }
 
-        @include viewMd{
+        @include viewMd {
           margin-top: 0;
           margin-bottom: 0;
 
-          
         }
       }
 
-        h3{
-          padding-bottom: 35px;
-          margin: 0;
+      h3 {
+        padding-bottom: 35px;
+        margin: 0;
 
-          @include viewMd{
-            padding-bottom: 0;
-          }
+        @include viewMd {
+          padding-bottom: 0;
         }
+      }
     }
     // article-footer
-    .article-footer{
+    .article-footer {
       border-top: 2px solid #0f73ba;
       display: flex;
       justify-content: space-between;
       padding-top: 25px;
 
-      &.alt{
+      &.alt {
         padding-top: 18px;
         flex-wrap: wrap;
         justify-content: center;
 
-        .col:last-child{
+        .col:last-child {
           padding-top: 38px;
         }
       }
 
-      @include viewMd{
+      @include viewMd {
         flex-wrap: wrap;
-        .col{
+        .col {
           flex: 0 100%;
           text-align: center;
 
-          &:last-child{
+          &:last-child {
             margin-top: 35px;
           }
         }
       }
 
-      .col-meta{
+      .col-meta {
         display: flex;
-        h6{
+        h6 {
           font-size: 16px;
           line-height: 1.25;
           color: #5d5d66;
           text-align: left;
           @include fontAlt;
         }
-        .meta-val{
+        .meta-val {
           font-size: 25px;
           line-height: 1.25;
           color: #000;
@@ -419,78 +427,77 @@
           margin-right: 40px;
           margin-top: 9px;
 
-          &.reads{
+          &.reads {
             padding-left: 32px;
-            background:url(../../i/visible.png) 0 10px no-repeat;
+            background: url(../../i/visible.png) 0 10px no-repeat;
           }
-          &.salutes{
+          &.salutes {
             padding-left: 32px;
-            background:url(../../i/salutes.png) 0 50% no-repeat;
+            background: url(../../i/salutes.png) 0 50% no-repeat;
           }
-          &.shares{
+          &.shares {
             padding-left: 32px;
-            background:url(../../i/shares-b.png) 0 50% no-repeat;
+            background: url(../../i/shares-b.png) 0 50% no-repeat;
           }
         }
 
-        @include viewMd{
+        @include viewMd {
           display: flex;
           justify-content: space-between;
           flex: 0 100%;
 
-          h6{
+          h6 {
             font-size: 13px;
           }
-          .meta-val{
+          .meta-val {
             font-size: 20px;
             margin-right: 0;
 
-            &.reads{
+            &.reads {
               padding-left: 26px;
-              background:url(../../i/visible.png) 0 10px no-repeat;
+              background: url(../../i/visible.png) 0 10px no-repeat;
               background-size: 19px;
             }
-            &.salutes{
+            &.salutes {
               padding-left: 26px;
-              background:url(../../i/salutes.png) 0 50% no-repeat;
+              background: url(../../i/salutes.png) 0 50% no-repeat;
               background-size: 18px;
             }
-            &.shares{
+            &.shares {
               padding-left: 26px;
-              background:url(../../i/shares-b.png) 0 50% no-repeat;
+              background: url(../../i/shares-b.png) 0 50% no-repeat;
               background-size: 15px;
             }
           }
         }
       }
-      
 
-      .btn{
+      .btn {
         margin-left: 10px;
         width: 91px;
         text-align: left;
 
-        &.btn-salute{
+        &.btn-salute {
           padding-left: 35px;
           background: #0f73ba url('../../i/star.png') 7px 10px no-repeat;
         }
-        &.btn-share{
+        &.btn-share {
           padding-left: 35px;
           background: #0f73ba url('../../i/share.png') 7px 10px no-repeat;
         }
 
-        @include viewMd{
+        @include viewMd {
           height: 35px;
           line-height: 35px;
           width: 82px;
           margin: 0 5px;
 
-          &.btn-salute{
+          &.btn-salute {
             padding-left: 30px;
             background: #0f73ba url('../../i/star.png') 7px 8px no-repeat;
             background-size: 18px;
           }
-          &.btn-share{
+          &.btn-share {
             padding-left: 30px;
             background: #0f73ba url('../../i/share.png') 7px 9px no-repeat;
             background-size: 16px;
@@ -500,19 +507,19 @@
     }
   }
 
-  .slide-arrow{
+  .slide-arrow {
     position: absolute;
     top: 50%;
     margin: -16px;
 
-    &.prev{
+    &.prev {
       width: 19px;
       height: 32px;
       background: url('../../i/arrow.png') 0 0 no-repeat;
       left: -62px;
 
     }
-    &.next{
+    &.next {
       width: 19px;
       height: 32px;
       background: url('../../i/arrow.png') 0 0 no-repeat;
@@ -523,72 +530,71 @@
 }
 
 // fullstory-navs
-.fullstory-navs{
+.fullstory-navs {
   display: flex;
   justify-content: space-between;
   width: 1099px;
   margin: 42px auto;
   padding-bottom: 65px;
 
-
-  &.fullstory-navs-md{
+  &.fullstory-navs-md {
     width: 715px;
 
-    @include viewMd{
+    @include viewMd {
       width: auto;
       padding-bottom: 42px;
 
-      .col{
+      .col {
         min-width: 50px;
       }
     }
   }
 
-  h5{
+  h5 {
     font-size: 20px;
     line-height: 2.0;
   }
-  h4{
+  h4 {
     @include fontAlt;
     font-size: 26px;
     margin-top: 20px;
 
-    @include viewMd{
+    @include viewMd {
       display: none;
     }
   }
 
-  a{
+  a {
     text-decoration: underline;
 
-    &:hover{
+    &:hover {
       text-decoration: none;
     }
   }
 
-  h5{
-    @include viewMd{
+  h5 {
+    @include viewMd {
       height: 40px;
       line-height: 40px;
     }
-    a{
+    a {
       text-decoration: none;
       text-align: left;
 
-      &:hover{
+      &:hover {
         text-decoration: underline;
       }
 
-      @include viewMd{
+      @include viewMd {
         text-indent: -999px;
         overflow: hidden;
 
-        &.prev{
+        &.prev {
           background: url('../../i/pv-b.png') 15px 50% no-repeat;
           background-size: 16px;
           width: 50px;
         }
-        &.next{
+        &.next {
           background: url('../../i/nx-b.png') calc(100% - 15px) 50% no-repeat;
           background-size: 16px;
           width: 50px;
@@ -597,30 +603,31 @@
     }
   }
 
-  @include viewMd{
-    .action{
+  @include viewMd {
+    .action {
       padding: 0;
 
-      .btn{
+      .btn {
         text-decoration: none;
       }
     }
   }
 
-  .col:last-child{
+  .col:last-child {
     text-align: right;
   }
 }
 
-.btn.btn-rt-1{
+.btn.btn-rt-1 {
   position: absolute;
   right: 50px;
   top: 55px;
-  &.btn-badge{
+  &.btn-badge {
     width: 130px;
   }
 }
-.btn.btn-rt-2{
+
+.btn.btn-rt-2 {
   position: absolute;
   right: 194px;
   top: 55px;

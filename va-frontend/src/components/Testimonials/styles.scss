@@ -5,8 +5,9 @@
   background-color: #06497c;
   color: #ffffff;
 
-  .collection-view{
+  .tt-collection-view{
     display: flex;
+    flex-wrap: wrap;
     padding: 0 28px;
   }
   .title{
@@ -30,7 +31,7 @@
     }
   }
 
-  .collection-item-card-wrap{
+  .tt-collection-item-card-wrap{
     padding: 0 22px;
     .caption{
       font-size: 16px;

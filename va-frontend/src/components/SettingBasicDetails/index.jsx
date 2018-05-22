@@ -9,7 +9,9 @@ class SettingBasicDetails extends Component{
     super(props);
     this.state={
       details: props.details,
-    }
+    };
+    this.updateBaseProfile = this.updateBaseProfile.bind(this);
+    this.deactivateAccount = this.deactivateAccount.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -27,6 +29,20 @@ class SettingBasicDetails extends Component{
         [key]: value,
       }
     })
+  };
+
+  updateBaseProfile() {
+    const { username, mobile, gender, email } = this.state.details;
+    this.props.updateProfile({
+      username,
+      mobile,
+      gender,
+      email
+    });
+  }
+
+  deactivateAccount() {
+    this.props.deactivate();
   }
 
   render(){
@@ -38,7 +54,7 @@ class SettingBasicDetails extends Component{
         <div className="basic-details-row">
           <div className="basic-details-col-1">
             <div className="basic-details-label">Username</div>
-            <input className="basic-details-input textctrl" type="text" value={details.userName} onChange={e=>this.handleChange('userName', e.target.value)}/>
+            <input className="basic-details-input textctrl" type="text" value={details.username || ''} onChange={e=>this.handleChange('username', e.target.value)}/>
             <div className="basic-details-label">Gender</div>
             <div className="basic-details-radio-group">
               <div className={"basic-details-fieldset fieldset fieldset-opt"}>
@@ -59,12 +75,12 @@ class SettingBasicDetails extends Component{
             <div className="basic-details-label"><span>Email</span><span className="basic-details-change-pwd">Change Password</span></div>
             <input className="basic-details-input textctrl" type="text" value={details.email} onChange={e=>this.handleChange('email', e.target.value)}/>
             <div className="basic-details-label">Mobile Number</div>
-            <input className="basic-details-input textctrl" type="text" value={details.phone} onChange={e=>this.handleChange('phone', e.target.value)}/>
+            <input className="basic-details-input textctrl" type="text" value={details.mobile} onChange={e=>this.handleChange('mobile', e.target.value)}/>
           </div>
         </div>
         <div className="basic-details-actions">
-          <a className="btn btn-clear">Deactivate Account</a>
-          <a className="btn">Save Change</a>
+          <a className="btn btn-clear" onClick={this.deactivateAccount}>Deactivate Account</a>
+          <a className="btn" onClick={this.updateBaseProfile}>Save Change</a>
         </div>
         <h2 className="basic-details-title">FAQs</h2>
         {
@@ -88,11 +104,12 @@ SettingBasicDetails.defaultProps={
   details: {
     userName: '',
     email: '',
-    phone: '',
+    mobile: '',
+    gender: '',
     initial: true,
   },
   faqs: [],
-}
+};
 
 SettingBasicDetails.props={
   details: PropTypes.shape({
@@ -105,6 +122,6 @@ SettingBasicDetails.props={
     title: PropTypes.string,
     content: PropTypes.string,
   }))
-}
+};
 
 export default SettingBasicDetails;

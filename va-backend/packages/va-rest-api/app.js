@@ -29,8 +29,14 @@ syncDB();
 
 const app = express();
 
+const options = {
+  setHeaders(res) {
+    res.set('Access-Control-Allow-Origin', '*');
+  }
+};
+
 // static content
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), options));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -41,6 +47,7 @@ require('./app-passport')(app);
 require('./app-routes')(app);
 
 app.use(passport.initialize());
+
 
 // The error handler,log error and return 500 error
 // eslint-disable-next-line no-unused-vars
@@ -70,7 +77,6 @@ app.use((err, req, res, next) => {
       errorResponse.message = 'server error';
     }
   }
-
   errorResponse.code = status;
   res.status(status).json(errorResponse);
 });

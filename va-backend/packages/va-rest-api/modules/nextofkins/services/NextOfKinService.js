@@ -86,7 +86,7 @@ function* create(files, body) {
     const fileIds = [];
     for (let i = 0; i < files.length; i += 1) {
       const file = yield models.File.create({
-        name: files[i].filename,
+        name: files[i].originalname,
         fileURL: `${config.appURL}/upload/${files[i].filename}`,
         mimeType: files[i].mimetype
       }, { transaction: t });

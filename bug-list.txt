@@ -1,0 +1,7 @@
+1. veteran search filter can not be close and hide.
+2. removed flagged post in admin setting have not content, and now use the same data with the flagged post
+3. admin setting to review badge and photo and testimonial missed.
+4. search button on dashboard for searching story and badge have not input.
+5. UI to send email missed
+6. UI to change password missed
+7. For posts details, backend no reads/salutes/shares number returned, so frontend hardcode it.

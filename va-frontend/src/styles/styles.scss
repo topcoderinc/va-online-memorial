@@ -1,3 +1,5 @@
+@import '../../node_modules/react-toastify/dist/ReactToastify.min.css';
+@import '../../node_modules/nprogress/nprogress.css';
 @import './mixins';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700');
@@ -11,7 +13,7 @@ textarea {
   @include fontPrimary;
 }
 
-.btn{
+.btn {
   width: 100px;
   height: 40px;
   line-height: 40px;
@@ -26,8 +28,8 @@ textarea {
   position: relative;
   @include fontSecondary;
   @include hover;
-  
-  .upload-b{
+
+  .upload-b {
     position: absolute;
     left: 0;
     right: 0;
@@ -36,59 +38,59 @@ textarea {
     opacity: 0;
   }
 
-  .tx{
+  .tx {
     text-align: left;
     display: inline-block;
   }
 
-  &.fluid{
+  &.fluid {
     display: block;
     width: 100%;
   }
 
-  &.btn-primary{
+  &.btn-primary {
     width: 100px;
     height: 40px;
     border-radius: 5px;
     background-color: #0f73ba;
     display: inline-block;
   }
-  &.btn-clear{
+  &.btn-clear {
     width: 100px;
     height: 40px;
     border-radius: 5px;
     background-color: #ffffff;
     display: inline-block;
   }
-  &.btn-story{
+  &.btn-story {
     width: 130px;
-    .tx{
+    .tx {
       background: url(../i/ws.png) 0 8px no-repeat;
       padding-left: 24px;
     }
   }
-  &.btn-upload{
+  &.btn-upload {
     width: 99px;
-    .tx{
+    .tx {
       background: url(../i/up.png) 0 10px no-repeat;
       padding-left: 24px;
     }
   }
-  &.btn-test{
+  &.btn-test {
     width: 134px;
-    .tx{
+    .tx {
       background: url(../i/tes.png) 0 11px no-repeat;
       padding-left: 24px;
     }
   }
-  &.btn-badge{
+  &.btn-badge {
     width: 90px;
-    .tx{
+    .tx {
       background: url(../i/bdg.png) 0 11px no-repeat;
       padding-left: 24px;
     }
   }
-  &.btn-search{
+  &.btn-search {
     height: 40px;
     width: 40px;
     background: #0f73ba url(../i/search.png) 50% 50% no-repeat;
@@ -96,54 +98,54 @@ textarea {
     border-radius: 5px;
   }
 
-  @include viewMd{
+  @include viewMd {
     font-size: 14px;
     height: 30px;
     line-height: 30px;
     border-radius: 2.5px;
 
-    &.btn-story{
+    &.btn-story {
       width: 93px;
       font-size: 12px;
-      .tx{
+      .tx {
         background-position: 0 6px;
         background-size: 14px;
         padding-left: 17px;
       }
     }
-    &.btn-upload{
+    &.btn-upload {
       width: 72px;
       font-size: 12px;
-      .tx{
+      .tx {
         background-position: 0 8px;
         background-size: 14px;
         padding-left: 17px;
       }
     }
-    &.btn-test{
+    &.btn-test {
       width: 97px;
       font-size: 12px;
-      .tx{
+      .tx {
         background-position: 0 8px;
         background-size: 14px;
         padding-left: 17px;
       }
     }
-    &.btn-badge{
+    &.btn-badge {
       width: 65px;
       font-size: 12px;
-      .tx{
+      .tx {
         background-position: 0 8px;
         background-size: 14px;
         padding-left: 17px;
       }
     }
-    &.btn-search{
+    &.btn-search {
       width: 30px;
       height: 30px;
       background-size: 14px;
     }
-    &.btn-event{
+    &.btn-event {
       height: 35px;
       line-height: 35px;
     }
@@ -151,19 +153,20 @@ textarea {
 
 }
 
-#root{
+#root {
   display: block;
 }
-.page-wrapper{
+
+.page-wrapper {
   display: block;
 }
 
 // viewport
-.viewport{
+.viewport {
   margin: 0 auto;
   position: relative;
 
-  @include viewXl{
+  @include viewXl {
     width: 1366px;
     min-width: 1366px;
     padding: 0 50px;
@@ -177,30 +180,29 @@ textarea {
   }
 }
 
-.main-header-page{
+.main-header-page {
 
-  &.hasborder{
+  &.hasborder {
     border-bottom: 2px solid #06497c;
 
-   @include viewMd{
-     border-bottom: none;
-   }
+    @include viewMd {
+      border-bottom: none;
+    }
   }
 }
 
 // main
-.main{
+.main {
   margin-top: 100px;
   min-height: calc(100vh - 100px);
 
-  @include viewMd{
+  @include viewMd {
     margin-top: 0;
   }
 
 }
 
-
-.selectctrl{
+.selectctrl {
   width: 245px;
   height: 35px;
   background: #fff url('../i/sel-arrow.png') right 12px top 10px no-repeat;
@@ -216,23 +218,22 @@ textarea {
   outline: none;
 }
 
-
-.textctrl{
+.textctrl {
   width: 245px;
   height: 40px;
   background-color: #fff;
   border: solid 1px #000000;
   padding: 0 7px;
 
-  &.error{
+  &.error {
     border: 1px solid rgb(204, 8, 8);
     background-color: rgb(255, 247, 247);
   }
-  &.disabled{
+  &.disabled {
     background-color: #f1f1f1;
   }
 
-  @include viewMd{
+  @include viewMd {
     font-size: 14px;
     height: 35px;
     line-height: 33px;
@@ -240,25 +241,24 @@ textarea {
   }
 }
 
-
 // pagination
-.pagination-wrap{
+.pagination-wrap {
   display: flex;
   justify-content: flex-end;
   margin-top: 40px;
   padding-bottom: 57px;
 
-  @include viewMd{
+  @include viewMd {
     margin-top: 20px;
     padding-bottom: 20px;
   }
 
-  .pagination{
+  .pagination {
     display: flex;
 
-    li{
+    li {
       overflow: hidden;
-      a{
+      a {
         width: 40px;
         height: 40px;
         border-radius: 5px;
@@ -272,39 +272,38 @@ textarea {
         @include fontSecondary;
         margin-left: 12px;
 
-
         @include hover;
 
-        &.prev{
+        &.prev {
           width: 92px;
           padding-right: 14px;
           text-align: right;
-          background:  #0f73ba url('../i/pv.png') left 15px top 50% no-repeat;
+          background: #0f73ba url('../i/pv.png') left 15px top 50% no-repeat;
         }
-        &.next{
+        &.next {
           width: 92px;
           padding-left: 14px;
           text-align: left;
-          background:  #0f73ba url('../i/nx.png') right 15px top 50% no-repeat;
+          background: #0f73ba url('../i/nx.png') right 15px top 50% no-repeat;
         }
 
-        @include viewMd{
+        @include viewMd {
           font-size: 13px;
           margin-left: 9px;
 
-          &.prev{
+          &.prev {
             width: 70px;
             padding-right: 12px;
           }
-          &.next{
+          &.next {
             width: 70px;
             padding-left: 12px;
           }
         }
       }
 
-      &.active{
-        a{
+      &.active {
+        a {
           background-color: #fff;
           border: 1px solid #0f73ba;
           color: #0f73ba;
@@ -312,49 +311,56 @@ textarea {
       }
     }
   }
-  .hide{
+  .hide {
     display: none;
   }
 }
 
 /* layout */
-.hide-md{
+.hide-md {
   display: block;
-  &.inline{
+  &.inline {
     display: inline-block;
   }
 }
+
+.space {
+  height: 30px;
+}
+
 .show-md {
   display: none;
   &.inline {
     display: none;
   }
 }
+
 tr {
-  &.hide-md{
+  &.hide-md {
     display: table-row;
   }
 }
 
 th {
-  &.hide-md{
+  &.hide-md {
     display: table-cell;
   }
 }
 
 td {
-  &.hide-md{
+  &.hide-md {
     display: table-cell;
   }
 }
-@include viewMd{
-  .hide-md{
+
+@include viewMd {
+  .hide-md {
     display: none;
     &.inline {
       display: none;
     }
   }
-  .show-md{
+  .show-md {
     display: block;
     &.inline {
       display: inline-block;

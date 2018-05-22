@@ -105,7 +105,7 @@ function* update(id, body, currentUser) {
 
   // if current user is not admin, then he can only update himself, and role can not be changed
   if (currentUser.role !== models.modelConstants.UserRoles.Admin) {
-    if (id !== currentUser.id) {
+    if (id !== _.toNumber(currentUser.id)) {
       throw new ForbiddenError('You can not update other user.');
     }
     if (body.role && user.role !== body.role) {

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {get} from 'lodash';
+import { NavLink } from 'react-router-dom';
 
 import './admin-request.scss';
 
-const AdminRequest = ({title, requests, archived})=>(
+const AdminRequest = ({title, requests, archived, downloadFile, decline, approve })=>(
   <div className="admin-request">
     <h2 className="admin-request-title">{title}</h2>
     <div className="admin-request-list">
@@ -13,19 +14,19 @@ const AdminRequest = ({title, requests, archived})=>(
           <div key={i} className="admin-request-list-item">
             <div className="request-head">
               <div className="request-by">
-                <span>Requested by</span><span className="request-author">{item.author}</span>
+                <span>Requested by</span><span className="request-author">{item.createdBy.username}</span>
               </div>
               <div className="request-date">{item.date}</div>
             </div>
             <div className="veteran-info">
               <div className="info-left-group">
-                <img src={item.photo} alt=""/>
+                <img src={item.photo || '/rp3.png'} alt=""/>
                 <div>
-                  <div className="veteran-name">{item.name}</div>
-                  <div className="veteran-birth-death">{item.birth} — {item.death}</div>
+                  <div className="veteran-name">{`${item.veteran.firstName} ${item.veteran.midName} ${item.veteran.lastName}`}</div>
+                  <div className="veteran-birth-death">{`${new Date(item.veteran[ 'birthDate' ]).getFullYear()} - ${new Date(item.veteran[ 'deathDate' ]).getFullYear()}`}</div>
                 </div>
               </div>
-              <a className="btn">Veteran's Profile</a>
+              <NavLink to={`/dashboard/${item.id}`} className="btn">Veteran's Profile</NavLink>
             </div>
             <div className="submitted-proof">
               <div className="proof-head">
@@ -33,8 +34,8 @@ const AdminRequest = ({title, requests, archived})=>(
                 <a className="btn">Download</a>
               </div>
               {
-                get(item, 'proof', []).map((p, j)=>(
-                  <div key={j} className="proof-item"><a>{p}</a></div>
+                get(item, 'proofs', []).map((p, j)=>(
+                  <div key={j} className="proof-item"><a onClick={() => downloadFile(p)} >{p.name}</a></div>
                 ))
               }
             </div>
@@ -45,8 +46,8 @@ const AdminRequest = ({title, requests, archived})=>(
                   <span className="hide-md">Email Post Creator</span>
                   <span className="show-md">Email Creator</span>
                 </a>
-                <a className="btn">Decline</a>
-                <a className="btn">Approve</a>
+                <a className="btn" onClick={() => decline(item.id)}>Decline</a>
+                <a className="btn" onClick={() => approve(item.id)}>Approve</a>
               </div>
             }
           </div>
