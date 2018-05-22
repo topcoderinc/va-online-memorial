@@ -12,6 +12,8 @@ const _ = require('lodash');
 const models = require('@va/models');
 const logger = require('../../../common/logger');
 const helper = require('../../../common/helper');
+const PhotoService = require('../../photos/services/PhotoService');
+const BadgeService = require('../../badges/services/BadgeService');
 
 /**
  * build db search query
@@ -86,13 +88,13 @@ function* validatePost(postId, postType) {
 function* populatePost(f) {
   if (!f) return f;
   if (f.postType === models.modelConstants.PostTypes.Story) {
-    f.story = yield helper.ensureExists(models.Story, { id: f.postId });
+    f.story = yield helper.populateUsersForEntity(yield helper.ensureExists(models.Story, { id: f.postId }));
   } else if (f.postType === models.modelConstants.PostTypes.Photo) {
-    f.photo = yield helper.ensureExists(models.Photo, { id: f.postId });
+    f.photo = yield PhotoService.getSingle(f.postId);
   } else if (f.postType === models.modelConstants.PostTypes.Badge) {
-    f.badge = yield helper.ensureExists(models.Badge, { id: f.postId });
+    f.badge = yield BadgeService.getSingle(f.postId);
   } else if (f.postType === models.modelConstants.PostTypes.Testimonial) {
-    f.testimonial = yield helper.ensureExists(models.Testimonial, { id: f.postId });
+    f.testimonial = yield helper.populateUsersForEntity(yield helper.ensureExists(models.Testimonial, { id: f.postId }));
   }
   return f;
 }

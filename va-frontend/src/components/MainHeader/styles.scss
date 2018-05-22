@@ -10,7 +10,7 @@
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
   z-index: 99;
 
-  @include viewMd{
+  @include viewMd {
     position: relative;
     left: auto;
     right: auto;
@@ -18,10 +18,10 @@
     height: auto;
   }
 
-  .title-line-breaker{
+  .title-line-breaker {
     display: none;
 
-    @include viewMd{
+    @include viewMd {
       display: inline;
     }
   }
@@ -29,7 +29,7 @@
   .viewport {
     height: 100px;
 
-    @include viewMd{
+    @include viewMd {
       height: auto;
       padding-top: 1px;
     }
@@ -48,12 +48,12 @@
     }
     @include hover;
 
-    @include viewMd{
+    @include viewMd {
       left: $gutter;
       top: 15px;
       font-size: 15px;
 
-      strong{
+      strong {
         font-size: 25px
       }
     }
@@ -66,7 +66,7 @@
     z-index: 10;
     background: #fff;
 
-    @include viewMd{
+    @include viewMd {
       margin-top: 60px;
       border-top: 1px solid #bfbfbf;
       padding-top: 10px;
@@ -86,7 +86,7 @@
       border-radius: 0 4px 4px 0;
       font-size: 20px;
 
-      @include viewMd{
+      @include viewMd {
         font-size: 14px;
         border-radius: 0;
         -webkit-appearance: none;
@@ -103,7 +103,7 @@
       border-radius: 0 4px 4px 0;
       @include hover;
 
-      @include viewMd{
+      @include viewMd {
         top: 10px;
         right: 15px;
       }
@@ -142,17 +142,17 @@
       @include hover;
     }
 
-    @include viewMd{
+    @include viewMd {
       right: $gutter;
       top: 15px;
 
-      .btn{
+      .btn {
         width: 65px;
         height: 30px;
         line-height: 30px;
         font-size: 14px;
 
-        &.btn-clear{
+        &.btn-clear {
           border: solid 1px #0f73ba;
           line-height: 28px;
         }
@@ -163,17 +163,18 @@
     position: absolute;
     right: 50px;
     top: 30px;
+    display: flex;
 
-    @include viewMd{
+    @include viewMd {
       right: 15px;
       top: 15px;
       display: flex;
       align-items: center;
     }
-    .notification-wrap{
+    .notification-wrap {
       position: relative;
       cursor: pointer;
-      .pa{
+      .pa {
         width: 12px;
         height: 12px;
         background-color: #ffffff;
@@ -184,7 +185,7 @@
         z-index: 91;
         box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
 
-        &:after{
+        &:after {
           content: '';
           position: absolute;
           bottom: -13px;
@@ -193,12 +194,12 @@
           width: 25px;
           background-color: #ffffff;
         }
-        @include viewMd{
+        @include viewMd {
           top: 45px;
         }
       }
     }
-    .notification-num{
+    .notification-num {
       position: absolute;
       color: #fff;
       font-size: 14px;
@@ -220,6 +221,7 @@
       background: url('../../i/bell.png') 0 4px no-repeat;
     }
     .username {
+      display: block;
       font-size: 16px;
       font-weight: 600;
       color: #0f73ba;
@@ -231,16 +233,51 @@
       text-overflow: ellipsis;
       overflow: hidden;
       @include fontSecondary;
+
+      a {
+        color: #0f73ba;
+      }
+      &:hover {
+        text-decoration: none;
+        .sub-menu {
+          display: block;
+        }
+      }
+      .sub-menu {
+        position: absolute;
+        left: 30px;
+        right: -10px;
+        display: none;
+        background-color: white;
+        padding-top: 15px;
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: solid 2px #0f73ba;
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #0f73ba;
+          padding: 5px;
+          &:hover {
+            background-color: gainsboro;
+          }
+        }
+        &:hover {
+          display: block;
+        }
+      }
     }
-    .as-nok{
+    .as-nok {
       margin-left: 5px;
     }
-    @include viewMd{
-      .as-nok{
+    @include viewMd {
+      .as-nok {
         display: none;
       }
     }
-  } // header-card
+  }
+  // header-card
   .header-card {
     width: 305px;
     min-height: 351px;
@@ -288,9 +325,9 @@
         }
       }
 
-      @include viewMd{
+      @include viewMd {
         margin-top: 12px;
-        &.alt{
+        &.alt {
           margin-top: 24px;
         }
       }
@@ -299,22 +336,22 @@
       margin-top: 28px;
       border-top: 1px solid #000;
       padding-top: 22px;
-    } 
+    }
 
     // register-card
     &.register-card {
       width: 580px;
       padding-bottom: 30px;
       .frm {
-        .col-createacc{
+        .col-createacc {
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
         }
-        .fieldset{
+        .fieldset {
           flex: 0 245px;
 
-          @include viewMd{
+          @include viewMd {
             flex: 0 100%;
           }
         }
@@ -336,7 +373,7 @@
         width: 245px;
       }
 
-      @include viewMd{
+      @include viewMd {
         width: auto;
 
         .info-ribbon {
@@ -346,18 +383,18 @@
           padding-top: 10px;
           padding-bottom: 10px;
         }
-        .frm{
+        .frm {
           .col-createacc {
             flex-wrap: wrap;
           }
-          .col{
+          .col {
             flex: 0 100%;
           }
         }
       }
     }
 
-    @include viewMd{
+    @include viewMd {
       position: fixed;
       left: 0;
       right: 0;
@@ -366,13 +403,13 @@
       height: 100vh;
       padding: 20px 25px;
 
-      h2{
+      h2 {
         font-size: 15px;
         border-bottom: 1px solid #000000;
         padding-bottom: 25px;
         margin-bottom: 28px;
       }
-      .close{
+      .close {
         top: 20px;
         width: 20px;
         height: 20px;
@@ -381,8 +418,8 @@
       }
     }
 
-    @include viewMd{
-      .action{
+    @include viewMd {
+      .action {
         position: absolute;
         bottom: 22px;
         left: 0;
@@ -390,7 +427,7 @@
         text-align: right;
         margin: 0 25px;
 
-        .btn{
+        .btn {
           width: 130px;
           display: inline-block;
           font-size: 14px;
@@ -407,7 +444,7 @@
       text-align: left;
       color: #000000;
 
-      @include viewMd{
+      @include viewMd {
         font-size: 14px;
       }
     }
@@ -419,7 +456,7 @@
       height: 40px;
       padding: 0 7px;
 
-      @include viewMd{
+      @include viewMd {
         width: 100%;
         font-size: 14px;
       }
@@ -447,7 +484,7 @@
       box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
       background-color: #fff;
 
-      @include viewMd{
+      @include viewMd {
         min-height: 414px;
         background-color: transparent;
       }
@@ -539,29 +576,29 @@
     }
   }
 
-  @include viewMd{
+  @include viewMd {
     width: 100%;
     height: calc(100vh - 60px);
     left: 0;
     right: 0;
     top: 61px;
     padding-top: 60px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
 
-    h3{
+    h3 {
       padding-bottom: 0;
       border-bottom: 1px solid #000;
       font-size: 14px;
       padding-bottom: 20px;
     }
-    .inner{
+    .inner {
       padding: 20px 15px;
       box-shadow: 0px 3px 8px 0 rgba(187, 187, 190, 0.8);
     }
   }
 }
 
-.notification-popup{
+.notification-popup {
   padding: 45px 40px 40px;
   width: 463px;
   height: 390px;
@@ -574,13 +611,13 @@
   transform: translate(-50%);
   overflow-y: auto;
 
-  h2{
+  h2 {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 20px;
     @include fontAlt;
   }
-  .close{
+  .close {
     position: absolute;
     right: 39px;
     top: 41px;
@@ -590,32 +627,32 @@
     background-size: 17px;
     @include hover;
 
-    @include viewMd{
+    @include viewMd {
       top: 25px;
       right: 25px;
     }
   }
 
-  .notification-icon{
+  .notification-icon {
     width: 20px;
     height: 20px;
     background-size: 100% 100%;
     display: inline-block;
     margin-right: 14px;
-    &.story{
+    &.story {
       background-image: url(../../i/stories.png);
       margin-right: 11px;
       margin-left: 3px;
     }
-    &.testimonial{
+    &.testimonial {
       background-image: url(../../i/wt.png);
     }
-    &.photo{
+    &.photo {
       background-image: url(../../i/uphoto.png);
     }
   }
 
-  .notification-list-item{
+  .notification-list-item {
     font-size: 16px;
     display: flex;
     justify-content: space-between;
@@ -623,20 +660,20 @@
     border-bottom: 1px solid #000;
   }
 
-  .notification-group{
+  .notification-group {
     display: flex;
     align-items: center;
   }
 
-  .notification-user{
+  .notification-user {
     font-weight: bold;
     margin-right: 5px;
   }
 
-  .notification-date{
+  .notification-date {
     color: #5d5d66;
   }
-  @include viewMd{
+  @include viewMd {
     width: 346px;
     max-width: calc(100vw - 30px);
     top: 65px;
@@ -646,25 +683,25 @@
     padding: 15px;
     height: 246px;
     transform: none;
-    h2{
+    h2 {
       font-size: 15px;
     }
-    .close{
+    .close {
       top: 14px;
       right: 15px;
       width: 15px;
       height: 15px;
       background-size: 15px;
     }
-    .notification-list-item{
+    .notification-list-item {
       font-size: 14px;
       padding: 11px 0 10px;
     }
-    .notification-icon{
+    .notification-icon {
       width: 10px;
       height: 10px;
       margin-right: 6px;
-      &.story{
+      &.story {
         margin-right: 3px;
         margin-left: 3px;
       }

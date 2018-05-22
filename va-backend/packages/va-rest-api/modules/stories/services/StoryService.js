@@ -50,6 +50,15 @@ function* search(query, user) {
   }
 
   const q = buildDBFilter(query);
+  if (query.review) {
+    const nextOfKins = yield models.NextOfKin.find({
+      where: {
+        userId: user.id,
+        status: models.modelConstants.Statuses.Approved
+      }
+    });
+    q.where.veteranId = { $in: _.map(nextOfKins, item => item.veteranId) };
+  }
   const docs = yield models.Story.findAndCountAll(q);
   return {
     items: yield helper.populateUsersForEntities(docs.rows),
@@ -64,6 +73,7 @@ search.schema = {
     veteranId: Joi.optionalId(),
     userId: Joi.optionalId(),
     status: Joi.string().valid(_.values(models.modelConstants.Statuses)),
+    review: Joi.boolean(),
     limit: Joi.limit(),
     offset: Joi.offset(),
     sortColumn: Joi.string().valid('id', 'veteranId', 'title', 'text', 'status').default('id'),

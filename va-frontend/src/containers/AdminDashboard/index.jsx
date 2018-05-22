@@ -5,7 +5,7 @@ import actions from '../../actions/auth';
 
 const AdminDashboard = ({ user, logout }) => {
   if (user.role !== 'admin') {
-    window.location.href = '/dashboard';
+    window.location.href = '/';
     return null;
   }
   return (
@@ -21,7 +21,7 @@ const AdminDashboard = ({ user, logout }) => {
 
 AdminDashboard.defaultProps = {
   user: {}
-}
+};
 
 const mapStateToProps = (state) => ({ ...state.auth });
 

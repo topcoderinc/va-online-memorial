@@ -1,4 +1,4 @@
-import { META } from './config';
+import {META} from './config';
 import Landing from './containers/Landing';
 import Search from './containers/Search';
 import Dashboard from './containers/Dashboard';
@@ -26,7 +26,7 @@ export default [
   createPage('/', 'Landing', Landing),
   createPage('/home', 'Landing', Landing),
   createPage('/search', 'Search', Search),
-  createPage('/dashboard', 'Dashboard', Dashboard),
+  createPage('/dashboard/:id', 'Dashboard', Dashboard),
   createPage('/admin/dashboard', 'Admin Dashboard', AdminDashboard),
   createPage('/setting', 'Setting', Setting),
   createPage('/admin/setting', 'Admin Setting', AdminSetting),
